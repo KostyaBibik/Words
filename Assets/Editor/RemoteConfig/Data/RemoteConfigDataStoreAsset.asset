@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
+  m_Name: RemoteConfigDataStoreAsset
+  m_EditorClassIdentifier: 
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"0071d927-67ac-4218-8b83-9396560ba0af\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"levels_json\",\r\n      \"type\": \"json\",\r\n     
+    \"schemaId\": null,\r\n      \"value\": {\r\n        \"levels\": [\r\n         
+    {\r\n            \"id\": 1,\r\n            \"words\": [\r\n              \"\u041A\u041E\u0428\u041A\u0410\",\r\n             
+    \"\u0421\u041E\u0411\u0410\u041A\u0410\"\r\n            ],\r\n            \"clusters\":
+    [\r\n              \"\u041A\u041E\",\r\n              \"\u0428\u041A\u0410\",\r\n             
+    \"\u0421\u041E\",\r\n              \"\u0411\u0410\u041A\u0410\"\r\n           
+    ]\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n]"
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"0071d927-67ac-4218-8b83-9396560ba0af\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"levels_json\",\r\n      \"type\": \"json\",\r\n     
+    \"schemaId\": null,\r\n      \"value\": {\r\n        \"levels\": [\r\n         
+    {\r\n            \"id\": 1,\r\n            \"words\": [\r\n              \"\u041A\u041E\u0428\u041A\u0410\",\r\n             
+    \"\u0421\u041E\u0411\u0410\u041A\u0410\"\r\n            ],\r\n            \"clusters\":
+    [\r\n              \"\u041A\u041E\",\r\n              \"\u0428\u041A\u0410\",\r\n             
+    \"\u0421\u041E\",\r\n              \"\u0411\u0410\u041A\u0410\"\r\n           
+    ]\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n]"
+  _environments: "[\r\n  {\r\n    \"projectId\": \"2d3728cf-00c8-4517-81b1-e8a44a07de96\",\r\n   
+    \"name\": \"production\",\r\n    \"id\": \"ad5d9704-dce2-4c6e-ba96-b9b2ba02ccbb\",\r\n   
+    \"isDefault\": true,\r\n    \"createdAt\": \"2025-04-16T21:51:25Z\",\r\n    \"updatedAt\":
+    \"2025-04-16T21:51:25Z\"\r\n  },\r\n  {\r\n    \"projectId\": \"2d3728cf-00c8-4517-81b1-e8a44a07de96\",\r\n   
+    \"name\": \"wordsdata\",\r\n    \"id\": \"5a2432e0-c048-4b1b-8647-82e3f7ade688\",\r\n   
+    \"isDefault\": false,\r\n    \"createdAt\": \"2025-04-16T21:59:53Z\",\r\n   
+    \"updatedAt\": \"2025-04-16T21:59:53Z\"\r\n  }\r\n]"

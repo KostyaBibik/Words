@@ -1,7 +1,7 @@
 ﻿using System;
 using UniRx;
 
-namespace Assets.Scripts.UI.Core
+namespace UI.Abstract
 {
     public interface IUIView : IDisposable
     {

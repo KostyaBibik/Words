@@ -1,4 +1,9 @@
-﻿using Assets.Scripts.UI.Core;
+﻿using Extensions;
+using UI.Core;
+using UI.ErrorLoading;
+using UI.Flow;
+using UI.Gameplay;
+using UI.Loading;
 using UnityEngine;
 using Zenject;
 
@@ -10,18 +15,29 @@ namespace Assets.Scripts.Architecture.DI
 
         public override void InstallBindings()
         {
+            CreateAndBindUIManager();
+            
+            BindWindows();
+            
+            BindFlow();
+        }
+
+        private void CreateAndBindUIManager()
+        {
             var uiManager = Container.InstantiatePrefab(_uiManagerPrefab);
             Container.Bind<UIManager>().FromComponentOn(uiManager).AsSingle();
         }
 
-        private void BindPresenter<TView, TPresenter>() 
-            where TView : MonoBehaviour, IUIView
+        private void BindWindows()
         {
-            Container.Bind<TView>()
-                .FromComponentInChildren()
-                .WhenInjectedInto<TPresenter>();
-            
-            Container.Bind<TPresenter>().AsSingle();
+            Container.BindPresenterWithView<UILoadingPresenter, UILoadingView>();
+            Container.BindPresenterWithView<UIErrorLoadingPresenter, UIErrorLoadingView>();
+            Container.BindPresenterWithView<UIGameplayPresenter, UIGameplayView>();
+        }
+
+        private void BindFlow()
+        {
+            Container.BindInterfacesAndSelfTo<UIFlowManager>().AsSingle();
         }
     }
 }

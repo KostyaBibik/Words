@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using UI.Abstract;
+using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.UI.Core
+namespace UI.Core
 {
     public class UIManager : MonoBehaviour
     {

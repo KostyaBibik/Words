@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.UI.Core
+﻿namespace UI.Abstract
 {
     public interface IUIPresenter
     {

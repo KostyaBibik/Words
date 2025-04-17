@@ -1,7 +1,7 @@
 ﻿using System;
 using Zenject;
 
-namespace Assets.Scripts.UI.Core
+namespace UI.Abstract
 {
     public abstract class UIPresenter<TView> : IUIPresenter, IInitializable, IDisposable 
         where TView : IUIView

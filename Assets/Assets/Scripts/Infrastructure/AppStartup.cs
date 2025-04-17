@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using Core.GameState;
+using Core.GameState.States;
 using Core.Services.Abstract;
 using Cysharp.Threading.Tasks;
 using Scripts.Enums;
@@ -16,6 +18,7 @@ namespace Infrastructure
         [Inject] private readonly ILevelProcessor _levelProcessor;
         [Inject] private readonly IGameDataRepository _dataRepository;
         [Inject] private readonly IUIFlowManager _flowManager;
+        [Inject] private readonly IGameStateMachine _gameStateMachine;
         
         public ReactiveProperty<ELoadPhase> CurrentPhase { get; } = new(ELoadPhase.None);
         
@@ -28,6 +31,7 @@ namespace Infrastructure
         {
             try
             {
+                _flowManager.ShowLoadingScreen();
                 UpdateState(ELoadPhase.ConfigsLoading);
                 
                 var levels = await _levelLoader.LoadLevelsAsync();
@@ -48,10 +52,10 @@ namespace Infrastructure
                 _dataRepository.SetLevels(processedLevels);
                 
                 UpdateState(ELoadPhase.Completed);
-                
-                _flowManager.ShowGameScreen();
+
+                _gameStateMachine.SwitchState<MainMenuState>().Forget();
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
                 Debug.LogError($"Startup failed: {e}");
                 UpdateState(ELoadPhase.Failed);

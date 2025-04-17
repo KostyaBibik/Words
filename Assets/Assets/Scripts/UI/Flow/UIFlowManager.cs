@@ -10,7 +10,7 @@ namespace UI.Flow
     public class UIFlowManager : IUIFlowManager, IInitializable
     {
         [Inject] private readonly UILoadingPresenter _loadingPresenterPresenter;
-        [Inject] private readonly UIGameplayPresenter _gameplayPresenter;
+        [Inject] private readonly UIMainMenuPresenter _mainMenuPresenter;
         [Inject] private readonly UIErrorLoadingPresenter _errorLoadingPresenter;
 
         private bool IsLoading { get; set; }
@@ -21,23 +21,23 @@ namespace UI.Flow
         
         public void ShowLoadingScreen()
         {
-            _gameplayPresenter.Hide();
+            _mainMenuPresenter.Hide();
             _errorLoadingPresenter.Hide();
             
             _loadingPresenterPresenter.Show();
         }
 
-        public void ShowGameScreen()
+        public void ShowMainMenuScreen()
         {
             _loadingPresenterPresenter.Hide();
             _errorLoadingPresenter.Hide();
 
-            _gameplayPresenter.Show();
+            _mainMenuPresenter.Show();
         }
 
         public void ShowErrorScreen(string message)
         {
-            _gameplayPresenter.Hide();
+            _mainMenuPresenter.Hide();
             _loadingPresenterPresenter.Hide();
 
             _errorLoadingPresenter.Show();

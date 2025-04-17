@@ -32,6 +32,7 @@ namespace Assets.Scripts.Architecture.DI
         {
             Container.BindPresenterWithView<UILoadingPresenter, UILoadingView>();
             Container.BindPresenterWithView<UIErrorLoadingPresenter, UIErrorLoadingView>();
+            Container.BindPresenterWithView<UIMainMenuPresenter, UIMainMenuView>();
             Container.BindPresenterWithView<UIGameplayPresenter, UIGameplayView>();
         }
 

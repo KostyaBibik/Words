@@ -27,7 +27,7 @@ public class GameContext : IInitializable, IDisposable
         
         try
         {
-            _uiFlow.ShowGameScreen();
+            _uiFlow.ShowMainMenuScreen();
         }
         catch (Exception e)
         {

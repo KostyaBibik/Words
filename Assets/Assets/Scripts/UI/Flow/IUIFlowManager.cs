@@ -3,7 +3,7 @@
     public interface IUIFlowManager
     {
         public void ShowLoadingScreen();
-        public void ShowGameScreen();
+        public void ShowMainMenuScreen();
         public void ShowErrorScreen(string message);
     }
 }

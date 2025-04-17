@@ -1,8 +1,17 @@
-﻿using UI.Abstract;
+﻿using System.Collections.Generic;
+using Core.Services.Models;
+using UI.Abstract;
+using UnityEngine;
 
 namespace UI.Gameplay
 {
-    public sealed class UIGameplayView : UIView
+    public class UIGameplayView : UIView
     {
+        [SerializeField] private UIClustersHandler _clustersHandler;
+
+        public void SetClusters(List<ClusterData> clusters)
+        {
+            _clustersHandler.UpdateView(clusters);
+        }
     }
 }

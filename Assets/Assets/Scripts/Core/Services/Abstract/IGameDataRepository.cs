@@ -6,7 +6,7 @@ namespace Core.Services.Abstract
     public interface IGameDataRepository
     {
         IReadOnlyList<ProcessedLevelData> LoadedLevels { get; }
-        ProcessedLevelData CurrentProcessedLevel { get; }
+        ProcessedLevelData CurrentLevel { get; }
         void SetLevels(ProcessedLevelData[] levels);
         void SetCurrentLevel(int index);
     }

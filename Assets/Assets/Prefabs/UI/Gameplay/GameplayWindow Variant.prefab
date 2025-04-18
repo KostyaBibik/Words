@@ -90,9 +90,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 998ba68f22c44a359af82560e3856d9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clustersContainer: {fileID: 8568304125896060684}
-  _cluster2LettersPrefab: {fileID: 1998774937370350714, guid: 8e2342591c11cd545bab6d1ad93bac43, type: 3}
-  _cluster3LettersPrefab: {fileID: 4918066693578431043, guid: ca0f95bf7d6286545b6069ce6ba4a52c, type: 3}
+  _settings:
+    cluster2LettersPrefab: {fileID: 1998774937370350714, guid: 8e2342591c11cd545bab6d1ad93bac43, type: 3}
+    cluster3LettersPrefab: {fileID: 4918066693578431043, guid: ca0f95bf7d6286545b6069ce6ba4a52c, type: 3}
+    placeholderPrefab: {fileID: 2931131591230214973, guid: e307cfd73c7c5814c8cf4c2f77bf21c4, type: 3}
+    clustersContainer: {fileID: 8568304125896060684}
+    dragLayer: {fileID: 1911359088302567136}
 --- !u!1 &6569388753815798940
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +286,14 @@ PrefabInstance:
     - target: {fileID: 1281136303706115216, guid: 447c7dc90381b88469600239f67285ef, type: 3}
       propertyPath: m_Name
       value: GameplayWindow Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357457039338655700, guid: 447c7dc90381b88469600239f67285ef, type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575704095657935461, guid: 447c7dc90381b88469600239f67285ef, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7780304129856883994, guid: 447c7dc90381b88469600239f67285ef, type: 3}
       propertyPath: m_Pivot.x

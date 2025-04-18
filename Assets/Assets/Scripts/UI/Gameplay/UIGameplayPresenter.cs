@@ -18,6 +18,7 @@ namespace UI.Gameplay
             GetAllClustersFromLevel(levelData, _cachedClusters);
             
             _view.SetClusters(_cachedClusters);
+            _view.SetupWordContainers(levelData.words.Length);
             
             await UniTask.CompletedTask;
         }

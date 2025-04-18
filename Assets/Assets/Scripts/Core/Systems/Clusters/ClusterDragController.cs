@@ -1,52 +1,80 @@
-﻿using UI.Gameplay;
+﻿using System.Collections.Generic;
+using UI.Gameplay.Elements;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Core.Systems.Clusters
+namespace UI.Gameplay
 {
     public class ClusterDragController
     {
-        private readonly Canvas _rootCanvas;
-        private readonly Transform _dragLayer;
-        private UIClusterElementView _draggedItem;
-        private Vector3 _originalPosition;
-        private Transform _originalParent;
-        private int _originalSiblingIndex;
+        private Transform _dragLayer;
+        private UIClusterElementView _currentCluster;
+        private Vector3 _offset; 
+        private RectTransform _canvasRectTransform;
         
-        public ClusterDragController(Canvas rootCanvas, Transform dragLayer)
+        public ClusterDragController(Transform dragLayer, Canvas canvas)
         {
-            _rootCanvas = rootCanvas;
             _dragLayer = dragLayer;
+            _canvasRectTransform = canvas.GetComponent<RectTransform>();
         }
 
-        public void HandleBeginDrag(UIClusterElementView item)
+        public void HandleBeginDrag(UIClusterElementView cluster)
         {
-            _draggedItem = item;
-            _originalParent = item.transform.parent;
-            _originalSiblingIndex = item.transform.GetSiblingIndex();
+            _currentCluster = cluster;
+            var rt = _currentCluster.GetComponent<RectTransform>();
         
-            item.transform.SetParent(_dragLayer); 
-        }
-
-        public void HandleDrag(PointerEventData eventData)
-        {
-            if (_draggedItem == null) return;
+            rt.SetParent(_dragLayer);
+            rt.SetAsLastSibling();
         
             RectTransformUtility.ScreenPointToWorldPointInRectangle(
-                _rootCanvas.GetComponent<RectTransform>(),
-                eventData.position,
-                eventData.pressEventCamera,
+                _canvasRectTransform,
+                Input.mousePosition,
+                null,
                 out var worldPoint);
-            
-            _draggedItem.transform.position = worldPoint;
+        
+            _offset = rt.position - worldPoint;
         }
 
-        public void HandleEndDrag(bool wasDropped)
+        public void HandleDrag(Vector2 screenPosition)
         {
-            if (_draggedItem == null || wasDropped) return;
+            if (_currentCluster == null) return;
+
+            RectTransformUtility.ScreenPointToWorldPointInRectangle(
+                _canvasRectTransform,
+                screenPosition,
+                null,
+                out var worldPoint);
         
-            _draggedItem.transform.SetParent(_originalParent);
-            _draggedItem.transform.SetSiblingIndex(_originalSiblingIndex);
+            _currentCluster.transform.position = worldPoint + _offset;
+        }
+
+        public void HandleEndDrag(PointerEventData eventData)
+        {
+            if (_currentCluster == null) return;
+
+            bool wasDropped = false;
+    
+            var results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventData, results);
+
+            foreach (var result in results)
+            {
+                if (result.gameObject.TryGetComponent<UIWordContainerView>(out var dropZone))
+                {
+                    if (dropZone.TryDrop(_currentCluster, eventData))
+                    {
+                        wasDropped = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!wasDropped)
+            {
+                _currentCluster.ReturnToOriginalPosition();
+            }
+
+            _currentCluster = null;
         }
     }
 }

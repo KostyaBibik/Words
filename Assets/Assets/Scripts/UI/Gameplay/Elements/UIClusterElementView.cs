@@ -22,6 +22,7 @@ namespace UI.Gameplay.Elements
         public event Action<UIClusterElementView> OnBeginDragFromContainer;
         
         public Transform OriginalParent { get; private set; }
+        public UIWordContainerView Container { get; private set; }
 
         private void Awake()
         {
@@ -31,16 +32,8 @@ namespace UI.Gameplay.Elements
         public void AddLetter(UILetterView letter) => 
             _letters.Add(letter);
 
-        public Vector2 GetDragOffset(PointerEventData eventData)
-        {
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                (RectTransform)transform,
-                eventData.position,
-                eventData.pressEventCamera,
-                out var localPoint);
-    
-            return localPoint;
-        }
+        public void SetContainer(UIWordContainerView container) =>
+            Container = container;
         
         public void OnBeginDrag(PointerEventData eventData)
         {

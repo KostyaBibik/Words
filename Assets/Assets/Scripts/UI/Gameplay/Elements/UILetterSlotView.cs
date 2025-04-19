@@ -9,12 +9,19 @@ namespace UI.Gameplay.Elements
         [SerializeField] private UILetterView _letterView;
         
         public bool IsOccupied { get; private set; }
-        
-        public void SetOccupied(bool value)
+        public int Index { get; private set; }
+
+        public void Initialize(int index)
         {
-            IsOccupied = value;
-            _background.color = value ? Color.gray : Color.white;
-            gameObject.SetActive(!value);
+            transform.name = $"LetterSlot_{index}";
+            Index = index;
+        }
+        
+        public void SetOccupied(bool flag)
+        {
+            IsOccupied = flag;
+            _background.color = flag ? Color.gray : Color.white;
+            gameObject.SetActive(!flag);
         }
 
         public void SetAsPlaceholder(bool isPlaceholder)

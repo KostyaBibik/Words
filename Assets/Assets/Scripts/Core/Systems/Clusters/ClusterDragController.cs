@@ -44,7 +44,8 @@ namespace UI.Gameplay
 
         public void HandleDrag(Vector2 screenPosition)
         {
-            if (_currentCluster == null) return;
+            if (_currentCluster == null)
+                return;
 
             RectTransformUtility.ScreenPointToWorldPointInRectangle(
                 _canvasRectTransform,
@@ -60,7 +61,7 @@ namespace UI.Gameplay
                 position = screenPosition
             }, results);
 
-            bool foundContainer = false;
+            var foundContainer = false;
             foreach (var result in results)
             {
                 if (result.gameObject.TryGetComponent<UIWordContainerView>(out var container))
@@ -77,8 +78,8 @@ namespace UI.Gameplay
                         null,
                         out var localPoint);
 
-                    int targetSlotIndex = container.CalculateSlotIndexFromPosition(localPoint);
-                    int startIndex = targetSlotIndex - _currentCluster.GrabbedLetterIndex;
+                    var targetSlotIndex = container.CalculateSlotIndexFromPosition(localPoint);
+                    var startIndex = targetSlotIndex - _currentCluster.GrabbedLetterIndex;
 
                     container.ShowPlaceholder(_currentCluster, startIndex);
                     foundContainer = true;
@@ -97,17 +98,21 @@ namespace UI.Gameplay
         {
             if (_currentCluster == null) return;
 
-            bool wasDropped = false;
+            var wasDropped = false;
             var results = new List<RaycastResult>();
+            var oldContainer = _currentCluster.Container;
+            UIWordContainerView targetContainer = null;
+            
             EventSystem.current.RaycastAll(eventData, results);
 
             foreach (var result in results)
             {
-                if (result.gameObject.TryGetComponent<UIWordContainerView>(out var container))
+                if (result.gameObject.TryGetComponent(out targetContainer))
                 {
-                    if (container.TryDrop(_currentCluster, eventData))
+                    if (targetContainer.TryDrop(_currentCluster, eventData))
                     {
                         wasDropped = true;
+                        _currentCluster.SetContainer(targetContainer);
                         break;
                     }
                 }
@@ -116,6 +121,17 @@ namespace UI.Gameplay
             if (!wasDropped)
             {
                 _currentCluster.ReturnToOriginalPosition();
+                if (_currentCluster.Container != null)
+                {
+                    _currentCluster.Container.ReturnClusterToPosition(_currentCluster);
+                }
+            }
+            else
+            {
+                if (oldContainer != null && oldContainer != targetContainer)
+                {
+                    oldContainer.ClearBuffers();
+                }
             }
 
             _lastHoveredContainer?.ClearPlaceholder();

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ModestTree;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,21 +11,19 @@ namespace UI.Gameplay.Elements
         [SerializeField] private UILetterSlotView _letterSlotPrefab;
         
         private UILetterSlotView[] _letterSlots;
-        private Dictionary<UIClusterElementView, List<int>> _placedClusters;
+        private readonly Dictionary<UIClusterElementView, List<int>> _placedClusters = new();
+        private readonly Dictionary<UIClusterElementView, int> _clustersMap = new();
         private List<int> _currentPlaceholderSlots = new();
-
-        private void Awake()
-        {
-            _placedClusters = new Dictionary<UIClusterElementView, List<int>>();
-        }
+        private List<UILetterSlotView> _bufferSlots = new();
+        
 
         public void Initialize(int wordLength)
         {
             _letterSlots = new UILetterSlotView[wordLength];
-            for (int i = 0; i < wordLength; i++)
+            for (var i = 0; i < wordLength; i++)
             {
                 _letterSlots[i] = Instantiate(_letterSlotPrefab, transform);
-                _letterSlots[i].name = $"LetterSlot_{i}";
+                _letterSlots[i].Initialize(i);
             }
         }
 
@@ -35,9 +34,9 @@ namespace UI.Gameplay.Elements
             if (startIndex < 0 || startIndex + cluster.LetterCount > _letterSlots.Length)
                 return;
 
-            for (int i = 0; i < cluster.LetterCount; i++)
+            for (var i = 0; i < cluster.LetterCount; i++)
             {
-                int slotIndex = startIndex + i;
+                var slotIndex = startIndex + i;
                 if (slotIndex >= 0 && slotIndex < _letterSlots.Length && !_letterSlots[slotIndex].IsOccupied)
                 {
                     _letterSlots[slotIndex].SetAsPlaceholder(true);
@@ -66,26 +65,51 @@ namespace UI.Gameplay.Elements
                 eventData.pressEventCamera,
                 out var localPoint);
 
-            int targetSlotIndex = CalculateSlotIndexFromPosition(localPoint);
-            int startIndex = targetSlotIndex - cluster.GrabbedLetterIndex;
-
+            var targetSlotIndex = CalculateSlotIndexFromPosition(localPoint);
+            var startIndex = targetSlotIndex - cluster.GrabbedLetterIndex;
+            
             if (!IsValidDropPosition(startIndex, cluster.LetterCount))
                 return false;
-
+            
+            _bufferSlots.Clear();
+            
             if (_placedClusters.ContainsKey(cluster))
             {
                 ReleaseSlotsForCluster(cluster);
             }
-
+            
             OccupySlots(startIndex, cluster.LetterCount);
             
             cluster.transform.SetParent(transform);
-            cluster.transform.SetSiblingIndex(startIndex);
+
+            var newIndex = CalcSiblingIndex(startIndex);
+
+            cluster.transform.SetSiblingIndex(newIndex);
             
             _placedClusters[cluster] = Enumerable.Range(startIndex, cluster.LetterCount).ToList();
+            _clustersMap[cluster] = startIndex;
+            
             ClearPlaceholder();
             
             return true;
+        }
+
+        private int CalcSiblingIndex(int startIndex)
+        {
+            var counterClusters = 0;
+
+            foreach (var cluster in _placedClusters.Keys)
+            {
+                if (startIndex > cluster.transform.GetSiblingIndex())
+                {
+                    counterClusters++;
+                }
+            }
+
+            startIndex += counterClusters;
+            startIndex = Mathf.Clamp(startIndex, 0, startIndex);
+            
+            return startIndex;
         }
 
         private bool IsValidDropPosition(int startIndex, int length)
@@ -114,9 +138,9 @@ namespace UI.Gameplay.Elements
             if (_letterSlots == null || _letterSlots.Length == 0)
                 return 0;
 
-            float slotWidth = _letterSlots[0].GetComponent<RectTransform>().rect.width;
-            float totalWidth = _letterSlots.Length * slotWidth;
-            float normalizedPosition = (localPosition.x + totalWidth / 2f) / totalWidth;
+            var slotWidth = _letterSlots[0].GetComponent<RectTransform>().rect.width;
+            var totalWidth = _letterSlots.Length * slotWidth;
+            var normalizedPosition = (localPosition.x + totalWidth / 2f) / totalWidth;
             
             return Mathf.Clamp(Mathf.FloorToInt(normalizedPosition * _letterSlots.Length), 0, _letterSlots.Length - 1);
         }
@@ -125,10 +149,11 @@ namespace UI.Gameplay.Elements
         {
             if (_placedClusters.TryGetValue(cluster, out var slots))
             {
-                foreach (int slotIndex in slots)
+                foreach (var slotIndex in slots)
                 {
                     if (slotIndex >= 0 && slotIndex < _letterSlots.Length)
                     {
+                        _bufferSlots.Add(_letterSlots[slotIndex]);
                         _letterSlots[slotIndex].SetOccupied(false);
                     }
                 }
@@ -136,6 +161,28 @@ namespace UI.Gameplay.Elements
             }
         }
 
+        public void ReturnClusterToPosition(UIClusterElementView cluster)
+        {
+            if (!_placedClusters.ContainsKey(cluster))
+            {
+                var clusterPos = _clustersMap[cluster];
+                _placedClusters[cluster] = Enumerable.Range(clusterPos, cluster.LetterCount).ToList();
+            }
+            
+            if(!_bufferSlots.IsEmpty())
+            {
+                var lowestSlot = _bufferSlots.Aggregate((min, next) =>
+                    next.Index < min.Index ? next : min);
+                OccupySlots(lowestSlot.Index, _bufferSlots.Count);
+                _bufferSlots.Clear();
+            }
+        }
+
+        public void ClearBuffers()
+        {
+            _bufferSlots.Clear();
+        }
+        
         public void OnDrop(PointerEventData eventData)
         {
             if (eventData.pointerDrag != null && 

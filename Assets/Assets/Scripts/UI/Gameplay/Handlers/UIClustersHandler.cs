@@ -62,8 +62,12 @@ namespace UI.Gameplay
             cluster.OnDragStarted += view =>
             {
                 var index = cluster.transform.GetSiblingIndex();
-                _placeholder.Activate(cluster.GetComponent<RectTransform>());
-                _placeholder.transform.SetSiblingIndex(index);
+                if(cluster.Container == null)
+                {
+                    _placeholder.Activate(cluster.GetComponent<RectTransform>());
+                    _placeholder.transform.SetSiblingIndex(index);
+                }
+                
                 _dragController.HandleBeginDrag(cluster);
             };
 

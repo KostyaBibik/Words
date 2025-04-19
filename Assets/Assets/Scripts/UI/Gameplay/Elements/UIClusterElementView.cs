@@ -10,9 +10,10 @@ namespace UI.Gameplay.Elements
         private Vector3 _originalPosition;
         private Transform _originalParent;
         private int _originalSiblingIndex;
+        private Vector2 _dragOffset;
         
         private readonly List<UILetterView> _letters = new();
-        
+        public int GrabbedLetterIndex { get; private set; }
         public int LetterCount => _letters?.Count ?? 0;
 
         public event Action<UIClusterElementView> OnDragStarted;
@@ -20,7 +21,7 @@ namespace UI.Gameplay.Elements
         public event Action<PointerEventData> OnDragEnded;
         public event Action<UIClusterElementView> OnBeginDragFromContainer;
         
-        private Transform OriginalParent { get; set; }
+        public Transform OriginalParent { get; private set; }
 
         private void Awake()
         {
@@ -30,9 +31,30 @@ namespace UI.Gameplay.Elements
         public void AddLetter(UILetterView letter) => 
             _letters.Add(letter);
 
+        public Vector2 GetDragOffset(PointerEventData eventData)
+        {
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                (RectTransform)transform,
+                eventData.position,
+                eventData.pressEventCamera,
+                out var localPoint);
+    
+            return localPoint;
+        }
+        
         public void OnBeginDrag(PointerEventData eventData)
         {
+            OriginalParent = transform.parent;
             _originalSiblingIndex = transform.GetSiblingIndex();
+
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                (RectTransform)transform,
+                eventData.position,
+                eventData.pressEventCamera,
+                out _dragOffset);
+
+            GrabbedLetterIndex = CalculateGrabbedLetterIndex(eventData);
+            
             if (transform.parent.TryGetComponent<UIWordContainerView>(out var container))
             {
                 OnBeginDragFromContainer?.Invoke(this);
@@ -40,7 +62,16 @@ namespace UI.Gameplay.Elements
 
             OnDragStarted?.Invoke(this);
         }
+        
+        private int CalculateGrabbedLetterIndex(PointerEventData eventData)
+        {
+            var rect = GetComponent<RectTransform>().rect;
+            float localX = _dragOffset.x + rect.width / 2f;
+            float letterWidth = rect.width / LetterCount;
 
+            return Mathf.Clamp(Mathf.FloorToInt(localX / letterWidth), 0, LetterCount - 1);
+        }
+        
         public void OnDrag(PointerEventData eventData)
         {
             OnDragging?.Invoke(eventData.position);

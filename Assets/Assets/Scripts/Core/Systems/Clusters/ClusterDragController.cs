@@ -9,9 +9,10 @@ namespace UI.Gameplay
     {
         private Transform _dragLayer;
         private UIClusterElementView _currentCluster;
-        private Vector3 _offset; 
+        private Vector3 _offset;
         private RectTransform _canvasRectTransform;
-        
+        private UIWordContainerView _lastHoveredContainer;
+
         public ClusterDragController(Transform dragLayer, Canvas canvas)
         {
             _dragLayer = dragLayer;
@@ -21,18 +22,24 @@ namespace UI.Gameplay
         public void HandleBeginDrag(UIClusterElementView cluster)
         {
             _currentCluster = cluster;
+            _lastHoveredContainer = null;
+
             var rt = _currentCluster.GetComponent<RectTransform>();
-        
             rt.SetParent(_dragLayer);
             rt.SetAsLastSibling();
-        
+
             RectTransformUtility.ScreenPointToWorldPointInRectangle(
                 _canvasRectTransform,
                 Input.mousePosition,
                 null,
                 out var worldPoint);
-        
+
             _offset = rt.position - worldPoint;
+
+            if (_currentCluster.OriginalParent.TryGetComponent(out UIWordContainerView oldContainer))
+            {
+                oldContainer.ReleaseSlotsForCluster(_currentCluster);
+            }
         }
 
         public void HandleDrag(Vector2 screenPosition)
@@ -44,8 +51,46 @@ namespace UI.Gameplay
                 screenPosition,
                 null,
                 out var worldPoint);
-        
+
             _currentCluster.transform.position = worldPoint + _offset;
+
+            var results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current)
+            {
+                position = screenPosition
+            }, results);
+
+            bool foundContainer = false;
+            foreach (var result in results)
+            {
+                if (result.gameObject.TryGetComponent<UIWordContainerView>(out var container))
+                {
+                    if (_lastHoveredContainer != container)
+                    {
+                        _lastHoveredContainer?.ClearPlaceholder();
+                        _lastHoveredContainer = container;
+                    }
+
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                        (RectTransform)container.transform,
+                        screenPosition,
+                        null,
+                        out var localPoint);
+
+                    int targetSlotIndex = container.CalculateSlotIndexFromPosition(localPoint);
+                    int startIndex = targetSlotIndex - _currentCluster.GrabbedLetterIndex;
+
+                    container.ShowPlaceholder(_currentCluster, startIndex);
+                    foundContainer = true;
+                    break;
+                }
+            }
+
+            if (!foundContainer)
+            {
+                _lastHoveredContainer?.ClearPlaceholder();
+                _lastHoveredContainer = null;
+            }
         }
 
         public void HandleEndDrag(PointerEventData eventData)
@@ -53,15 +98,14 @@ namespace UI.Gameplay
             if (_currentCluster == null) return;
 
             bool wasDropped = false;
-    
             var results = new List<RaycastResult>();
             EventSystem.current.RaycastAll(eventData, results);
 
             foreach (var result in results)
             {
-                if (result.gameObject.TryGetComponent<UIWordContainerView>(out var dropZone))
+                if (result.gameObject.TryGetComponent<UIWordContainerView>(out var container))
                 {
-                    if (dropZone.TryDrop(_currentCluster, eventData))
+                    if (container.TryDrop(_currentCluster, eventData))
                     {
                         wasDropped = true;
                         break;
@@ -74,6 +118,8 @@ namespace UI.Gameplay
                 _currentCluster.ReturnToOriginalPosition();
             }
 
+            _lastHoveredContainer?.ClearPlaceholder();
+            _lastHoveredContainer = null;
             _currentCluster = null;
         }
     }

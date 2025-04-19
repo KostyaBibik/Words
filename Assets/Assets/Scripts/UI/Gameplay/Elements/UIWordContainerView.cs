@@ -8,26 +8,54 @@ namespace UI.Gameplay.Elements
     public class UIWordContainerView : MonoBehaviour, IClusterDropZone
     {
         [SerializeField] private UILetterSlotView _letterSlotPrefab;
-      
+        
         private UILetterSlotView[] _letterSlots;
         private Dictionary<UIClusterElementView, List<int>> _placedClusters;
+        private List<int> _currentPlaceholderSlots = new();
 
         private void Awake()
         {
             _placedClusters = new Dictionary<UIClusterElementView, List<int>>();
         }
 
-        public void Initialize(int wordLength )
+        public void Initialize(int wordLength)
         {
             _letterSlots = new UILetterSlotView[wordLength];
-
             for (int i = 0; i < wordLength; i++)
             {
-                var slotGO = Instantiate(_letterSlotPrefab, transform);
-                var slot = slotGO.GetComponent<UILetterSlotView>();
-                
-                _letterSlots[i] = slot;
+                _letterSlots[i] = Instantiate(_letterSlotPrefab, transform);
+                _letterSlots[i].name = $"LetterSlot_{i}";
             }
+        }
+
+        public void ShowPlaceholder(UIClusterElementView cluster, int startIndex)
+        {
+            ClearPlaceholder();
+            
+            if (startIndex < 0 || startIndex + cluster.LetterCount > _letterSlots.Length)
+                return;
+
+            for (int i = 0; i < cluster.LetterCount; i++)
+            {
+                int slotIndex = startIndex + i;
+                if (slotIndex >= 0 && slotIndex < _letterSlots.Length && !_letterSlots[slotIndex].IsOccupied)
+                {
+                    _letterSlots[slotIndex].SetAsPlaceholder(true);
+                    _currentPlaceholderSlots.Add(slotIndex);
+                }
+            }
+        }
+
+        public void ClearPlaceholder()
+        {
+            foreach (var index in _currentPlaceholderSlots)
+            {
+                if (index >= 0 && index < _letterSlots.Length)
+                {
+                    _letterSlots[index].SetAsPlaceholder(false);
+                }
+            }
+            _currentPlaceholderSlots.Clear();
         }
 
         public bool TryDrop(UIClusterElementView cluster, PointerEventData eventData)
@@ -38,53 +66,79 @@ namespace UI.Gameplay.Elements
                 eventData.pressEventCamera,
                 out var localPoint);
 
-            var startIndex = CalculateSlotIndexFromPosition(localPoint);
-            startIndex = Mathf.Clamp(startIndex, 0, _letterSlots.Length - cluster.LetterCount);
+            int targetSlotIndex = CalculateSlotIndexFromPosition(localPoint);
+            int startIndex = targetSlotIndex - cluster.GrabbedLetterIndex;
 
-            if (!IsSpaceFree(startIndex, cluster.LetterCount))
-            {
+            if (!IsValidDropPosition(startIndex, cluster.LetterCount))
                 return false;
-            }
-            
-            for (var i = 0; i < cluster.LetterCount; i++)
+
+            if (_placedClusters.ContainsKey(cluster))
             {
-                var slotIndex = startIndex + i;
-                _letterSlots[slotIndex].gameObject.SetActive(false); 
+                ReleaseSlotsForCluster(cluster);
             }
 
+            OccupySlots(startIndex, cluster.LetterCount);
+            
             cluster.transform.SetParent(transform);
-            cluster.transform.SetSiblingIndex(startIndex);  
-
+            cluster.transform.SetSiblingIndex(startIndex);
+            
             _placedClusters[cluster] = Enumerable.Range(startIndex, cluster.LetterCount).ToList();
+            ClearPlaceholder();
             
             return true;
         }
-        
-        private int CalculateSlotIndexFromPosition(Vector2 localPosition)
+
+        private bool IsValidDropPosition(int startIndex, int length)
         {
-            var slotWidth = _letterSlots[0].GetComponent<RectTransform>().rect.width;
-            var calculatedIndex = Mathf.Clamp(
-                Mathf.FloorToInt(localPosition.x / slotWidth + _letterSlots.Length / 2f),
-                0,
-                _letterSlots.Length - 1);
-            
-            return calculatedIndex;
-        }
-        
-        private bool IsSpaceFree(int startIndex, int length)
-        {
-            for (var i = 0; i < length; i++)
+            if (startIndex < 0 || startIndex + length > _letterSlots.Length)
+                return false;
+
+            for (int i = 0; i < length; i++)
             {
                 if (_letterSlots[startIndex + i].IsOccupied)
                     return false;
             }
-            
             return true;
+        }
+
+        private void OccupySlots(int startIndex, int length)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                _letterSlots[startIndex + i].SetOccupied(true);
+            }
+        }
+
+        public int CalculateSlotIndexFromPosition(Vector2 localPosition)
+        {
+            if (_letterSlots == null || _letterSlots.Length == 0)
+                return 0;
+
+            float slotWidth = _letterSlots[0].GetComponent<RectTransform>().rect.width;
+            float totalWidth = _letterSlots.Length * slotWidth;
+            float normalizedPosition = (localPosition.x + totalWidth / 2f) / totalWidth;
+            
+            return Mathf.Clamp(Mathf.FloorToInt(normalizedPosition * _letterSlots.Length), 0, _letterSlots.Length - 1);
+        }
+
+        public void ReleaseSlotsForCluster(UIClusterElementView cluster)
+        {
+            if (_placedClusters.TryGetValue(cluster, out var slots))
+            {
+                foreach (int slotIndex in slots)
+                {
+                    if (slotIndex >= 0 && slotIndex < _letterSlots.Length)
+                    {
+                        _letterSlots[slotIndex].SetOccupied(false);
+                    }
+                }
+                _placedClusters.Remove(cluster);
+            }
         }
 
         public void OnDrop(PointerEventData eventData)
         {
-            if (eventData.pointerDrag != null &&
+            if (eventData.pointerDrag != null && 
                 eventData.pointerDrag.TryGetComponent<UIClusterElementView>(out var cluster))
             {
                 TryDrop(cluster, eventData);

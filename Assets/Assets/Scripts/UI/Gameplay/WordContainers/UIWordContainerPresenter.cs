@@ -1,31 +1,55 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Core.Factories;
 using ModestTree;
+using UI.Abstract;
+using UI.Gameplay.Elements;
+using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace UI.Gameplay.Elements
+namespace UI.Gameplay.WordContainers
 {
-    public class UIWordContainerView : MonoBehaviour, IClusterDropZone
+    public class UIWordContainerPresenter : UIPresenter<UIWordContainerView>
     {
-        [SerializeField] private UILetterSlotView _letterSlotPrefab;
-        
+        private readonly IWordContainerFactory _wordContainerFactory;
+
         private UILetterSlotView[] _letterSlots;
+        
         private readonly Dictionary<UIClusterElementView, List<int>> _placedClusters = new();
         private readonly Dictionary<UIClusterElementView, int> _clustersMap = new();
-        private List<int> _currentPlaceholderSlots = new();
-        private List<UILetterSlotView> _bufferSlots = new();
-
-        public void Initialize(int wordLength)
+        private readonly List<int> _currentPlaceholderSlots = new();
+        private readonly List<UILetterSlotView> _bufferSlots = new();
+        
+        public UIWordContainerPresenter(UIWordContainerView view, IWordContainerFactory wordContainerFactory) 
+            : base(view)
         {
-            _letterSlots = new UILetterSlotView[wordLength];
-            for (var i = 0; i < wordLength; i++)
-            {
-                _letterSlots[i] = Instantiate(_letterSlotPrefab, transform);
-                _letterSlots[i].Initialize(i);
-            }
+            _wordContainerFactory = wordContainerFactory;
+            
+            SubscribeToView();
         }
-
+        
+        public void InitializeContainer(int wordLength)
+        {
+            _letterSlots = _wordContainerFactory.CreateLetterSlots(_view.LetterSlotPrefab, _view.transform, wordLength);
+        }
+        
+        private void SubscribeToView()
+        {
+            _view.OnClusterDropped
+                .Subscribe(OnDrop)
+                .AddTo(_view); 
+            
+            _view.OnTryDrop
+                .Subscribe(tuple =>
+                {
+                    var (cluster, eventData, tcs) = tuple;
+                    var result = TryDrop(cluster, eventData);
+                    tcs.TrySetResult(result);
+                })
+                .AddTo(_view);
+        }
+        
         public void ShowPlaceholder(UIClusterElementView cluster, int startIndex)
         {
             ClearPlaceholder();
@@ -44,24 +68,10 @@ namespace UI.Gameplay.Elements
             }
         }
 
-        public void ClearPlaceholder()
-        {
-            for (var iterator = 0; iterator < _currentPlaceholderSlots.Count; iterator++)
-            {
-                var slotIndex = _currentPlaceholderSlots[iterator];
-                if (slotIndex >= 0 && slotIndex < _letterSlots.Length)
-                {
-                    _letterSlots[slotIndex].SetAsPlaceholder(false);
-                }
-            }
-
-            _currentPlaceholderSlots.Clear();
-        }
-
-        public bool TryDrop(UIClusterElementView cluster, PointerEventData eventData)
+        private bool TryDrop(UIClusterElementView cluster, PointerEventData eventData)
         {
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                (RectTransform)transform,
+                (RectTransform)_view.transform,
                 eventData.position,
                 eventData.pressEventCamera,
                 out var localPoint);
@@ -81,7 +91,7 @@ namespace UI.Gameplay.Elements
             
             OccupySlots(startIndex, cluster.LetterCount);
             
-            cluster.transform.SetParent(transform);
+            cluster.transform.SetParent(_view.transform);
 
             var newIndex = CalcSiblingIndex(startIndex);
 
@@ -95,7 +105,21 @@ namespace UI.Gameplay.Elements
             return true;
         }
 
-        private int CalcSiblingIndex(int startIndex)
+        public void ClearPlaceholder()
+        {
+            for (var iterator = 0; iterator < _currentPlaceholderSlots.Count; iterator++)
+            {
+                var slotIndex = _currentPlaceholderSlots[iterator];
+                if (slotIndex >= 0 && slotIndex < _letterSlots.Length)
+                {
+                    _letterSlots[slotIndex].SetAsPlaceholder(false);
+                }
+            }
+
+            _currentPlaceholderSlots.Clear();
+        }
+        
+          private int CalcSiblingIndex(int startIndex)
         {
             var counterClusters = 0;
 
@@ -183,8 +207,8 @@ namespace UI.Gameplay.Elements
         {
             _bufferSlots.Clear();
         }
-        
-        public void OnDrop(PointerEventData eventData)
+
+        private void OnDrop(PointerEventData eventData)
         {
             if (eventData.pointerDrag != null && 
                 eventData.pointerDrag.TryGetComponent<UIClusterElementView>(out var cluster))

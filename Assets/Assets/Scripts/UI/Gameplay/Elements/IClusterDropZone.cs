@@ -1,9 +1,10 @@
-﻿using UnityEngine.EventSystems;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine.EventSystems;
 
 namespace UI.Gameplay.Elements
 {
     public interface IClusterDropZone: IDropHandler
     {
-        public bool TryDrop(UIClusterElementView cluster, PointerEventData eventData);
+        public UniTask<bool> TryDrop(UIClusterElementView cluster, PointerEventData eventData);
     }
 }

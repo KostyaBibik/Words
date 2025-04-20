@@ -5,7 +5,7 @@ namespace Core.Factories
 {
     public interface IWordContainerFactory
     {
-        public UILetterSlotView[] CreateLetterSlot(
+        public UILetterSlotView[] CreateLetterSlots(
             UILetterSlotView letterSlotPrefab,
             Transform parentLayer,
             int count

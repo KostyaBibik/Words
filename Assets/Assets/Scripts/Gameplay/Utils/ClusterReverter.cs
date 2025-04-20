@@ -7,7 +7,7 @@ namespace UI.Gameplay.Utils
         public static void ReturnToOriginal(UIClusterElementView cluster)
         {
             cluster.ReturnToOriginalPosition();
-            cluster.Container?.ReturnClusterToPosition(cluster);
+            cluster.Container?.Presenter.ReturnClusterToPosition(cluster);
         }
     }
 }

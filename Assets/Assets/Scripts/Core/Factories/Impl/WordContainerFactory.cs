@@ -1,21 +1,22 @@
 ﻿using UI.Gameplay.Elements;
+using UI.Gameplay.WordContainers;
 using UnityEngine;
 
 namespace Core.Factories
 {
     public class WordContainerFactory : IWordContainerFactory
     {
-        public UILetterSlotView[] CreateLetterSlot(
+        public UILetterSlotView[] CreateLetterSlots(
             UILetterSlotView letterSlotPrefab, 
             Transform parentLayer, 
             int count
         )
         {
             var letterSlots = new UILetterSlotView[count];
-            for (var i = 0; i < count; i++)
+            for (var iterator = 0; iterator < count; iterator++)
             {
-                letterSlots[i] = Object.Instantiate(letterSlotPrefab, parentLayer);
-                letterSlots[i].Initialize(i);
+                letterSlots[iterator] = Object.Instantiate(letterSlotPrefab, parentLayer);
+                letterSlots[iterator].Initialize(iterator);
             }
 
             return letterSlots;
@@ -29,10 +30,15 @@ namespace Core.Factories
         )
         {
             var wordContainers = new UIWordContainerView[count];
-            for (var i = 0; i < count; i++)
+            for (var iterator = 0; iterator < count; iterator++)
             {
-                wordContainers[i] = Object.Instantiate(containerPrefab, parentLayer);
-                wordContainers[i].Initialize(letterPerWorld);
+                var view = Object.Instantiate(containerPrefab, parentLayer);
+                var presenter = new UIWordContainerPresenter(view, this);
+                
+                presenter.InitializeContainer(letterPerWorld);
+                view.Initialize(presenter);
+                
+                wordContainers[iterator] = view;
             }
 
             return wordContainers;

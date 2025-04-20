@@ -33,14 +33,14 @@ namespace UI.Gameplay
                 {
                     if (lastHovered != container)
                     {
-                        lastHovered?.ClearPlaceholder();
+                        lastHovered?.Presenter.ClearPlaceholder();
                     }
 
                     var localPoint = UIRectTransformConverter.ScreenToLocal((RectTransform)container.transform, screenPosition);
-                    var targetSlotIndex = container.CalculateSlotIndexFromPosition(localPoint);
+                    var targetSlotIndex = container.Presenter.CalculateSlotIndexFromPosition(localPoint);
                     var startIndex = targetSlotIndex - cluster.GrabbedLetterIndex;
 
-                    container.ShowPlaceholder(cluster, startIndex);
+                    container.Presenter.ShowPlaceholder(cluster, startIndex);
                     return (container, true);
                 }
             }

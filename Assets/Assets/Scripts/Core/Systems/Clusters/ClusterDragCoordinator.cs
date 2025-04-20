@@ -32,7 +32,7 @@ namespace UI.Gameplay
 
             if (cluster.OriginalParent.TryGetComponent(out UIWordContainerView oldContainer))
             {
-                oldContainer.ReleaseSlotsForCluster(cluster);
+                oldContainer.Presenter.ReleaseSlotsForCluster(cluster);
             }
         }
 
@@ -50,7 +50,7 @@ namespace UI.Gameplay
 
             if (!found)
             {
-                _lastHoveredContainer?.ClearPlaceholder();
+                _lastHoveredContainer?.Presenter.ClearPlaceholder();
                 _lastHoveredContainer = null;
             }
         }

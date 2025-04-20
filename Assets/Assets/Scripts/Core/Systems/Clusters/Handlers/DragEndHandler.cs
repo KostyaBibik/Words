@@ -6,7 +6,7 @@ namespace UI.Gameplay
 {
     public class DragEndHandler
     {
-        public void CompleteDrag(UIClusterElementView cluster, PointerEventData eventData, UIWordContainerView lastHovered)
+        public async void CompleteDrag(UIClusterElementView cluster, PointerEventData eventData, UIWordContainerView lastHovered)
         {
             var results = UIRaycastHelper.RaycastWithEventData(eventData);
             var oldContainer = cluster.Container;
@@ -17,12 +17,13 @@ namespace UI.Gameplay
             {
                 if (result.gameObject.TryGetComponent(out targetContainer))
                 {
-                    if (targetContainer.TryDrop(cluster, eventData))
-                    {
-                        cluster.SetContainer(targetContainer);
-                        wasDropped = true;
-                        break;
-                    }
+                   var dropped = await targetContainer.TryDrop(cluster, eventData);
+                   if (!dropped)
+                       continue;
+                   
+                   cluster.SetContainer(targetContainer);
+                   wasDropped = true;
+                   break;
                 }
             }
 
@@ -32,10 +33,10 @@ namespace UI.Gameplay
             }
             else if (oldContainer != null && oldContainer != targetContainer)
             {
-                oldContainer.ClearBuffers();
+                oldContainer.Presenter.ClearBuffers();
             }
 
-            lastHovered?.ClearPlaceholder();
+            lastHovered?.Presenter.ClearPlaceholder();
         }
     }
 }

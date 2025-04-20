@@ -1,13 +1,16 @@
-﻿using Extensions;
+﻿using Core.Factories;
+using Core.Services;
+using Gameplay.Utils;
 using UI.Core;
 using UI.ErrorLoading;
 using UI.Flow;
 using UI.Gameplay;
+using UI.Gameplay.BottomPanel;
 using UI.Loading;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.Architecture.DI
+namespace Architecture.DI
 {
     public class UIInstaller : MonoInstaller
     {
@@ -15,11 +18,26 @@ namespace Assets.Scripts.Architecture.DI
 
         public override void InstallBindings()
         {
+            InstallFactories();
+
+            BindServices();
+            
             CreateAndBindUIManager();
-            
+
             BindWindows();
-            
+
             BindFlow();
+        }
+
+        private void InstallFactories()
+        {
+            Container.BindInterfacesTo<ClusterFactory>().AsSingle();
+            Container.BindInterfacesTo<WordContainerFactory>().AsSingle();
+        }
+
+        private void BindServices()
+        {
+            Container.BindInterfacesTo<UIClustersService>().AsSingle();
         }
 
         private void CreateAndBindUIManager()
@@ -33,6 +51,8 @@ namespace Assets.Scripts.Architecture.DI
             Container.BindPresenterWithView<UILoadingPresenter, UILoadingView>();
             Container.BindPresenterWithView<UIErrorLoadingPresenter, UIErrorLoadingView>();
             Container.BindPresenterWithView<UIMainMenuPresenter, UIMainMenuView>();
+            Container.BindPresenterWithView<UIBottomPanelPresenter, UIBottomPanelView>();
+            Container.BindPresenterWithView<UIWordGridPresenter, UIWordGridView>();
             Container.BindPresenterWithView<UIGameplayPresenter, UIGameplayView>();
         }
 

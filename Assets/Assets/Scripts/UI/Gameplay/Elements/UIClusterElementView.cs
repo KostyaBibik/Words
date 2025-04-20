@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,16 +12,19 @@ namespace UI.Gameplay.Elements
         private Transform _originalParent;
         private int _originalSiblingIndex;
         private Vector2 _dragOffset;
-        
+
         private readonly List<UILetterView> _letters = new();
         public int GrabbedLetterIndex { get; private set; }
         public int LetterCount => _letters?.Count ?? 0;
 
-        public event Action<UIClusterElementView> OnDragStarted;
-        public event Action<Vector2> OnDragging;
-        public event Action<PointerEventData> OnDragEnded;
-        public event Action<UIClusterElementView> OnBeginDragFromContainer;
-        
+        private readonly Subject<UIClusterElementView> _onDragStarted = new();
+        private readonly Subject<Vector2> _onDragging = new();
+        private readonly Subject<PointerEventData> _onDragEnded = new();
+
+        public IObservable<UIClusterElementView> OnDragStarted => _onDragStarted.AsObservable();
+        public IObservable<Vector2> OnDragging => _onDragging.AsObservable();
+        public IObservable<PointerEventData> OnDragEnded => _onDragEnded.AsObservable();
+
         public Transform OriginalParent { get; private set; }
         public UIWordContainerView Container { get; private set; }
 
@@ -29,12 +33,12 @@ namespace UI.Gameplay.Elements
             OriginalParent = transform.parent;
         }
 
-        public void AddLetter(UILetterView letter) => 
+        public void AddLetter(UILetterView letter) =>
             _letters.Add(letter);
 
         public void SetContainer(UIWordContainerView container) =>
             Container = container;
-        
+
         public void OnBeginDrag(PointerEventData eventData)
         {
             OriginalParent = transform.parent;
@@ -47,32 +51,27 @@ namespace UI.Gameplay.Elements
                 out _dragOffset);
 
             GrabbedLetterIndex = CalculateGrabbedLetterIndex(eventData);
-            
-            if (transform.parent.TryGetComponent<UIWordContainerView>(out var container))
-            {
-                OnBeginDragFromContainer?.Invoke(this);
-            }
 
-            OnDragStarted?.Invoke(this);
+            _onDragStarted.OnNext(this); 
         }
-        
+
         private int CalculateGrabbedLetterIndex(PointerEventData eventData)
         {
             var rect = GetComponent<RectTransform>().rect;
-            float localX = _dragOffset.x + rect.width / 2f;
-            float letterWidth = rect.width / LetterCount;
+            var localX = _dragOffset.x + rect.width / 2f;
+            var letterWidth = rect.width / LetterCount;
 
             return Mathf.Clamp(Mathf.FloorToInt(localX / letterWidth), 0, LetterCount - 1);
         }
-        
+
         public void OnDrag(PointerEventData eventData)
         {
-            OnDragging?.Invoke(eventData.position);
+            _onDragging.OnNext(eventData.position);
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            OnDragEnded?.Invoke(eventData);
+            _onDragEnded.OnNext(eventData);
         }
 
         public void ReturnToOriginalPosition()
@@ -80,7 +79,7 @@ namespace UI.Gameplay.Elements
             transform.SetParent(OriginalParent);
             transform.localPosition = Vector3.zero;
             transform.SetSiblingIndex(_originalSiblingIndex);
-            gameObject.SetActive(true); 
+            gameObject.SetActive(true);
         }
     }
 }

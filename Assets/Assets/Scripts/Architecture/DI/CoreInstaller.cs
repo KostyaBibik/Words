@@ -5,7 +5,7 @@ using Infrastructure;
 using Infrastructure.RemoteConfig;
 using Zenject;
 
-namespace Assets.Scripts.Architecture.DI
+namespace Architecture.DI
 {
     public class CoreInstaller : MonoInstaller<CoreInstaller>
     {

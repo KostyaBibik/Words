@@ -15,7 +15,6 @@ namespace UI.Gameplay.Elements
         private readonly Dictionary<UIClusterElementView, int> _clustersMap = new();
         private List<int> _currentPlaceholderSlots = new();
         private List<UILetterSlotView> _bufferSlots = new();
-        
 
         public void Initialize(int wordLength)
         {
@@ -47,13 +46,15 @@ namespace UI.Gameplay.Elements
 
         public void ClearPlaceholder()
         {
-            foreach (var index in _currentPlaceholderSlots)
+            for (var iterator = 0; iterator < _currentPlaceholderSlots.Count; iterator++)
             {
-                if (index >= 0 && index < _letterSlots.Length)
+                var slotIndex = _currentPlaceholderSlots[iterator];
+                if (slotIndex >= 0 && slotIndex < _letterSlots.Length)
                 {
-                    _letterSlots[index].SetAsPlaceholder(false);
+                    _letterSlots[slotIndex].SetAsPlaceholder(false);
                 }
             }
+
             _currentPlaceholderSlots.Clear();
         }
 
@@ -117,7 +118,7 @@ namespace UI.Gameplay.Elements
             if (startIndex < 0 || startIndex + length > _letterSlots.Length)
                 return false;
 
-            for (int i = 0; i < length; i++)
+            for (var i = 0; i < length; i++)
             {
                 if (_letterSlots[startIndex + i].IsOccupied)
                     return false;
@@ -127,7 +128,7 @@ namespace UI.Gameplay.Elements
 
         private void OccupySlots(int startIndex, int length)
         {
-            for (int i = 0; i < length; i++)
+            for (var i = 0; i < length; i++)
             {
                 _letterSlots[startIndex + i].SetOccupied(true);
             }

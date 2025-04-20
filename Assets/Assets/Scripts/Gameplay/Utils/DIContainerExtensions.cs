@@ -1,7 +1,7 @@
 ﻿using UI.Abstract;
 using Zenject;
 
-namespace Extensions
+namespace Gameplay.Utils
 {
     public static class DiContainerExtensions
     {

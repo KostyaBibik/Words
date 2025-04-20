@@ -1,36 +1,41 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using Core.Services.Models;
 using Cysharp.Threading.Tasks;
 using UI.Abstract;
+using UI.Gameplay.BottomPanel;
+using Zenject;
 
 namespace UI.Gameplay
 {
     public class UIGameplayPresenter : UIPresenter<UIGameplayView>
     {
-        private readonly List<ClusterData> _cachedClusters = new();
-        
+        private UIBottomPanelPresenter _bottomPanelPresenter;
+        private UIWordGridPresenter _wordGridPresenter;
+
         public UIGameplayPresenter(UIGameplayView view) : base(view)
         {
         }
 
+        [Inject]
+        public void Construct(UIBottomPanelPresenter bottomPanelPresenter, UIWordGridPresenter wordGridPresenter)
+        {
+            _bottomPanelPresenter = bottomPanelPresenter;
+            _wordGridPresenter = wordGridPresenter;
+        }
+
         public async UniTask Initialize(ProcessedLevelData levelData)
         {
-            GetAllClustersFromLevel(levelData, _cachedClusters);
+            var clusters = GetAllClustersFromLevel(levelData);
             
-            _view.SetClusters(_cachedClusters);
-            _view.SetupWordContainers(levelData.words.Length);
+            _bottomPanelPresenter.UpdateData(clusters);
+            _wordGridPresenter.UpdateData(levelData.words.Length, 6);
             
             await UniTask.CompletedTask;
         }
         
-        private void GetAllClustersFromLevel(ProcessedLevelData levelData, List<ClusterData> output)
-        {
-            output.Clear(); 
-            
-            foreach (var wordEntry in levelData.words)
-            {
-                output.AddRange(wordEntry.clusters);
-            }
-        }
+        private ClusterData[] GetAllClustersFromLevel(ProcessedLevelData levelData) =>
+            levelData.words
+                .SelectMany(word => word.clusters)
+                .ToArray();
     }
 }

@@ -33,9 +33,9 @@ namespace UI.Gameplay.Elements
 
         public async UniTask<bool> TryDrop(UIClusterElementView cluster, PointerEventData eventData)
         {
-            var tcs = new UniTaskCompletionSource<bool>();
-            _onTryDrop.OnNext((cluster, eventData, tcs));
-            return await tcs.Task;
+            var taskSource = new UniTaskCompletionSource<bool>();
+            _onTryDrop.OnNext((cluster, eventData, taskSource));
+            return await taskSource.Task;
         }
         
         public void OnDrop(PointerEventData eventData) =>

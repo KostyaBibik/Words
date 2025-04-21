@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Core.Factories;
+using Core.Systems;
 using Core.Systems.WordContainer;
 using UI.Abstract;
 using UI.Gameplay.Elements;
@@ -18,7 +19,7 @@ namespace UI.Gameplay.WordContainers
         private WordContainerData _dataModel;
         
         private WordSlotHandler _slotHandler;
-        private ClusterPlacementHelper _placementHelper;
+        private IContainerDropPlacementHelper _dropPlacementHelper;
         private ClusterTracker _clusterTracker;
         private SlotPlaceholderHelper _placeholderHelper;
         
@@ -42,7 +43,7 @@ namespace UI.Gameplay.WordContainers
             
             _slotHandler = new WordSlotHandler(_dataModel);
             _placeholderHelper = new SlotPlaceholderHelper(_dataModel);
-            _placementHelper = new ClusterPlacementHelper(_dataModel, _slotHandler, _placeholderHelper, _view.transform, _containerIndex);
+            _dropPlacementHelper = new ContainerDropPlacementHelper(_dataModel, _slotHandler, _placeholderHelper, _view.transform, _containerIndex);
             _clusterTracker = new ClusterTracker(_dataModel, _slotHandler);
         }
         
@@ -69,7 +70,7 @@ namespace UI.Gameplay.WordContainers
             _placeholderHelper.ClearPlaceholder();
 
         public int CalculateSlotIndexFromPosition(Vector2 localPosition) => 
-            _placementHelper.CalculateSlotIndexFromPosition(localPosition);
+            _dropPlacementHelper.CalculateSlotIndexFromPosition(localPosition);
 
         public void ReturnClusterToPosition(UIClusterElementView cluster) =>
             _clusterTracker.ReturnCluster(cluster);
@@ -97,6 +98,6 @@ namespace UI.Gameplay.WordContainers
         }
 
         private bool TryDrop(UIClusterElementView cluster, PointerEventData eventData) =>
-            _placementHelper.TryDropCluster(cluster, eventData);
+            _dropPlacementHelper.TryDropCluster(cluster, eventData);
     }
 }

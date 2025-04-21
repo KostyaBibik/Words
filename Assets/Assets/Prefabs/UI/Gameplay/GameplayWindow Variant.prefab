@@ -102,8 +102,6 @@ GameObject:
   - component: {fileID: 8568304125896060684}
   - component: {fileID: 6752949632272552980}
   - component: {fileID: 782050871790272203}
-  - component: {fileID: 7503670069348545}
-  - component: {fileID: 1013771564105432230}
   m_Layer: 0
   m_Name: Clusters
   m_TagString: Untagged
@@ -170,37 +168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 1
   m_VerticalFit: 0
---- !u!225 &7503670069348545
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868871359553942257}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
---- !u!114 &1013771564105432230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868871359553942257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d7a5f905c65471ca0d294c51dc0aaa6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _canvasGroup: {fileID: 7503670069348545}
-  _clusterPanelSettings:
-    _clusterPrefab: {fileID: -5633690519868212295, guid: 647b1c685b310d94db54d993779c527c, type: 3}
-    _letterPrefab: {fileID: 6390635608862848293, guid: e4871691d2fd5be4896682a8756a6a37, type: 3}
-    _placeholderPrefab: {fileID: 2931131591230214973, guid: e307cfd73c7c5814c8cf4c2f77bf21c4, type: 3}
-    _clustersContainer: {fileID: 8568304125896060684}
-    _dragLayer: {fileID: 1911359088302567136}
 --- !u!1 &5388088904770625450
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +537,8 @@ GameObject:
   - component: {fileID: 7836262961727221530}
   - component: {fileID: 5770464905331777241}
   - component: {fileID: 6128934976475027722}
+  - component: {fileID: 5340279122620336141}
+  - component: {fileID: 8436269412439222784}
   m_Layer: 0
   m_Name: Bottom
   m_TagString: Untagged
@@ -665,6 +634,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &5340279122620336141
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8186961588818913932}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &8436269412439222784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8186961588818913932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d7a5f905c65471ca0d294c51dc0aaa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvasGroup: {fileID: 5340279122620336141}
+  _clusterPanelSettings:
+    _clusterPrefab: {fileID: -5633690519868212295, guid: 647b1c685b310d94db54d993779c527c, type: 3}
+    _letterPrefab: {fileID: 6390635608862848293, guid: e4871691d2fd5be4896682a8756a6a37, type: 3}
+    _placeholderPrefab: {fileID: 2931131591230214973, guid: e307cfd73c7c5814c8cf4c2f77bf21c4, type: 3}
+    _clustersContainer: {fileID: 8568304125896060684}
+    _dragLayer: {fileID: 1911359088302567136}
 --- !u!1001 &8178452899398083578
 PrefabInstance:
   m_ObjectHideFlags: 0

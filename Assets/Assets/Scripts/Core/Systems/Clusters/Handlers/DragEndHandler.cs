@@ -11,19 +11,22 @@ namespace UI.Gameplay
             var results = UIRaycastHelper.RaycastWithEventData(eventData);
             var oldContainer = cluster.Presenter.GetContainer();
             var wasDropped = false;
-            UIWordContainerView targetContainer = null;
 
             foreach (var result in results)
             {
-                if (result.gameObject.TryGetComponent(out targetContainer))
+                if (result.gameObject.TryGetComponent<IClusterDropZone>(out var dropZone))
                 {
-                   var dropped = await targetContainer.TryDrop(cluster, eventData);
-                   if (!dropped)
-                       continue;
-                   
-                   cluster.Presenter.SetContainer(targetContainer);
-                   wasDropped = true;
-                   break;
+                    var dropped = await dropZone.TryDrop(cluster, eventData);
+                    if (!dropped)
+                        continue;
+
+                    if (dropZone is UIWordContainerView wordContainer)
+                    {
+                        cluster.Presenter.SetContainer(wordContainer);
+                    }
+
+                    wasDropped = true;
+                    break;
                 }
             }
 
@@ -31,7 +34,7 @@ namespace UI.Gameplay
             {
                 ClusterReverter.ReturnToOriginal(cluster);
             }
-            else if (oldContainer != null && oldContainer != targetContainer)
+            else if (oldContainer != null)
             {
                 oldContainer.Presenter.ClearBuffers();
             }

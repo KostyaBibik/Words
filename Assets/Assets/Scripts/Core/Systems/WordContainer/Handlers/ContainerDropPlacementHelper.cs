@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace Core.Systems.WordContainer
 {
-    public class ClusterPlacementHelper
+    public class ContainerDropPlacementHelper : IContainerDropPlacementHelper
     {
         private readonly WordContainerData _data;
         private readonly WordSlotHandler _slotHandler;
@@ -13,7 +13,7 @@ namespace Core.Systems.WordContainer
         private readonly Transform _viewTransform;
         private readonly int _wordGroupIndex;
 
-        public ClusterPlacementHelper(
+        public ContainerDropPlacementHelper(
             WordContainerData data, 
             WordSlotHandler slotHandler, 
             SlotPlaceholderHelper placeholderHelper,

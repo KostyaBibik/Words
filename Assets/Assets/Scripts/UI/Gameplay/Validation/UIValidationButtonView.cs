@@ -9,20 +9,21 @@ namespace UI.Gameplay.Validation
     public class UIValidationButtonView : UIView
     {
         [SerializeField] private Button _validateButton;
-
-        private readonly Subject<Unit> _onValidateClicked = new();
-        public IObservable<Unit> OnValidateClicked => _onValidateClicked;
+        
+        private readonly AsyncReactiveCommand<Unit>  _onValidateCommand = new();
+        public AsyncReactiveCommand<Unit> OnValidateCommand => _onValidateCommand;
 
         protected override void Awake()
         {
-            _validateButton.onClick.AddListener(() => 
-                _onValidateClicked.OnNext(Unit.Default)
-            );
+            _validateButton.onClick.AddListener(() =>
+            {
+                _onValidateCommand.Execute(Unit.Default);
+            });
         }
 
         private void OnDestroy()
         {
-            _onValidateClicked?.OnCompleted();
+            _onValidateCommand.Dispose();
         }
     }
 }

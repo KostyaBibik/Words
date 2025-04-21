@@ -1,6 +1,7 @@
 ﻿using Core.GameState;
 using Core.GameState.States;
 using Core.Services.DataRepository;
+using Core.Services.Validation;
 using Infrastructure;
 using Infrastructure.RemoteConfig;
 using Zenject;
@@ -9,15 +10,22 @@ namespace Architecture.DI
 {
     public class CoreInstaller : MonoInstaller<CoreInstaller>
     {
-        public override void InstallBindings() 
+        public override void InstallBindings()
         {
-            Container.BindInterfacesTo<GameDataRepository>().AsSingle();
+            BindDataRepository();
 
             BindInitSystems();
             
             BindGameStates();
+
+            BindServices();
             
             BindEntryPoint();
+        }
+
+        private void BindDataRepository()
+        {
+            Container.BindInterfacesTo<GameDataRepository>().AsSingle();
         }
 
         private void BindInitSystems()
@@ -34,6 +42,11 @@ namespace Architecture.DI
             Container.BindInterfacesAndSelfTo<LevelGenerationState>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameplayState>().AsSingle();
             Container.BindInterfacesAndSelfTo<VictoryState>().AsSingle();
+        }
+
+        private void BindServices()
+        {
+            Container.BindInterfacesTo<StubValidationService>().AsSingle();
         }
 
         private void BindEntryPoint()

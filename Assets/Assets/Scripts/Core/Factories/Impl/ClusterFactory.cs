@@ -10,20 +10,26 @@ namespace Core.Factories
     {
         public UIClusterElementView CreateCluster(ClusterData data, ClusterPanelSettings settings)
         {
-            var cluster = Object.Instantiate(settings.ClusterPrefab, settings.ClustersContainer);
+            var clusterView = Object.Instantiate(settings.ClusterPrefab, settings.ClustersContainer);
+            var clusterPresenter = new UIClusterElementPresenter(clusterView);
 
+            clusterView.Initialize(clusterPresenter);
+            clusterPresenter.Initialize();
+            clusterPresenter.SetData(data);
+            
             for (var index = 0; index < data.value.Length; index++)
             {
                 var character = data.value[index];
-                var letter = Object.Instantiate(settings.LetterPrefab, cluster.transform);
+                var letter = Object.Instantiate(settings.LetterPrefab, clusterView.transform);
+                
                 letter.Setup(character);
-                cluster.AddLetter(letter);
+                clusterView.Presenter.AddLetter(letter);
             }
 
             var rectTransform = settings.ClustersContainer.GetComponent<RectTransform>();
             LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
             
-            return cluster;
+            return clusterView;
         }
 
         public UIPlaceholderView CreatePlaceholder(ClusterPanelSettings settings)

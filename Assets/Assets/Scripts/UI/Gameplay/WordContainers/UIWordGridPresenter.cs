@@ -1,5 +1,7 @@
-﻿using Core.Factories;
+﻿using System.Linq;
+using Core.Factories;
 using UI.Abstract;
+using UI.Gameplay.WordContainers;
 using Zenject;
 
 namespace UI.Gameplay
@@ -8,6 +10,8 @@ namespace UI.Gameplay
     {
         private IWordContainerFactory _wordContainerFactory;
 
+        public UIWordContainerPresenter[] WordContainerPresenters { get; private set; }
+        
         public UIWordGridPresenter(UIWordGridView view) : base(view)
         {
         }
@@ -23,7 +27,15 @@ namespace UI.Gameplay
             var containerPrefab = _view.ContainerPrefab;
             var containerParent = _view.ContainersParent;
             
-            _wordContainerFactory.CreateWordContainers(containerPrefab, containerParent, lettersPerWord, wordCount);
+            var views =
+                _wordContainerFactory.CreateWordContainers(
+                        containerPrefab,
+                        containerParent,
+                        lettersPerWord,
+                        wordCount
+                    );
+            
+            WordContainerPresenters = views.Select(v => v.Presenter).ToArray();
         }
     }
 }

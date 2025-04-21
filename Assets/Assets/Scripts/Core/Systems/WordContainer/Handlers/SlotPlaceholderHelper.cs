@@ -13,10 +13,10 @@ namespace Core.Systems.WordContainer
         {
             ClearPlaceholder();
             
-            if (startIndex < 0 || startIndex + cluster.LetterCount > _data.Slots.Length)
+            if (startIndex < 0 || startIndex + cluster.Presenter.GetLettersCount() > _data.Slots.Length)
                 return;
 
-            for (var i = 0; i < cluster.LetterCount; i++)
+            for (var i = 0; i < cluster.Presenter.GetLettersCount(); i++)
             {
                 var slotIndex = startIndex + i;
                 if (slotIndex >= 0 && slotIndex < _data.Slots.Length && !_data.Slots[slotIndex].IsOccupied)

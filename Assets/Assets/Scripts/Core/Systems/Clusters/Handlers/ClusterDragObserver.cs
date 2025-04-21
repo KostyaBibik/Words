@@ -18,10 +18,10 @@ namespace UI.Gameplay
 
         public void Observe(UIClusterElementView cluster, MonoBehaviour lifeScope)
         {
-            cluster.OnDragStarted.Subscribe(view =>
+            cluster.OnDragStarted.Subscribe(eventData =>
             {
                 var index = cluster.transform.GetSiblingIndex();
-                if (cluster.Container == null)
+                if (cluster.Presenter.GetContainer() == null)
                 {
                     _placeholderHandler.ActivatePlaceholder(cluster, index);
                 }

@@ -1,4 +1,6 @@
-﻿using Core.Factories;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Core.Factories;
 using Core.Systems.WordContainer;
 using UI.Abstract;
 using UI.Gameplay.Elements;
@@ -72,6 +74,13 @@ namespace UI.Gameplay.WordContainers
 
         public void ClearBuffers() =>
             _dataModel.BufferSlots.Clear();
+        
+        public Dictionary<UIClusterElementPresenter, int> GetPlacedClusters()
+        {
+            return _dataModel
+                .ClusterStartIndices
+                .ToDictionary(kvp => kvp.Key.Presenter, kvp => kvp.Value);
+        }
 
         private void OnDrop(PointerEventData eventData)
         {

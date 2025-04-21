@@ -38,7 +38,7 @@ namespace UI.Gameplay
 
                     var localPoint = UIRectTransformConverter.ScreenToLocal((RectTransform)container.transform, screenPosition);
                     var targetSlotIndex = container.Presenter.CalculateSlotIndexFromPosition(localPoint);
-                    var startIndex = targetSlotIndex - cluster.GrabbedLetterIndex;
+                    var startIndex = targetSlotIndex - cluster.Presenter.GetGrabbedLetterIndex();
 
                     container.Presenter.ShowPlaceholder(cluster, startIndex);
                     return (container, true);

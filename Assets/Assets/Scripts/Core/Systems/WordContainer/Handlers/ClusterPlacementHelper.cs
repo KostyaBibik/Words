@@ -37,9 +37,9 @@ namespace Core.Systems.WordContainer
                 out var localPoint);
 
             var targetSlotIndex = CalculateSlotIndexFromPosition(localPoint);
-            var startIndex = targetSlotIndex - cluster.GrabbedLetterIndex;
+            var startIndex = targetSlotIndex - cluster.Presenter.GetGrabbedLetterIndex();
             
-            if (!_slotHandler.IsValidDropPosition(startIndex, cluster.LetterCount))
+            if (!_slotHandler.IsValidDropPosition(startIndex, cluster.Presenter.GetLettersCount()))
                 return false;
 
             var bufferSlots = _data.BufferSlots;
@@ -53,7 +53,7 @@ namespace Core.Systems.WordContainer
                 ReleaseSlotsForCluster(cluster);
             }
             
-            _slotHandler.OccupySlots(startIndex, cluster.LetterCount);
+            _slotHandler.OccupySlots(startIndex, cluster.Presenter.GetLettersCount());
             
             cluster.transform.SetParent(_viewTransform);
 
@@ -61,8 +61,8 @@ namespace Core.Systems.WordContainer
 
             cluster.transform.SetSiblingIndex(newIndex);
             
-            var slots = new List<int>(cluster.LetterCount);
-            for (var iterator = 0; iterator < cluster.LetterCount; iterator++)
+            var slots = new List<int>(cluster.Presenter.GetLettersCount());
+            for (var iterator = 0; iterator < cluster.Presenter.GetLettersCount(); iterator++)
             {
                 slots.Add(startIndex + iterator);
             }

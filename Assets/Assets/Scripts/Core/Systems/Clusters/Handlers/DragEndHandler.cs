@@ -9,7 +9,7 @@ namespace UI.Gameplay
         public async void CompleteDrag(UIClusterElementView cluster, PointerEventData eventData, UIWordContainerView lastHovered)
         {
             var results = UIRaycastHelper.RaycastWithEventData(eventData);
-            var oldContainer = cluster.Container;
+            var oldContainer = cluster.Presenter.GetContainer();
             var wasDropped = false;
             UIWordContainerView targetContainer = null;
 
@@ -21,7 +21,7 @@ namespace UI.Gameplay
                    if (!dropped)
                        continue;
                    
-                   cluster.SetContainer(targetContainer);
+                   cluster.Presenter.SetContainer(targetContainer);
                    wasDropped = true;
                    break;
                 }

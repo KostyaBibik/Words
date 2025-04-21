@@ -6,8 +6,10 @@ namespace UI.Gameplay.Utils
     {
         public static void ReturnToOriginal(UIClusterElementView cluster)
         {
-            cluster.ReturnToOriginalPosition();
-            cluster.Container?.Presenter.ReturnClusterToPosition(cluster);
+            var presenter = cluster.Presenter;
+            
+            presenter.ReturnToOriginalPosition();
+            presenter.GetContainer()?.Presenter.ReturnClusterToPosition(cluster);
         }
     }
 }

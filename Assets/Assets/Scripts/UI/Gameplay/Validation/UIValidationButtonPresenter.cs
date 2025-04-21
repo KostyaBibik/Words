@@ -12,9 +12,14 @@ namespace UI.Gameplay.Validation
         {
             _validationService = validationService;
 
-            _view.OnValidateClicked
-                .Subscribe(_ => _validationService.Validate())
-                .AddTo(_view);
+            /*_view.OnValidateCommand
+                .Subscribe(_ => RunValidationAsync()) 
+                .AddTo(_view);*/
+        }
+        
+        private async void RunValidationAsync()
+        {
+            await _validationService.Validate();
         }
     }
 }

@@ -30,7 +30,7 @@ namespace UI.Gameplay
 
             _dragOffset = _dragStartHandler.BeginDrag(cluster);
 
-            if (cluster.OriginalParent.TryGetComponent(out UIWordContainerView oldContainer))
+            if (cluster.Presenter.GetOriginalParent().TryGetComponent(out UIWordContainerView oldContainer))
             {
                 oldContainer.Presenter.ReleaseSlotsForCluster(cluster);
             }

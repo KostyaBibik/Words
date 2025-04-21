@@ -42,7 +42,6 @@ namespace Architecture.DI
         private void BindServices()
         {
             Container.BindInterfacesTo<UIClustersService>().AsSingle();
-            Container.BindInterfacesTo<StubValidationService>().AsSingle();
         }
 
         private void CreateAndBindUIManager()

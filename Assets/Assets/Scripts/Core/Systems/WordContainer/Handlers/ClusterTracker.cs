@@ -24,9 +24,9 @@ namespace Core.Systems.WordContainer
             if (!placedClusters.ContainsKey(cluster))
             {
                 var clusterPos = clusterStartIndices[cluster];
-                var slots = new List<int>(cluster.LetterCount);
+                var slots = new List<int>(cluster.Presenter.GetLettersCount());
                 
-                for (var iterator = 0; iterator < cluster.LetterCount; iterator++)
+                for (var iterator = 0; iterator < cluster.Presenter.GetLettersCount(); iterator++)
                 {
                     slots.Add(clusterPos + iterator);
                 }

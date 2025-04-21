@@ -58,15 +58,17 @@ namespace UI.Gameplay.Elements
         public int GetLettersCount() =>
             _dataModel.LetterCount;
         
-        public void SetData(ClusterData data)
-        {
+        public void SetOrderInWord(int order) =>
+            _dataModel.Data.orderInWord = order;
+        
+        public void SetWordGroupIndex(int index) =>
+            _dataModel.Data.wordGroupIndex = index;
+        
+        public void SetData(ClusterData data) =>
             _dataModel.Data = data;
-        }
 
-        public ClusterData GetData()
-        {
-            return _dataModel.Data;
-        }
+        public ClusterData GetData() =>
+             _dataModel.Data;
         
         public void ReturnToOriginalPosition()
         {

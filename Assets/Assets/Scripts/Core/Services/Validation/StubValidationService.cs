@@ -12,13 +12,13 @@ namespace Core.Services.Validation
     {
         private readonly IGameDataRepository _gameDataRepository;
         private readonly UIWordGridPresenter _wordGridPresenter;
-        
+
         public StubValidationService(IGameDataRepository gameDataRepository, UIWordGridPresenter wordGridPresenter)
         {
             _gameDataRepository = gameDataRepository;
             _wordGridPresenter = wordGridPresenter;
         }
-        
+
         public async UniTask Validate()
         {
             var level = _gameDataRepository.CurrentLevel;
@@ -30,18 +30,16 @@ namespace Core.Services.Validation
             {
                 var placed = container.GetPlacedClusters();
                 foreach (var (clusterPresenter, startIndex) in placed)
-                {
                     allPlaced.Add((clusterPresenter.GetData(), startIndex));
-                }
             }
 
             var isAllPlaced = await AreAllClustersPlacedCorrectly(expectedWords, allPlaced);
-            
+
             Debug.Log($"[Validation] isAllPlaced : {isAllPlaced}");
 
             await UniTask.CompletedTask;
         }
-        
+
         private async UniTask<bool> AreAllClustersPlacedCorrectly(
             WordEntry[] expectedWords,
             List<(ClusterData clusterData, int startIndex)> actualClusters
@@ -49,35 +47,76 @@ namespace Core.Services.Validation
         {
             return await UniTask.RunOnThreadPool(() =>
             {
-                for (var wordIterator = 0; wordIterator < expectedWords.Length; wordIterator++)
+                var matchedWordIndices = new HashSet<int>();
+
+                for (var actualClusterIndex = 0; actualClusterIndex < actualClusters.Count; actualClusterIndex++)
                 {
-                    var word = expectedWords[wordIterator];
-                    var clusters = word.clusters;
+                    var actualClusterData = actualClusters[actualClusterIndex].clusterData;
 
-                    for (var clusterIterator = 0; clusterIterator < clusters.Length; clusterIterator++)
+                    if (actualClusterData.orderInWord != 0)
+                        continue;
+
+                    for (var expectedWordIndex = 0; expectedWordIndex < expectedWords.Length; expectedWordIndex++)
                     {
-                        var expected = clusters[clusterIterator];
-                        var matchFound = false;
+                        if (matchedWordIndices.Contains(expectedWordIndex))
+                            continue;
 
-                        for (var actualClusterIterator = 0; actualClusterIterator < actualClusters.Count; actualClusterIterator++)
+                        var expectedClusters = expectedWords[expectedWordIndex].clusters;
+
+                        if (expectedClusters.Length == 0 || expectedClusters[0].value != actualClusterData.value)
+                            continue;
+
+                        var actualGroupIndex = actualClusterData.wordGroupIndex;
+
+                        var matchingGroup = new List<ClusterData>();
+
+                        for (var i = 0; i < actualClusters.Count; i++)
                         {
-                            var actual = actualClusters[actualClusterIterator].clusterData;
+                            var candidate = actualClusters[i].clusterData;
 
-                            if (actual.value != expected.value ||
-                                actual.orderInWord != expected.orderInWord ||
-                                actual.sourceWordIndex != expected.sourceWordIndex)
-                                continue;
-                            
-                            matchFound = true;
-                            break;
+                            if (candidate.wordGroupIndex == actualGroupIndex)
+                                matchingGroup.Add(candidate);
                         }
 
-                        if (!matchFound)
+                        if (matchingGroup.Count != expectedClusters.Length)
+                            continue;
+
+                        var isCorrect = true;
+
+                        for (var i = 0; i < expectedClusters.Length; i++)
+                        {
+                            var expectedCluster = expectedClusters[i];
+
+                            var matchFound = false;
+
+                            for (var j = 0; j < matchingGroup.Count; j++)
+                            {
+                                var actualCluster = matchingGroup[j];
+
+                                if (actualCluster.orderInWord == expectedCluster.orderInWord &&
+                                    actualCluster.value == expectedCluster.value)
+                                {
+                                    matchFound = true;
+                                    break;
+                                }
+                            }
+
+                            if (!matchFound)
+                            {
+                                isCorrect = false;
+                                break;
+                            }
+                        }
+
+                        if (!isCorrect)
                             return false;
+
+                        matchedWordIndices.Add(expectedWordIndex);
+                        break;
                     }
                 }
 
-                return true;
+                return matchedWordIndices.Count == expectedWords.Length;
             });
         }
     }

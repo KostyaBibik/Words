@@ -11,18 +11,21 @@ namespace Core.Systems.WordContainer
         private readonly WordSlotHandler _slotHandler;
         private readonly SlotPlaceholderHelper _placeholderHelper;
         private readonly Transform _viewTransform;
+        private readonly int _wordGroupIndex;
 
         public ClusterPlacementHelper(
             WordContainerData data, 
             WordSlotHandler slotHandler, 
             SlotPlaceholderHelper placeholderHelper,
-            Transform viewTransform
+            Transform viewTransform,
+            int wordGroupIndex
         )
         {
             _data = data;
             _slotHandler = slotHandler;
             _placeholderHelper = placeholderHelper;
             _viewTransform = viewTransform;
+            _wordGroupIndex = wordGroupIndex;
         }
 
         public bool TryDropCluster(
@@ -60,9 +63,11 @@ namespace Core.Systems.WordContainer
             var newIndex = CalculateSiblingIndex(startIndex);
 
             cluster.transform.SetSiblingIndex(newIndex);
+
+            var lettersCount = cluster.Presenter.GetLettersCount();
+            var slots = new List<int>(lettersCount);
             
-            var slots = new List<int>(cluster.Presenter.GetLettersCount());
-            for (var iterator = 0; iterator < cluster.Presenter.GetLettersCount(); iterator++)
+            for (var iterator = 0; iterator < lettersCount; iterator++)
             {
                 slots.Add(startIndex + iterator);
             }
@@ -71,6 +76,9 @@ namespace Core.Systems.WordContainer
             clustersStartIndices[cluster] = startIndex;
             
             _placeholderHelper.ClearPlaceholder();
+
+            UpdateClustersOrderInWord();
+            UpdateClusterContainerIndex(cluster);
             
             return true;
         }
@@ -123,5 +131,35 @@ namespace Core.Systems.WordContainer
             
             return Mathf.Clamp(startIndex + counter, 0, startIndex + counter);
         }
+
+        private void UpdateClustersOrderInWord()
+        {
+            var placedClusters = _data.PlacedClusters;
+
+            var clusters = new List<UIClusterElementView>();
+            foreach (var cluster in placedClusters.Keys)
+            {
+                clusters.Add(cluster);
+            }
+
+            for (var i = 0; i < clusters.Count - 1; i++)
+            {
+                for (var j = i + 1; j < clusters.Count; j++)
+                {
+                    if (clusters[i].transform.GetSiblingIndex() > clusters[j].transform.GetSiblingIndex())
+                    {
+                        (clusters[i], clusters[j]) = (clusters[j], clusters[i]);
+                    }
+                }
+            }
+
+            for (var i = 0; i < clusters.Count; i++)
+            {
+                clusters[i].Presenter.SetOrderInWord(i);
+            }
+        }
+
+        private void UpdateClusterContainerIndex(UIClusterElementView clusterElementView)
+            => clusterElementView.Presenter.SetWordGroupIndex(_wordGroupIndex);
     }
 }

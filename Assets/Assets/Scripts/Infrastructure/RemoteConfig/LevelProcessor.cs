@@ -15,9 +15,9 @@ namespace Infrastructure
         {
             var processedLevels = new List<ProcessedLevelData>();
             
-            for (int i = 0; i < levels.Length; i++)
+            for (var levelIterator = 0; levelIterator < levels.Length; levelIterator++)
             {
-                var level = levels[i];
+                var level = levels[levelIterator];
                 
                 if (CheckWordsLength(level.words))
                 {
@@ -27,12 +27,12 @@ namespace Infrastructure
 
                 var processedWords = new WordEntry[level.words.Length];
                 
-                for (int j = 0; j < level.words.Length; j++)
+                for (var wordIterator = 0; wordIterator < level.words.Length; wordIterator++)
                 {
-                    var word = level.words[j];
-                    var clusters = await GenerateClusters(word); // Генерация кластеров асинхронно
+                    var word = level.words[wordIterator];
+                    var clusters = await GenerateClusters(word, wordIterator); 
                     
-                    processedWords[j] = new WordEntry
+                    processedWords[wordIterator] = new WordEntry
                     {
                         word = word,
                         clusters = clusters
@@ -60,21 +60,20 @@ namespace Infrastructure
             return words.Any(word => word.Length != REQUIRED_WORD_LENGTH);
         }
 
-        private async UniTask<ClusterData[]> GenerateClusters(string word)
+        private async UniTask<ClusterData[]> GenerateClusters(string word, int wordIndex)
         {
-            int clusterCount = Random.Range(2, 4);  
+            var clusterCount = Random.Range(2, 4);  
             var clusters = new ClusterData[clusterCount];
-            int clusterLength = word.Length / clusterCount;
-            int index = 0;
+            var clusterLength = word.Length / clusterCount;
 
-            for (int i = 0; i < clusterCount; i++)
+            for (var iterator = 0; iterator < clusterCount; iterator++)
             {
-                var clusterValue = word.Substring(i * clusterLength, clusterLength);
-                clusters[i] = new ClusterData
+                var clusterValue = word.Substring(iterator * clusterLength, clusterLength);
+                clusters[iterator] = new ClusterData
                 {
                     value = clusterValue,
-                    orderInWord = i,
-                    sourceWordIndex = index++
+                    orderInWord = iterator,
+                    wordGroupIndex = wordIndex
                 };
             }
 

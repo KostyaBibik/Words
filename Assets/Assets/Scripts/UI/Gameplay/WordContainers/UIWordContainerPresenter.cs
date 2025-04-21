@@ -13,6 +13,7 @@ namespace UI.Gameplay.WordContainers
     public class UIWordContainerPresenter : UIPresenter<UIWordContainerView>
     {
         private readonly IWordContainerFactory _wordContainerFactory;
+        private readonly int _containerIndex;
 
         private WordContainerData _dataModel;
         
@@ -21,11 +22,15 @@ namespace UI.Gameplay.WordContainers
         private ClusterTracker _clusterTracker;
         private SlotPlaceholderHelper _placeholderHelper;
         
-        public UIWordContainerPresenter(UIWordContainerView view, IWordContainerFactory wordContainerFactory) 
-            : base(view)
+        public UIWordContainerPresenter(
+            UIWordContainerView view, 
+            IWordContainerFactory wordContainerFactory,
+            int containerIndex
+        ) : base(view)
         {
             _wordContainerFactory = wordContainerFactory;
-            
+            _containerIndex = containerIndex;
+
             SubscribeToViewEvents();
         }
         
@@ -37,7 +42,7 @@ namespace UI.Gameplay.WordContainers
             
             _slotHandler = new WordSlotHandler(_dataModel);
             _placeholderHelper = new SlotPlaceholderHelper(_dataModel);
-            _placementHelper = new ClusterPlacementHelper(_dataModel, _slotHandler, _placeholderHelper, _view.transform);
+            _placementHelper = new ClusterPlacementHelper(_dataModel, _slotHandler, _placeholderHelper, _view.transform, _containerIndex);
             _clusterTracker = new ClusterTracker(_dataModel, _slotHandler);
         }
         

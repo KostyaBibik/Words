@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Core.Services.Abstract;
+﻿using System;
+using Assets.Scripts.Core.Services.Abstract;
+using Cysharp.Threading.Tasks;
 using UI.Abstract;
 using UniRx;
 
@@ -12,14 +14,16 @@ namespace UI.Gameplay.Validation
         {
             _validationService = validationService;
 
-            /*_view.OnValidateCommand
+            _view.OnValidateCommand
                 .Subscribe(_ => RunValidationAsync()) 
-                .AddTo(_view);*/
+                .AddTo(_view);
         }
         
-        private async void RunValidationAsync()
+        private IObservable<Unit> RunValidationAsync()
         {
-            await _validationService.Validate();
+            return _validationService.Validate()
+                .ToObservable()
+                .Select(_ => Unit.Default);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Core.Factories
             for (var iterator = 0; iterator < count; iterator++)
             {
                 var view = Object.Instantiate(containerPrefab, parentLayer);
-                var presenter = new UIWordContainerPresenter(view, this);
+                var presenter = new UIWordContainerPresenter(view, this, iterator);
                 
                 presenter.InitializeContainer(letterPerWorld);
                 view.Initialize(presenter);

@@ -13,7 +13,7 @@ namespace Core.Services.DataRepository
         public IReadOnlyList<ProcessedLevelData> LoadedLevels => _levels ?? Array.Empty<ProcessedLevelData>();
 
         public ProcessedLevelData CurrentLevel =>
-            (_levels != null && _currentLevelIndex >= 0 && _currentLevelIndex < _levels.Length)
+            _levels != null && _currentLevelIndex >= 0 && _currentLevelIndex < _levels.Length
                 ? _levels[_currentLevelIndex]
                 : null;
 

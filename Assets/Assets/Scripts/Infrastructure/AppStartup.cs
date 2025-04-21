@@ -39,7 +39,6 @@ namespace Infrastructure
                     throw new Exception("No valid levels found.");
                 }
                 
-                
                 UpdateState(ELoadPhase.ConfigsProcessing);
 
                 var processedLevels = await _levelProcessor.Process(levels);

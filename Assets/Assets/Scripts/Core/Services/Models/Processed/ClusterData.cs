@@ -7,6 +7,6 @@ namespace Core.Services.Models
     {
         public string value;
         public int orderInWord;
-        public int sourceWordIndex;
+        public int wordGroupIndex;
     }
 }

@@ -6,6 +6,5 @@ namespace Core.GameState
     {
         public UniTask Enter();
         public UniTask Exit();
-        public void Update();
     }
 }

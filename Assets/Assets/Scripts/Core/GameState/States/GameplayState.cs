@@ -1,25 +1,26 @@
 ﻿using Cysharp.Threading.Tasks;
+using UI.Gameplay;
 using UnityEngine;
+using Zenject;
 
 namespace Core.GameState.States
 {
     public class GameplayState : IGameState
     {
+        [Inject] private readonly UIGameplayPresenter _gameplayPresenter;
+        
         public async UniTask Enter()
         {
-             Debug.Log("Enter GameplayState");
+            _gameplayPresenter.Show();
              
              await UniTask.CompletedTask;
         }
 
-        public UniTask Exit()
+        public async UniTask Exit()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void Update()
-        {
-            throw new System.NotImplementedException();
+            _gameplayPresenter.Hide();
+            
+            await UniTask.CompletedTask;
         }
     }
 }

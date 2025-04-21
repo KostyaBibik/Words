@@ -12,11 +12,11 @@ namespace UI.Flow
         [Inject] private readonly UILoadingPresenter _loadingPresenterPresenter;
         [Inject] private readonly UIMainMenuPresenter _mainMenuPresenter;
         [Inject] private readonly UIErrorLoadingPresenter _errorLoadingPresenter;
-
-        private bool IsLoading { get; set; }
+        [Inject] private readonly UIGameplayPresenter _gameplayPresenter;
 
         public void Initialize()
         {
+            _gameplayPresenter.Hide();
         }
         
         public void ShowLoadingScreen()
@@ -41,11 +41,6 @@ namespace UI.Flow
             _loadingPresenterPresenter.Hide();
 
             _errorLoadingPresenter.Show();
-        }
-
-        public async UniTask WaitUntilReady()
-        {
-            await UniTask.WaitWhile(() => IsLoading);
         }
     }
 }

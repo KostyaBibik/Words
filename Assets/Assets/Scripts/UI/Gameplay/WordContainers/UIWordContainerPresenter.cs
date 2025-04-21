@@ -35,7 +35,7 @@ namespace UI.Gameplay.WordContainers
             
             _slotHandler = new WordSlotHandler(_dataModel);
             _placeholderHelper = new SlotPlaceholderHelper(_dataModel);
-            _placementHelper = new ClusterPlacementHelper(_dataModel, _slotHandler, _placeholderHelper);
+            _placementHelper = new ClusterPlacementHelper(_dataModel, _slotHandler, _placeholderHelper, _view.transform);
             _clusterTracker = new ClusterTracker(_dataModel, _slotHandler);
         }
         
@@ -83,6 +83,6 @@ namespace UI.Gameplay.WordContainers
         }
 
         private bool TryDrop(UIClusterElementView cluster, PointerEventData eventData) =>
-            _placementHelper.TryDropCluster(cluster, eventData, _view.transform);
+            _placementHelper.TryDropCluster(cluster, eventData);
     }
 }

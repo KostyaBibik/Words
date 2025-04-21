@@ -1,11 +1,13 @@
 ﻿using Core.Factories;
 using Core.Services;
+using Core.Services.Validation;
 using Gameplay.Utils;
 using UI.Core;
 using UI.ErrorLoading;
 using UI.Flow;
 using UI.Gameplay;
 using UI.Gameplay.BottomPanel;
+using UI.Gameplay.Validation;
 using UI.Loading;
 using UnityEngine;
 using Zenject;
@@ -26,6 +28,8 @@ namespace Architecture.DI
 
             BindWindows();
 
+            BindValidation();
+            
             BindFlow();
         }
 
@@ -38,6 +42,7 @@ namespace Architecture.DI
         private void BindServices()
         {
             Container.BindInterfacesTo<UIClustersService>().AsSingle();
+            Container.BindInterfacesTo<StubValidationService>().AsSingle();
         }
 
         private void CreateAndBindUIManager()
@@ -54,6 +59,11 @@ namespace Architecture.DI
             Container.BindPresenterWithView<UIBottomPanelPresenter, UIBottomPanelView>();
             Container.BindPresenterWithView<UIWordGridPresenter, UIWordGridView>();
             Container.BindPresenterWithView<UIGameplayPresenter, UIGameplayView>();
+        }
+
+        private void BindValidation()
+        {
+            Container.BindPresenterWithView<UIValidationButtonPresenter, UIValidationButtonView>();
         }
 
         private void BindFlow()

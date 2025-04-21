@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UI.Gameplay.Elements;
+﻿using UI.Gameplay.Elements;
 
 namespace Core.Systems.WordContainer
 {
@@ -8,7 +6,8 @@ namespace Core.Systems.WordContainer
     {
         private readonly WordContainerData _data;
 
-        public WordSlotHandler(WordContainerData data) => _data = data;
+        public WordSlotHandler(WordContainerData data) =>
+            _data = data;
 
         public bool IsValidDropPosition(int startIndex, int length)
         {

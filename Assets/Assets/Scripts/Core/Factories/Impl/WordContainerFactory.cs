@@ -1,6 +1,7 @@
 ﻿using UI.Gameplay.Elements;
 using UI.Gameplay.WordContainers;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Core.Factories
 {
@@ -41,6 +42,9 @@ namespace Core.Factories
                 wordContainers[iterator] = view;
             }
 
+            var rectTransform = parentLayer.GetComponent<RectTransform>();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
+            
             return wordContainers;
         }
     }

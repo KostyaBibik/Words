@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using ModestTree;
 using UI.Gameplay.Elements;
 
@@ -24,16 +24,29 @@ namespace Core.Systems.WordContainer
             if (!placedClusters.ContainsKey(cluster))
             {
                 var clusterPos = clusterStartIndices[cluster];
-                placedClusters[cluster] = Enumerable.Range(clusterPos, cluster.LetterCount).ToList();
+                var slots = new List<int>(cluster.LetterCount);
+                
+                for (var iterator = 0; iterator < cluster.LetterCount; iterator++)
+                {
+                    slots.Add(clusterPos + iterator);
+                }
+                
+                placedClusters[cluster] = slots;
             }
 
             if (bufferSlots.IsEmpty())
                 return;
             
-            var lowestSlot = bufferSlots.Aggregate((min, next) =>
-                next.Index < min.Index ? next : min);
+            var min = bufferSlots[0];
+            for (var iterator = 1; iterator < bufferSlots.Count; iterator++)
+            {
+                if (bufferSlots[iterator].Index < min.Index)
+                {
+                    min = bufferSlots[iterator];
+                }
+            }
             
-            _slotHandler.OccupySlots(lowestSlot.Index, bufferSlots.Count);
+            _slotHandler.OccupySlots(min.Index, bufferSlots.Count);
             bufferSlots.Clear();
         }
     }

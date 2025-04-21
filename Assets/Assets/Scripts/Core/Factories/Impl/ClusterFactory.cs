@@ -2,6 +2,7 @@
 using UI.Gameplay.BottomPanel;
 using UI.Gameplay.Elements;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Core.Factories
 {
@@ -19,6 +20,9 @@ namespace Core.Factories
                 cluster.AddLetter(letter);
             }
 
+            var rectTransform = settings.ClustersContainer.GetComponent<RectTransform>();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
+            
             return cluster;
         }
 

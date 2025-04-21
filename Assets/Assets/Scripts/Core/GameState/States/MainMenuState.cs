@@ -42,11 +42,6 @@ namespace Core.GameState.States
             await UniTask.CompletedTask;
         }
 
-        public void Update()
-        {
-            throw new System.NotImplementedException();
-        }
-
         private void OnStartPlayBtnClick()
             => _gameStateMachine.SwitchState<LevelGenerationState>().Forget();
     }

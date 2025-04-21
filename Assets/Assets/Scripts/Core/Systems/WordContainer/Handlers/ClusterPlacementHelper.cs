@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using UI.Gameplay.Elements;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -10,26 +10,28 @@ namespace Core.Systems.WordContainer
         private readonly WordContainerData _data;
         private readonly WordSlotHandler _slotHandler;
         private readonly SlotPlaceholderHelper _placeholderHelper;
+        private readonly Transform _viewTransform;
 
         public ClusterPlacementHelper(
             WordContainerData data, 
             WordSlotHandler slotHandler, 
-            SlotPlaceholderHelper placeholderHelper
+            SlotPlaceholderHelper placeholderHelper,
+            Transform viewTransform
         )
         {
             _data = data;
             _slotHandler = slotHandler;
             _placeholderHelper = placeholderHelper;
+            _viewTransform = viewTransform;
         }
 
         public bool TryDropCluster(
             UIClusterElementView cluster, 
-            PointerEventData eventData,
-            Transform containerTransform
+            PointerEventData eventData
         )
         {
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                (RectTransform)containerTransform,
+                (RectTransform)_viewTransform,
                 eventData.position,
                 eventData.pressEventCamera,
                 out var localPoint);
@@ -53,13 +55,19 @@ namespace Core.Systems.WordContainer
             
             _slotHandler.OccupySlots(startIndex, cluster.LetterCount);
             
-            cluster.transform.SetParent(containerTransform);
+            cluster.transform.SetParent(_viewTransform);
 
             var newIndex = CalculateSiblingIndex(startIndex);
 
             cluster.transform.SetSiblingIndex(newIndex);
             
-            placedClusters[cluster] = Enumerable.Range(startIndex, cluster.LetterCount).ToList();
+            var slots = new List<int>(cluster.LetterCount);
+            for (var iterator = 0; iterator < cluster.LetterCount; iterator++)
+            {
+                slots.Add(startIndex + iterator);
+            }
+            
+            placedClusters[cluster] = slots;
             clustersStartIndices[cluster] = startIndex;
             
             _placeholderHelper.ClearPlaceholder();
@@ -104,6 +112,7 @@ namespace Core.Systems.WordContainer
         private int CalculateSiblingIndex(int startIndex)
         {
             var counter = 0;
+            
             foreach (var cluster in _data.PlacedClusters.Keys)
             {
                 if (startIndex > cluster.transform.GetSiblingIndex())
@@ -111,6 +120,7 @@ namespace Core.Systems.WordContainer
                     counter++;
                 }
             }
+            
             return Mathf.Clamp(startIndex + counter, 0, startIndex + counter);
         }
     }

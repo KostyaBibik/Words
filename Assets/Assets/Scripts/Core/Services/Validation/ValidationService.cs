@@ -4,16 +4,19 @@ using Core.Services.Abstract;
 using Core.Services.Models;
 using Cysharp.Threading.Tasks;
 using UI.Gameplay;
-using UnityEngine;
+using UniRx;
 
 namespace Core.Services.Validation
 {
-    public class StubValidationService : IValidationService
+    public class ValidationService : IValidationService
     {
         private readonly IGameDataRepository _gameDataRepository;
         private readonly UIWordGridPresenter _wordGridPresenter;
-
-        public StubValidationService(IGameDataRepository gameDataRepository, UIWordGridPresenter wordGridPresenter)
+        private readonly ReactiveProperty<bool> _validationStatus = new(false);
+        
+        public IReadOnlyReactiveProperty<bool> ValidationStatus => _validationStatus;
+        
+        public ValidationService(IGameDataRepository gameDataRepository, UIWordGridPresenter wordGridPresenter)
         {
             _gameDataRepository = gameDataRepository;
             _wordGridPresenter = wordGridPresenter;
@@ -24,18 +27,31 @@ namespace Core.Services.Validation
             var level = _gameDataRepository.CurrentLevel;
             var expectedWords = level.words;
 
-            var allPlaced = new List<(ClusterData clusterData, int startIndex)>();
-
-            foreach (var container in _wordGridPresenter.WordContainerPresenters)
+            var placedClusters = new List<(ClusterData clusterData, int startIndex)>();
+            
+            foreach (var container in _wordGridPresenter.ContainerPresenters)
             {
-                var placed = container.GetPlacedClusters();
-                foreach (var (clusterPresenter, startIndex) in placed)
-                    allPlaced.Add((clusterPresenter.GetData(), startIndex));
+                var containerClusters = container.GetPlacedClusters();
+                
+                foreach (var (clusterPresenter, startIndex) in containerClusters)
+                {
+                    var cluster = (clusterPresenter.GetData(), startIndex);
+                    placedClusters.Add(cluster);
+                }
             }
 
-            var isAllPlaced = await AreAllClustersPlacedCorrectly(expectedWords, allPlaced);
+            var distinctClusters = new List<(ClusterData clusterData, int startIndex)>();
+            var seenClusters = new HashSet<ClusterData>();
 
-            Debug.Log($"[Validation] isAllPlaced : {isAllPlaced}");
+            foreach (var item in placedClusters)
+            {
+                if (!seenClusters.Add(item.clusterData))
+                    continue;
+
+                distinctClusters.Add(item);
+            }
+            
+            _validationStatus.Value = await AreAllClustersPlacedCorrectly(expectedWords, distinctClusters);
 
             await UniTask.CompletedTask;
         }

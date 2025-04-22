@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Core.Factories;
+using Core.Services.Models;
 using Core.Systems;
 using Core.Systems.WordContainer;
 using UI.Abstract;
@@ -11,7 +13,7 @@ using UnityEngine.EventSystems;
 
 namespace UI.Gameplay.WordContainers
 {
-    public class UIWordContainerPresenter : UIPresenter<UIWordContainerView>
+    public class UIWordContainerPresenter : UIPresenter<UIWordContainerView>, IWordContainerStatus
     {
         private readonly IWordContainerFactory _wordContainerFactory;
         private readonly int _containerIndex;
@@ -22,6 +24,11 @@ namespace UI.Gameplay.WordContainers
         private IContainerDropPlacementHelper _dropPlacementHelper;
         private ClusterTracker _clusterTracker;
         private SlotPlaceholderHelper _placeholderHelper;
+        
+        public int Index => _containerIndex;
+        public IObservable<Unit> OnFullyFilled => _dataModel.OnFullyFilled;
+        public IObservable<Unit> OnBecameIncomplete  => _dataModel.OnBecameIncomplete;
+        public bool IsFullyFilled => _dataModel.IsFullyFilled.Value;
         
         public UIWordContainerPresenter(
             UIWordContainerView view, 
@@ -80,7 +87,7 @@ namespace UI.Gameplay.WordContainers
 
         public void ClearBuffers() =>
             _dataModel.BufferSlots.Clear();
-        
+
         public Dictionary<UIClusterElementPresenter, int> GetPlacedClusters()
         {
             return _dataModel

@@ -42,10 +42,5 @@ namespace Core.GameState.States
 
         public UniTask Exit() => 
             UniTask.CompletedTask;
-
-        public void Update()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

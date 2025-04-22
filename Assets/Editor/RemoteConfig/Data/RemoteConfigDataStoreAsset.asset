@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
-  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"71ac251a-fb76-4c69-9a2b-473b40a48f94\"\r\n   
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"5111a60a-e4fd-48b8-b101-041f73b98463\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"levels_json\",\r\n      \"type\": \"json\",\r\n     
     \"schemaId\": null,\r\n      \"value\": {\r\n        \"levels\": [\r\n         
     {\r\n            \"id\": 1,\r\n            \"words\": [\r\n              \"\u0410\u0424\u0420\u0418\u041A\u0410\",\r\n             
@@ -28,10 +28,10 @@ MonoBehaviour:
     \"\u041C\u0410\u041A\u0410\u041A\u0410\",\r\n              \"\u0411\u0423\u0419\u0412\u041E\u041B\",\r\n             
     \"\u041B\u041E\u0428\u0410\u0414\u042C\"\r\n            ]\r\n          }\r\n       
     ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"8ca0ddfc-62a8-48d3-8ed8-365f31ea151f\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"5976952d-5aa7-48c6-8401-bbc017694eae\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"test_id\",\r\n      \"type\": \"int\",\r\n      \"value\": 11\r\n   
     }\r\n  }\r\n]"
-  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"71ac251a-fb76-4c69-9a2b-473b40a48f94\"\r\n   
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"5111a60a-e4fd-48b8-b101-041f73b98463\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"levels_json\",\r\n      \"type\": \"json\",\r\n     
     \"schemaId\": null,\r\n      \"value\": {\r\n        \"levels\": [\r\n         
     {\r\n            \"id\": 1,\r\n            \"words\": [\r\n              \"\u0410\u0424\u0420\u0418\u041A\u0410\",\r\n             
@@ -47,7 +47,7 @@ MonoBehaviour:
     \"\u041C\u0410\u041A\u0410\u041A\u0410\",\r\n              \"\u0411\u0423\u0419\u0412\u041E\u041B\",\r\n             
     \"\u041B\u041E\u0428\u0410\u0414\u042C\"\r\n            ]\r\n          }\r\n       
     ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"8ca0ddfc-62a8-48d3-8ed8-365f31ea151f\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"5976952d-5aa7-48c6-8401-bbc017694eae\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"test_id\",\r\n      \"type\": \"int\",\r\n      \"value\": 11\r\n   
     }\r\n  }\r\n]"
   _environments: "[\r\n  {\r\n    \"projectId\": \"2d3728cf-00c8-4517-81b1-e8a44a07de96\",\r\n   

@@ -2,6 +2,7 @@
 using Core.GameState.States;
 using Core.Services.DataRepository;
 using Core.Services.Validation;
+using Core.Systems.WordContainer;
 using Infrastructure;
 using Infrastructure.RemoteConfig;
 using Zenject;
@@ -15,6 +16,8 @@ namespace Architecture.DI
             BindDataRepository();
 
             BindInitSystems();
+
+            BindTrackers();
             
             BindGameStates();
 
@@ -34,6 +37,11 @@ namespace Architecture.DI
             Container.BindInterfacesTo<LevelProcessor>().AsSingle();
         }
 
+        private void BindTrackers()
+        {
+            Container.BindInterfacesAndSelfTo<WordRepositoryTracker>().AsSingle();
+        }
+        
         private void BindGameStates()
         {
             Container.BindInterfacesTo<GameStateMachine>().AsSingle();
@@ -46,7 +54,7 @@ namespace Architecture.DI
 
         private void BindServices()
         {
-            Container.BindInterfacesTo<StubValidationService>().AsSingle();
+            Container.BindInterfacesTo<ValidationService>().AsSingle();
         }
 
         private void BindEntryPoint()

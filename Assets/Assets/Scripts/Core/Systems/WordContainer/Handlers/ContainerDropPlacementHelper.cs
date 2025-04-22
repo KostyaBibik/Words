@@ -79,6 +79,7 @@ namespace Core.Systems.WordContainer
 
             UpdateClustersOrderInWord();
             UpdateClusterContainerIndex(cluster);
+            _slotHandler.ReevaluateFullState();
             
             return true;
         }
@@ -116,7 +117,7 @@ namespace Core.Systems.WordContainer
                 placedClusters.Remove(cluster);
             }
         }
-
+        
         private int CalculateSiblingIndex(int startIndex)
         {
             var counter = 0;
@@ -159,7 +160,7 @@ namespace Core.Systems.WordContainer
             }
         }
 
-        private void UpdateClusterContainerIndex(UIClusterElementView clusterElementView)
-            => clusterElementView.Presenter.SetWordGroupIndex(_wordGroupIndex);
+        private void UpdateClusterContainerIndex(UIClusterElementView clusterElementView) =>
+            clusterElementView.Presenter.SetWordGroupIndex(_wordGroupIndex);
     }
 }

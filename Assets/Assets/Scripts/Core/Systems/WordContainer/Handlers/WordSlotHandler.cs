@@ -1,4 +1,5 @@
-﻿using UI.Gameplay.Elements;
+﻿using System.Linq;
+using UI.Gameplay.Elements;
 
 namespace Core.Systems.WordContainer
 {
@@ -53,6 +54,14 @@ namespace Core.Systems.WordContainer
 
                 placedClusters.Remove(cluster);
             }
+
+            ReevaluateFullState();
+        }
+        
+        public void ReevaluateFullState()
+        {
+            var allFilled = _data.Slots.All(s => s.IsOccupied);
+            _data.UpdateFilledSlotsStatus(allFilled);
         }
     }
 }

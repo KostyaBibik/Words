@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UI.Gameplay.Elements;
+using UniRx;
 
 namespace Core.Systems.WordContainer
 {
@@ -10,8 +12,17 @@ namespace Core.Systems.WordContainer
         public Dictionary<UIClusterElementView, int> ClusterStartIndices { get; } = new();
         public List<int> ActivePlaceholderSlots { get; } = new();
         public List<UILetterSlotView> BufferSlots { get; } = new();
-
+        
+        private readonly ReactiveProperty<bool> _isFullyFilled = new(false);
+        
+        public IReadOnlyReactiveProperty<bool> IsFullyFilled => _isFullyFilled;
+        public IObservable<Unit> OnFullyFilled => _isFullyFilled.Where(x => x).AsUnitObservable();
+        public IObservable<Unit> OnBecameIncomplete => _isFullyFilled.Where(x => !x).AsUnitObservable();
+        
         public WordContainerData(UILetterSlotView[] slots) => 
             Slots = slots;
+
+        public void UpdateFilledSlotsStatus(bool flag) =>
+            _isFullyFilled.Value = flag;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using UI.Gameplay.Elements;
+using UI.Gameplay.WordContainers;
 using UnityEngine;
 
 namespace Core.Factories
@@ -11,7 +12,7 @@ namespace Core.Factories
             int count
         );
 
-        public UIWordContainerView[] CreateWordContainers(
+        public UIWordContainerPresenter[] CreateWordContainers(
             UIWordContainerView containerPrefab,
             Transform parentLayer,
             int letterPerWorld,

@@ -48,6 +48,7 @@ namespace Core.Systems.WordContainer
             
             _slotHandler.OccupySlots(min.Index, bufferSlots.Count);
             bufferSlots.Clear();
+            _slotHandler.ReevaluateFullState();
         }
     }
 }

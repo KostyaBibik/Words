@@ -23,14 +23,14 @@ namespace Core.Factories
             return letterSlots;
         }
 
-        public UIWordContainerView[] CreateWordContainers(
+        public UIWordContainerPresenter[] CreateWordContainers(
             UIWordContainerView containerPrefab,
             Transform parentLayer,
             int letterPerWorld,
             int count
         )
         {
-            var wordContainers = new UIWordContainerView[count];
+            var wordContainers = new UIWordContainerPresenter[count];
             for (var iterator = 0; iterator < count; iterator++)
             {
                 var view = Object.Instantiate(containerPrefab, parentLayer);
@@ -39,7 +39,7 @@ namespace Core.Factories
                 presenter.InitializeContainer(letterPerWorld);
                 view.Initialize(presenter);
                 
-                wordContainers[iterator] = view;
+                wordContainers[iterator] = presenter;
             }
 
             var rectTransform = parentLayer.GetComponent<RectTransform>();

@@ -66,7 +66,7 @@ namespace Core.Factories
                 var view = Object.Instantiate(elementPrefab, parentLayer);
                 var presenter = new UIFinallyWordPresenter(view);
 
-                var elementText = $"{data[iterator].filledOrder} : {data[iterator].text}";
+                var elementText = $"{data[iterator].filledOrder + 1} : {data[iterator].text}";
                 presenter.UpdateData(elementText);
                 
                 presenters[iterator] = presenter;

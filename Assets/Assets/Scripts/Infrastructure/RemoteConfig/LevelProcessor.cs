@@ -62,22 +62,50 @@ namespace Infrastructure
 
         private ClusterData[] GenerateClusters(string word, int wordIndex)
         {
-            var clusterCount = Random.Range(2, 4);  
-            var clusters = new ClusterData[clusterCount];
-            var clusterLength = word.Length / clusterCount;
-
-            for (var iterator = 0; iterator < clusterCount; iterator++)
+            int[] possibleSizes = { 2, 3, 4 };
+    
+            for (var attempts = 0; attempts < 100; attempts++)
             {
-                var clusterValue = word.Substring(iterator * clusterLength, clusterLength);
-                clusters[iterator] = new ClusterData
+                var clusterSizes = new List<int>();
+                var remainingLength = word.Length;
+        
+                while (remainingLength > 0)
                 {
-                    value = clusterValue,
-                    orderInWord = iterator,
-                    wordGroupIndex = wordIndex
-                };
+                    var availableSizes = possibleSizes.Where(s => s <= remainingLength).ToArray();
+                    if (availableSizes.Length == 0)
+                        break;
+            
+                    var chosenSize = availableSizes[Random.Range(0, availableSizes.Length)];
+                    clusterSizes.Add(chosenSize);
+                    remainingLength -= chosenSize;
+                }
+        
+                if (remainingLength == 0 && clusterSizes.Count >= 2)
+                {
+                    var clusters = new ClusterData[clusterSizes.Count];
+                    var position = 0;
+            
+                    for (var i = 0; i < clusterSizes.Count; i++)
+                    {
+                        var size = clusterSizes[i];
+                        clusters[i] = new ClusterData
+                        {
+                            value = word.Substring(position, size),
+                            orderInWord = i,
+                            wordGroupIndex = wordIndex
+                        };
+                        position += size;
+                    }
+            
+                    return clusters;
+                }
             }
-
-            return clusters;
+    
+            return new[]
+            {
+                new ClusterData { value = word.Substring(0, 3), orderInWord = 0, wordGroupIndex = wordIndex },
+                new ClusterData { value = word.Substring(3, 3), orderInWord = 1, wordGroupIndex = wordIndex }
+            };
         }
     }
 }

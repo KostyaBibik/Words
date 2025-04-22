@@ -32,11 +32,13 @@ namespace Core.GameState.States
         {
             _victoryPresenter.Show();
 
-            _victoryPresenter.OnContinueBtnClick
+            _victoryPresenter
+                .OnContinueBtnClick
                 .Subscribe(_ => OnContinueBtnClick())
                 .AddTo(_disposable);
 
-            _victoryPresenter.OnMenuBtnClick
+            _victoryPresenter
+                .OnMenuBtnClick
                 .Subscribe(_ => OnMenuBtnClick())
                 .AddTo(_disposable);
 

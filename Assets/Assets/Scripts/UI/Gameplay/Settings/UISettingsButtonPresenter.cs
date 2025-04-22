@@ -40,7 +40,7 @@ namespace UI.Gameplay.Settings
         private void OnButtonClick()
         {
             PlayAudioClick();
-            _gameplayPresenter.Hide();
+            _gameplayPresenter.Hide(false);
             _panelPresenter.Show(false);
         }
         

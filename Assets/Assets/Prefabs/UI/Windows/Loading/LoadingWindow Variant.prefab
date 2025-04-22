@@ -221,6 +221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingWindow Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5202111027266223979, guid: 447c7dc90381b88469600239f67285ef, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5575704095657935461, guid: 447c7dc90381b88469600239f67285ef, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25

@@ -1,7 +1,9 @@
-﻿using Core.Factories;
+﻿using System.Linq;
+using Core.Factories;
 using Core.Services.Models;
 using UI.Gameplay.ClustersPanel;
 using UI.Gameplay.Elements;
+using UnityEngine;
 
 namespace UI.Gameplay
 {
@@ -18,11 +20,12 @@ namespace UI.Gameplay
 
         public UIClusterElementView[] SpawnClusters(ClusterData[] data)
         {
+            var shuffledData = data.OrderBy(x => Random.value).ToArray();
             var clusters = new UIClusterElementView[data.Length];
             
-            for (var iterator = 0; iterator < data.Length; iterator++)
+            for (var iterator = 0; iterator < shuffledData.Length; iterator++)
             {
-                var clusterData = data[iterator];
+                var clusterData = shuffledData[iterator];
                 var cluster = _factory.CreateCluster(clusterData, _settings);
                 
                 clusters[iterator] = cluster;

@@ -12,37 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
-  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"cd5ec63c-38f2-4fe2-aed7-85a14cf47271\"\r\n   
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"960fd55f-8879-4df9-9902-8c8f5b6da8e5\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"string_key\",\r\n      \"type\": \"string\",\r\n     
     \"value\": \"string_value\"\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"fe062798-fb28-4614-be99-0fd8f8becc9f\"\r\n    },\r\n    \"rs\":
+    \"entityId\": \"0dc436e9-51b9-4552-af6e-d12b06647d12\"\r\n    },\r\n    \"rs\":
     {\r\n      \"key\": \"int_key\",\r\n      \"type\": \"long\",\r\n      \"value\":
-    1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"59e6a00e-f515-45b5-97ae-5f63d0c19b25\"\r\n   
+    1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"010437b8-89d4-4198-98ef-885f5d4c6197\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"bool_key\",\r\n      \"type\": \"bool\",\r\n     
     \"value\": true\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"17a85385-0898-4d2f-a984-7f2a2f67c56b\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"c68a0524-bb39-42ef-843a-13230b33b66b\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"long_key\",\r\n      \"type\": \"long\",\r\n      \"value\": 10000\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"3a175b95-db0d-4f02-8938-867078fcbde8\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"714912ca-ed67-4684-9ff3-68015c3b514c\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"float_key\",\r\n      \"type\": \"float\",\r\n     
     \"value\": 1.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"14227c1e-5b9d-43da-a965-3843588239d9\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"dfaf1e1d-3a5f-4819-a08d-0f6d8ac8f97b\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"json_key\",\r\n      \"type\": \"json\",\r\n      \"schemaId\": null,\r\n     
     \"value\": {\r\n        \"sample_key\": \"sample_value\"\r\n      }\r\n    }\r\n 
     }\r\n]"
-  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"cd5ec63c-38f2-4fe2-aed7-85a14cf47271\"\r\n   
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"960fd55f-8879-4df9-9902-8c8f5b6da8e5\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"string_key\",\r\n      \"type\": \"string\",\r\n     
     \"value\": \"string_value\"\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"fe062798-fb28-4614-be99-0fd8f8becc9f\"\r\n    },\r\n    \"rs\":
+    \"entityId\": \"0dc436e9-51b9-4552-af6e-d12b06647d12\"\r\n    },\r\n    \"rs\":
     {\r\n      \"key\": \"int_key\",\r\n      \"type\": \"long\",\r\n      \"value\":
-    1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"59e6a00e-f515-45b5-97ae-5f63d0c19b25\"\r\n   
+    1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"010437b8-89d4-4198-98ef-885f5d4c6197\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"bool_key\",\r\n      \"type\": \"bool\",\r\n     
     \"value\": true\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"17a85385-0898-4d2f-a984-7f2a2f67c56b\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"c68a0524-bb39-42ef-843a-13230b33b66b\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"long_key\",\r\n      \"type\": \"long\",\r\n      \"value\": 10000\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"3a175b95-db0d-4f02-8938-867078fcbde8\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"714912ca-ed67-4684-9ff3-68015c3b514c\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"float_key\",\r\n      \"type\": \"float\",\r\n     
     \"value\": 1.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"14227c1e-5b9d-43da-a965-3843588239d9\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"dfaf1e1d-3a5f-4819-a08d-0f6d8ac8f97b\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"json_key\",\r\n      \"type\": \"json\",\r\n      \"schemaId\": null,\r\n     
     \"value\": {\r\n        \"sample_key\": \"sample_value\"\r\n      }\r\n    }\r\n 
     }\r\n]"

@@ -7,5 +7,8 @@ namespace UI.ErrorLoading
         public UIErrorLoadingPresenter(UIErrorLoadingView view) : base(view) 
         {
         }
+
+        public void UpdateText(string info) =>
+            _view.UpdateText(info);
     }
 }

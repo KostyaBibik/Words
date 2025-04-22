@@ -41,7 +41,7 @@ namespace UI.Gameplay.Settings
         {
             PlayAudioClick();
             _gameplayPresenter.Hide();
-            _panelPresenter.Show();
+            _panelPresenter.Show(false);
         }
         
         private void PlayAudioClick() =>

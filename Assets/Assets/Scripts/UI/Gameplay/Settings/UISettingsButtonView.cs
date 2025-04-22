@@ -1,15 +1,15 @@
 ﻿using System;
+using Lean.Gui;
 using UI.Abstract;
 using UniRx;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI.Gameplay.Settings
 {
     public class UISettingsButtonView : UIView
     {
-        [SerializeField] private Button _button;
+        [SerializeField] private LeanButton _button;
         
-        public IObservable<Unit> OnBtnClick => _button.OnClickAsObservable();
+        public IObservable<Unit> OnBtnClick => _button.OnClick.AsObservable();
     }
 }

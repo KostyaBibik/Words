@@ -17,20 +17,20 @@ namespace UI.Abstract
         {
         }
 
-        public void Show()
+        public void Show(bool instant = true)
         {
             BeforeShow();
             
-            _view.Show();
+            _view.Show(instant);
         }
         
         protected virtual void BeforeShow() {}
 
-        public void Hide()
+        public void Hide(bool instant = true)
         {
             BeforeHide();
             
-            _view.Hide();
+            _view.Hide(instant);
         }
         protected virtual void BeforeHide() {}
 

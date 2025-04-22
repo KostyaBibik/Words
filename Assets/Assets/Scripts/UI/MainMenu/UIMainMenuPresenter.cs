@@ -11,7 +11,7 @@ namespace UI.Gameplay
     {
         private IAudioService _audioService;
         
-        public IObservable<Unit> OnStartPlayBtnClick => _view.StartPlayBtn.OnClickAsObservable();
+        public IObservable<Unit> OnStartPlayBtnClick => _view.StartPlayBtn.OnClick.AsObservable();
         
         public UIMainMenuPresenter(UIMainMenuView view) : base(view) 
         {

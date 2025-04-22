@@ -21,7 +21,7 @@ namespace Core.GameState.States
         
         public async UniTask Enter()
         {
-            _gameplayPresenter.Show();
+            _gameplayPresenter.Show(false);
 
             SubscribeToCorrectValidation();
             
@@ -39,14 +39,14 @@ namespace Core.GameState.States
 
         private async void OnCorrectValidation()
         {
-            _gameplayPresenter.Hide();
+            _gameplayPresenter.Hide(false);
             
             await _stateMachine.SwitchState<VictoryState>();
         }
 
         public async UniTask Exit()
         {
-            _gameplayPresenter.Hide();
+            _gameplayPresenter.Hide(false);
             _disposable?.Clear();
             
             await UniTask.CompletedTask;

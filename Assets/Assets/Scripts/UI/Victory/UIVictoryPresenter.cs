@@ -14,8 +14,8 @@ namespace UI.Victory
         private IUIWordContainerFactory _wordContainerFactory;
         private UIFinallyWordPresenter[] _finallyWords;
 
-        public IObservable<Unit> OnMenuBtnClick => _view.MenuBtn.OnClickAsObservable();
-        public IObservable<Unit> OnContinueBtnClick => _view.ContinueBtn.OnClickAsObservable();
+        public IObservable<Unit> OnMenuBtnClick => _view.MenuBtn.OnClick.AsObservable();
+        public IObservable<Unit> OnContinueBtnClick => _view.ContinueBtn.OnClick.AsObservable();
         
         public UIVictoryPresenter(UIVictoryView view) : base(view)
         {

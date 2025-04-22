@@ -2,7 +2,7 @@
 {
     public interface IUIPresenter
     {
-        void Show();
-        void Hide();
+        void Show(bool instant = true);
+        void Hide(bool instant = true);
     }
 }

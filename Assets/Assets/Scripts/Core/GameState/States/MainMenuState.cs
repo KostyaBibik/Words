@@ -42,7 +42,7 @@ namespace Core.GameState.States
             await UniTask.CompletedTask;
         }
 
-        private void OnStartPlayBtnClick()
-            => _gameStateMachine.SwitchState<LevelGenerationState>().Forget();
+        private void OnStartPlayBtnClick() => 
+            _gameStateMachine.SwitchState<LevelGenerationState>().Forget();
     }
 }

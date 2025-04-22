@@ -55,15 +55,15 @@ namespace UI.Settings
         {
             PlayAudioClick();
             _stateMachine.SwitchState<MainMenuState>().Forget();
-            Hide();
+            Hide(false);
             _sessionCleaner.Cleanup();
         }
 
         private void OnReturnBtnClick()
         {
             PlayAudioClick();
-            Hide();
-            _gameplayPresenter.Show();
+            Hide(false);
+            _gameplayPresenter.Show(false);
         }
         
         private void PlayAudioClick() =>

@@ -32,6 +32,7 @@ namespace Infrastructure
             try
             {
                 _flowManager.ShowLoadingScreen();
+                _flowManager.TrackProgress(CurrentPhase);
                 UpdateState(ELoadPhase.ConfigsLoading);
                 
                 var levels = await _levelLoader.LoadLevelsAsync();

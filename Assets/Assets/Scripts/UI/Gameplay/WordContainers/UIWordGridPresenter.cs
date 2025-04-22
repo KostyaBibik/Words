@@ -10,7 +10,7 @@ namespace UI.Gameplay
 {
     public class UIWordGridPresenter : UIPresenter<UIWordGridView>
     {
-        private IWordContainerFactory _wordContainerFactory;
+        private IUIWordContainerFactory _wordContainerFactory;
         private WordRepositoryTracker _tracker;
         private UIWordContainerPresenter[] _containerPresenters;
 
@@ -22,7 +22,7 @@ namespace UI.Gameplay
 
         [Inject]
         public void Construct(
-            IWordContainerFactory wordContainerFactory,
+            IUIWordContainerFactory wordContainerFactory,
             WordRepositoryTracker wordRepositoryTracker
         )
         {

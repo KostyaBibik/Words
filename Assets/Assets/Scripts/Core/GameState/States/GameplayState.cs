@@ -2,7 +2,6 @@
 using Cysharp.Threading.Tasks;
 using UI.Gameplay;
 using UniRx;
-using UnityEngine;
 using Zenject;
 
 namespace Core.GameState.States
@@ -43,13 +42,12 @@ namespace Core.GameState.States
             _gameplayPresenter.Hide();
             
             await _stateMachine.SwitchState<VictoryState>();
-            
-            _disposable?.Clear();
         }
 
         public async UniTask Exit()
         {
             _gameplayPresenter.Hide();
+            _disposable?.Clear();
             
             await UniTask.CompletedTask;
         }

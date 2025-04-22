@@ -15,7 +15,7 @@ namespace UI.Gameplay.WordContainers
 {
     public class UIWordContainerPresenter : UIPresenter<UIWordContainerView>, IWordContainerStatus
     {
-        private readonly IWordContainerFactory _wordContainerFactory;
+        private readonly IUIWordContainerFactory _wordContainerFactory;
         private readonly int _containerIndex;
 
         private WordContainerData _dataModel;
@@ -32,7 +32,7 @@ namespace UI.Gameplay.WordContainers
         
         public UIWordContainerPresenter(
             UIWordContainerView view, 
-            IWordContainerFactory wordContainerFactory,
+            IUIWordContainerFactory wordContainerFactory,
             int containerIndex
         ) : base(view)
         {

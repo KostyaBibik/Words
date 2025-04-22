@@ -9,6 +9,7 @@ using UI.Gameplay;
 using UI.Gameplay.BottomPanel;
 using UI.Gameplay.Validation;
 using UI.Loading;
+using UI.Victory;
 using UnityEngine;
 using Zenject;
 
@@ -36,7 +37,7 @@ namespace Architecture.DI
         private void InstallFactories()
         {
             Container.BindInterfacesTo<ClusterFactory>().AsSingle();
-            Container.BindInterfacesTo<WordContainerFactory>().AsSingle();
+            Container.BindInterfacesTo<UIWordContainerFactory>().AsSingle();
         }
 
         private void BindServices()
@@ -58,6 +59,7 @@ namespace Architecture.DI
             Container.BindPresenterWithView<UIBottomPanelPresenter, UIBottomPanelView>();
             Container.BindPresenterWithView<UIWordGridPresenter, UIWordGridView>();
             Container.BindPresenterWithView<UIGameplayPresenter, UIGameplayView>();
+            Container.BindPresenterWithView<UIVictoryPresenter, UIVictoryView>();
         }
 
         private void BindValidation()

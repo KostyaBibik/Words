@@ -17,8 +17,22 @@ namespace UI.Abstract
         {
         }
 
-        public void Show() => _view.Show();
-        public void Hide() => _view.Hide();
+        public void Show()
+        {
+            BeforeShow();
+            
+            _view.Show();
+        }
+        
+        protected virtual void BeforeShow() {}
+
+        public void Hide()
+        {
+            BeforeHide();
+            
+            _view.Hide();
+        }
+        protected virtual void BeforeHide() {}
 
         public virtual void Dispose()
         {

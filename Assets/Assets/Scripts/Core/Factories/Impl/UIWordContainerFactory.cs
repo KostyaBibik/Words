@@ -1,11 +1,14 @@
-﻿using UI.Gameplay.Elements;
+﻿using System.Collections.Generic;
+using Core.Services.Models;
+using UI.Gameplay.Elements;
 using UI.Gameplay.WordContainers;
+using UI.Victory.Grid;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.Factories
 {
-    public class WordContainerFactory : IWordContainerFactory
+    public class UIWordContainerFactory : IUIWordContainerFactory
     {
         public UILetterSlotView[] CreateLetterSlots(
             UILetterSlotView letterSlotPrefab, 
@@ -46,6 +49,30 @@ namespace Core.Factories
             LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
             
             return wordContainers;
+        }
+
+        public UIFinallyWordPresenter[] CreateFinallyWords(
+            UIFinallyWordView elementPrefab,
+            Transform parentLayer,
+            IReadOnlyList<ClusterData> data
+        )
+        {
+            var presenters = new UIFinallyWordPresenter[data.Count];
+            for (var iterator = 0; iterator < data.Count; iterator++)
+            {
+                var view = Object.Instantiate(elementPrefab, parentLayer);
+                var presenter = new UIFinallyWordPresenter(view);
+
+                var elementText = $"{data[iterator].orderInWord} : {data[iterator].value}";
+                presenter.UpdateData(elementText);
+                
+                presenters[iterator] = presenter;
+            }
+
+            var rectTransform = parentLayer.GetComponent<RectTransform>();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
+            
+            return presenters;
         }
     }
 }

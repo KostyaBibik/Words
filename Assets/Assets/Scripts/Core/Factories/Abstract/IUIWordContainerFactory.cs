@@ -25,6 +25,6 @@ namespace Core.Factories
         public UIFinallyWordPresenter[] CreateFinallyWords(
             UIFinallyWordView elementPrefab,
             Transform parentLayer,
-            IReadOnlyList<ClusterData> data);
+            IReadOnlyList<ValidatedWordData> data);
     }
 }

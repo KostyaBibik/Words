@@ -8,31 +8,31 @@ namespace Core.Systems.WordContainer
 {
     public class WordRepositoryTracker
     {
-        private readonly Dictionary<int, ClusterData> _collectedWords = new();
+        private readonly Dictionary<int, ValidatedWordData> _validatedWords = new();
         private readonly CompositeDisposable _disposable = new();
 
-        public IReadOnlyList<ClusterData> GetOrderedWords() =>
-            _collectedWords.OrderBy(kvp => kvp.Value.orderInWord).Select(kvp => kvp.Value).ToList();
+        public IReadOnlyList<ValidatedWordData> GetOrderedWords() =>
+            _validatedWords.OrderBy(kvp => kvp.Value.filledOrder).Select(kvp => kvp.Value).ToList();
 
-        private int _currentOrder = 0;
-
-        public void Track(IWordContainerStatus container, Func<int, ClusterData> snapshotProvider)
+        private int _currentOrder;
+        
+        public void Track(IWordContainerStatus container, Func<int, ValidatedWordData> snapshotProvider)
         {
             container.OnFullyFilled
                 .Subscribe(_ =>
                 {
                     var snapshot = snapshotProvider(container.Index);
-                    snapshot.orderInWord = _currentOrder++;
-                    _collectedWords[container.Index] = snapshot;
+                    snapshot.filledOrder = _currentOrder++;
+                    _validatedWords[container.Index] = snapshot;
                 })
                 .AddTo(_disposable);
 
             container.OnBecameIncomplete
                 .Subscribe(_ =>
                 {
-                    if (_collectedWords.ContainsKey(container.Index))
+                    if (_validatedWords.ContainsKey(container.Index))
                     {
-                        _collectedWords.Remove(container.Index);
+                        _validatedWords.Remove(container.Index);
                         RecalculateOrder();
                     }
                 })
@@ -41,14 +41,14 @@ namespace Core.Systems.WordContainer
 
         private void RecalculateOrder()
         {
-            var ordered = _collectedWords
-                .OrderBy(kvp => kvp.Value.orderInWord)
+            var ordered = _validatedWords
+                .OrderBy(kvp => kvp.Value.filledOrder)
                 .ToList();
 
             _currentOrder = 0;
             foreach (var entry in ordered)
             {
-                entry.Value.orderInWord = _currentOrder++;
+                entry.Value.filledOrder = _currentOrder++;
             }
         }
     }

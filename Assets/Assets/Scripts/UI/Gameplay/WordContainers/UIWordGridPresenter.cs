@@ -50,10 +50,10 @@ namespace UI.Gameplay
         {
             foreach (var container in _containerPresenters)
             {
-                _tracker.Track(container, index => new ClusterData
+                _tracker.Track(container, index => new ValidatedWordData
                 {
-                    wordGroupIndex = index,
-                    value = new string(container.GetPlacedClusters()
+                    filledOrder = index,
+                    text = new string(container.GetPlacedClusters()
                         .OrderBy(kvp => kvp.Value)
                         .SelectMany(kvp => kvp.Key.GetData().value)
                         .ToArray())

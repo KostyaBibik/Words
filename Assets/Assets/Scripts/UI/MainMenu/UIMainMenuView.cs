@@ -1,6 +1,4 @@
-﻿using System;
-using UI.Abstract;
-using UniRx;
+﻿using UI.Abstract;
 using UnityEngine;
 using UnityEngine.UI;
 

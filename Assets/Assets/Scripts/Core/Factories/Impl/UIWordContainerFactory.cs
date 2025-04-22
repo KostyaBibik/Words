@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using Core.Services;
 using Core.Services.Models;
 using UI.Gameplay.Elements;
 using UI.Gameplay.WordContainers;
 using UI.Victory.Grid;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Core.Factories
 {
@@ -54,7 +56,7 @@ namespace Core.Factories
         public UIFinallyWordPresenter[] CreateFinallyWords(
             UIFinallyWordView elementPrefab,
             Transform parentLayer,
-            IReadOnlyList<ClusterData> data
+            IReadOnlyList<ValidatedWordData> data
         )
         {
             var presenters = new UIFinallyWordPresenter[data.Count];
@@ -63,7 +65,7 @@ namespace Core.Factories
                 var view = Object.Instantiate(elementPrefab, parentLayer);
                 var presenter = new UIFinallyWordPresenter(view);
 
-                var elementText = $"{data[iterator].orderInWord} : {data[iterator].value}";
+                var elementText = $"{data[iterator].filledOrder} : {data[iterator].text}";
                 presenter.UpdateData(elementText);
                 
                 presenters[iterator] = presenter;

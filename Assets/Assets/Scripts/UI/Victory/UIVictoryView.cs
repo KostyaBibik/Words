@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Core.Services.Models;
-using UI.Abstract;
+﻿using UI.Abstract;
 using UI.Victory.Grid;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,13 +19,5 @@ namespace UI.Victory
         public Button MenuBtn => _menuBtn;
         public UIFinallyWordView ElementPrefab => _gridElementPrefab;
         public Transform GridTransform => _gridTransform;
-        
-        /*public void UpdateView(IReadOnlyList<ClusterData> data)
-        {
-            foreach (var wordData in data)
-            {
-                Debug.Log($"wordData| orderInWord:{wordData.orderInWord}| value:{wordData.value}| wordGroupIndex:{wordData.wordGroupIndex}");
-            }
-        }*/
     }
 }

@@ -23,6 +23,9 @@ namespace Core.Factories
                 letterSlots[iterator].Initialize(iterator);
             }
 
+            var rectTransform = parentLayer.GetComponent<RectTransform>();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
+            
             return letterSlots;
         }
 

@@ -47,6 +47,11 @@ namespace UI.Settings
                 .OnMenuBtnClick
                 .Subscribe(_ => OnMenuBtnClick())
                 .AddTo(_view);
+
+            _view
+                .OnSoundsBtnClick
+                .Subscribe(_ => OnSwapSoundsStatus())
+                .AddTo(_view);
             
             Hide();
         }
@@ -64,6 +69,13 @@ namespace UI.Settings
             PlayAudioClick();
             Hide(false);
             _gameplayPresenter.Show(false);
+        }
+
+        private void OnSwapSoundsStatus()
+        {
+            _view.SwapSoundSprite();
+            _audioService.SwapSoundsActiveStatus();
+            PlayAudioClick();
         }
         
         private void PlayAudioClick() =>

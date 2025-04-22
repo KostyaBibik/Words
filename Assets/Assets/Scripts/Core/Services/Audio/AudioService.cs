@@ -8,10 +8,11 @@ namespace Core.Services.Audio
     public class AudioService : IAudioService, IInitializable
     {
         private AudioSource _audioSource;
+        private bool _activityStatus = true;
         
         private readonly float _masterVolume = 1f;
         private readonly AudioSettings _settings;
-
+        
         private const string AudioSourceName = "AudioSource";
         
         public AudioService(AudioSettings settings)
@@ -26,12 +27,18 @@ namespace Core.Services.Audio
 
         public void PlaySound(ESoundType type, float volumeScale = 1f)
         {
+            if(!_activityStatus)
+                return;
+            
             var clip = _settings.GetClip(type);
             if (clip != null)
             {
                 _audioSource.PlayOneShot(clip, _masterVolume * volumeScale);
             }
         }
+
+        public void SwapSoundsActiveStatus() =>
+            _activityStatus = !_activityStatus;
 
         private void CreateAudioSource()
         {

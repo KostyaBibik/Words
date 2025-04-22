@@ -1,6 +1,8 @@
 ﻿using System;
 using Core.Factories;
+using Core.Services;
 using Core.Systems.WordContainer;
+using Enums;
 using UI.Abstract;
 using UI.Victory.Grid;
 using UniRx;
@@ -13,6 +15,7 @@ namespace UI.Victory
         private WordRepositoryTracker _repositoryTracker;
         private IUIWordContainerFactory _wordContainerFactory;
         private UIFinallyWordPresenter[] _finallyWords;
+        private IAudioService _audioService;
 
         public IObservable<Unit> OnMenuBtnClick => _view.MenuBtn.OnClick.AsObservable();
         public IObservable<Unit> OnContinueBtnClick => _view.ContinueBtn.OnClick.AsObservable();
@@ -24,15 +27,29 @@ namespace UI.Victory
         [Inject]
         public void Construct(
             WordRepositoryTracker repositoryTracker,
-            IUIWordContainerFactory wordContainerFactory
+            IUIWordContainerFactory wordContainerFactory,
+            IAudioService audioService
         )
         {
             _repositoryTracker = repositoryTracker;
             _wordContainerFactory = wordContainerFactory;
+            _audioService = audioService;
         }
 
-        public override void Initialize() =>
+        public override void Initialize() 
+        {
             Hide();
+
+            AddAudioSubsToButton(OnMenuBtnClick);
+            AddAudioSubsToButton(OnContinueBtnClick);
+        }
+
+        private void AddAudioSubsToButton(IObservable<Unit> button)
+        {
+            button
+                .Subscribe(_ => PlayAudioClick())
+                .AddTo(_view);
+        }
 
         protected override void BeforeShow()
         {
@@ -45,6 +62,9 @@ namespace UI.Victory
         }
 
         protected override void BeforeHide() => Clear();
+        
+        private void PlayAudioClick() =>
+            _audioService.PlaySound(ESoundType.UI_Click);
         
         private void Clear()
         {

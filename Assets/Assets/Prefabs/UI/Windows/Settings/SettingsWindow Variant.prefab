@@ -578,7 +578,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -1, y: 147}
-  m_SizeDelta: {x: 160, y: 136.9324}
+  m_SizeDelta: {x: 132.25, y: 132.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8156483109203247132
 CanvasRenderer:
@@ -608,8 +608,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 207861b16d240804a9138fb3922a1fd4, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -637,7 +637,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -648,9 +648,9 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 207861b16d240804a9138fb3922a1fd4, type: 3}
     m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: 995f53bf2d94e9e47a664970f40b6e71, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1614,6 +1614,10 @@ MonoBehaviour:
   _canvasGroup: {fileID: 7398058069819525146}
   _returnBtn: {fileID: 2957925030286187449}
   _menuBtn: {fileID: 3805674724812617573}
+  _soundButton: {fileID: 9150647043527890595}
+  _sounds: {fileID: 3984903037020891050}
+  _soundOn: {fileID: 21300000, guid: 207861b16d240804a9138fb3922a1fd4, type: 3}
+  _soundOff: {fileID: 21300000, guid: 995f53bf2d94e9e47a664970f40b6e71, type: 3}
 --- !u!225 &7398058069819525146 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 4357457039338655700, guid: 447c7dc90381b88469600239f67285ef, type: 3}

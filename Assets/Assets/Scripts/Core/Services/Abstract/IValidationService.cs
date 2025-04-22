@@ -5,7 +5,7 @@ namespace Core.Services
 {
     public interface IValidationService
     {
-        public UniTask Validate();
+        public UniTask<bool> Validate();
         public IReadOnlyReactiveProperty<bool> ValidationStatus { get; }
         public void Clear();
     }

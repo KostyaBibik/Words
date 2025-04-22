@@ -19,7 +19,7 @@ namespace Core.Services.Validation
             _containersService = containersService;
         }
 
-        public async UniTask Validate()
+        public async UniTask<bool> Validate()
         {
             var level = _gameDataRepository.CurrentLevel;
             var expectedWords = level.words;
@@ -39,7 +39,7 @@ namespace Core.Services.Validation
             
             _validationStatus.Value = await AreAllClustersPlacedCorrectly(expectedWords, placedClusters);
 
-            await UniTask.CompletedTask;
+            return _validationStatus.Value;
         }
 
         public void Clear() => _validationStatus.Value = false;

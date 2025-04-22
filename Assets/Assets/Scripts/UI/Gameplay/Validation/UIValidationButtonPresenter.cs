@@ -27,20 +27,32 @@ namespace UI.Gameplay.Validation
         public override void Initialize()
         {
             _view.OnValidateCommand
-                .Subscribe(_ => RunValidationAsync()) 
+                .Subscribe(_ => RunValidation()) 
                 .AddTo(_view);
         }
 
-        private IObservable<Unit> RunValidationAsync()
+        private IObservable<Unit> RunValidation()
         {
             PlayAudioClick();
-            
-            return _validationService.Validate()
+
+            _validationService.Validate()
                 .ToObservable()
-                .Select(_ => Unit.Default);
+                .Subscribe(isValid => 
+                {
+                    if (!isValid)
+                    {
+                        OnValidationFailed();
+                    }
+                })
+                .AddTo(_view); 
+
+            return Observable.ReturnUnit();
         }
-        
+
         private void PlayAudioClick() =>
             _audioService.PlaySound(ESoundType.UI_Click);
+
+        private void OnValidationFailed() =>
+            _view.ShowErrorNotification();
     }
 }

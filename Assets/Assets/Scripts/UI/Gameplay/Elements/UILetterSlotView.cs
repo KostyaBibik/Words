@@ -5,8 +5,13 @@ namespace UI.Gameplay.Elements
 {
     public class UILetterSlotView : MonoBehaviour
     {
+        [Header("Settings")] 
+        [SerializeField] private Color _occupiedColor = new Color(0.8f, 0f, 0.1f);
+        [SerializeField] private Color _basedColor = Color.yellow;
+        [SerializeField] private Color _placeholderColor = new Color(0.5f, 0f, 0.5f);
+        
+        [Header("References")] 
         [SerializeField] private Image _background;
-        [SerializeField] private UILetterView _letterView;
         
         public bool IsOccupied { get; private set; }
         public int Index { get; private set; }
@@ -20,7 +25,10 @@ namespace UI.Gameplay.Elements
         public void SetOccupied(bool flag)
         {
             IsOccupied = flag;
-            _background.color = flag ? Color.gray : Color.white;
+            _background.color = flag 
+                ? _occupiedColor 
+                : _basedColor;
+            
             gameObject.SetActive(!flag);
         }
 
@@ -28,7 +36,9 @@ namespace UI.Gameplay.Elements
         {
             if (!IsOccupied)
             {
-                _background.color = isPlaceholder ? new Color(0.5f, 0f, 0.5f) : Color.white;
+                _background.color = isPlaceholder 
+                    ? _placeholderColor
+                    : _basedColor;
             }
         }
     }

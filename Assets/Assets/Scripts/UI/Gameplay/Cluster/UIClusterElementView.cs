@@ -8,6 +8,8 @@ namespace UI.Gameplay.Elements
 {
     public class UIClusterElementView : UIView, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
+        [SerializeField] private Transform _frame;
+        
         private UIClusterElementPresenter _presenter;
 
         private readonly Subject<PointerEventData> _onDragStarted = new();
@@ -31,6 +33,9 @@ namespace UI.Gameplay.Elements
         public void OnEndDrag(PointerEventData eventData) =>
             _onDragEnded.OnNext(eventData);
 
+        public void UpdateFrame()
+            => _frame.SetAsLastSibling();
+        
         private void OnDestroy() =>
             _presenter.Clear();
     }

@@ -26,6 +26,8 @@ namespace Core.Factories
                 clusterView.Presenter.AddLetter(letter);
             }
 
+            clusterView.UpdateFrame();
+            
             var rectTransform = settings.ClustersContainer.GetComponent<RectTransform>();
             LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
             

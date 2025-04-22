@@ -2,13 +2,13 @@
 using UI.Abstract;
 using UniRx;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI.Gameplay.Validation
 {
     public class UIValidationButtonView : UIView
     {
         [SerializeField] private LeanButton _button;
+        [SerializeField] private LeanPulse _errorNotification;
         
         private readonly AsyncReactiveCommand<Unit> _onValidateCommand = new();
         public AsyncReactiveCommand<Unit> OnValidateCommand => _onValidateCommand;
@@ -25,5 +25,8 @@ namespace UI.Gameplay.Validation
         {
             _onValidateCommand.Dispose();
         }
+
+        public void ShowErrorNotification() =>
+            _errorNotification.Pulse();
     }
 }

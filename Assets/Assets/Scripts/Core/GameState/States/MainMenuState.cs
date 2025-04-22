@@ -10,7 +10,7 @@ namespace Core.GameState.States
         private readonly IGameStateMachine _gameStateMachine;
         private readonly UIMainMenuPresenter _mainMenuPresenter;
         private readonly IUIFlowManager _uiFlowManager;
-        private readonly CompositeDisposable _compositeDisposable = new();
+        private readonly CompositeDisposable _disposable = new();
         
         public MainMenuState(
             IGameStateMachine gameStateMachine,
@@ -29,7 +29,7 @@ namespace Core.GameState.States
             _mainMenuPresenter
                 .OnStartPlayBtnClick
                 .Subscribe(_ => OnStartPlayBtnClick())
-                .AddTo(_compositeDisposable);
+                .AddTo(_disposable);
                 
             await UniTask.CompletedTask;
         }
@@ -37,7 +37,7 @@ namespace Core.GameState.States
         public async UniTask Exit()
         {
             _mainMenuPresenter.Hide();
-            _compositeDisposable?.Clear();
+            _disposable?.Clear();
             
             await UniTask.CompletedTask;
         }

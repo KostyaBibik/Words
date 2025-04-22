@@ -42,7 +42,7 @@ namespace Infrastructure
                 
                 UpdateState(ELoadPhase.ConfigsProcessing);
 
-                var processedLevels = await _levelProcessor.Process(levels);
+                var processedLevels = _levelProcessor.Process(levels);
                 if (processedLevels == null || processedLevels.Length == 0)
                 {
                     throw new Exception("Failed to process levels.");

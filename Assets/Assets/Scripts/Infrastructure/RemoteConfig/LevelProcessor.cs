@@ -11,7 +11,7 @@ namespace Infrastructure
     {
         private const int REQUIRED_WORD_LENGTH = 6;
         
-        public async UniTask<ProcessedLevelData[]> Process(RemoteLevelData[] levels)
+        public ProcessedLevelData[] Process(RemoteLevelData[] levels)
         {
             var processedLevels = new List<ProcessedLevelData>();
             
@@ -30,7 +30,7 @@ namespace Infrastructure
                 for (var wordIterator = 0; wordIterator < level.words.Length; wordIterator++)
                 {
                     var word = level.words[wordIterator];
-                    var clusters = await GenerateClusters(word, wordIterator); 
+                    var clusters =  GenerateClusters(word, wordIterator); 
                     
                     processedWords[wordIterator] = new WordEntry
                     {
@@ -60,7 +60,7 @@ namespace Infrastructure
             return words.Any(word => word.Length != REQUIRED_WORD_LENGTH);
         }
 
-        private async UniTask<ClusterData[]> GenerateClusters(string word, int wordIndex)
+        private ClusterData[] GenerateClusters(string word, int wordIndex)
         {
             var clusterCount = Random.Range(2, 4);  
             var clusters = new ClusterData[clusterCount];

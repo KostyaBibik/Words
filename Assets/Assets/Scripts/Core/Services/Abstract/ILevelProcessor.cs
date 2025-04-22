@@ -5,6 +5,6 @@ namespace Core.Services.Abstract
 {
     public interface ILevelProcessor
     {
-        public UniTask<ProcessedLevelData[]> Process(RemoteLevelData[] rawLevels);
+        public ProcessedLevelData[] Process(RemoteLevelData[] rawLevels);
     }
 }

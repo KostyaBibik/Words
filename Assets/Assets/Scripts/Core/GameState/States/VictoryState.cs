@@ -19,7 +19,8 @@ namespace Core.GameState.States
             IGameStateMachine gameStateMachine,
             UIVictoryPresenter victoryPresenter,
             IGameDataRepository gameDataRepository,
-            IGameSessionCleaner sessionCleaner)
+            IGameSessionCleaner sessionCleaner
+        )
         {
             _gameStateMachine = gameStateMachine;
             _victoryPresenter = victoryPresenter;

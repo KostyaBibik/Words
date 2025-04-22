@@ -2,13 +2,14 @@
 using Core.Services;
 using Core.Services.WordContainers;
 using Gameplay.Utils;
-using UI.Core;
 using UI.ErrorLoading;
 using UI.Flow;
 using UI.Gameplay;
 using UI.Gameplay.ClustersPanel;
+using UI.Gameplay.Settings;
 using UI.Gameplay.Validation;
 using UI.Loading;
+using UI.Settings;
 using UI.Victory;
 using UnityEngine;
 using Zenject;
@@ -17,7 +18,7 @@ namespace Architecture.DI
 {
     public sealed class UIInstaller : MonoInstaller
     {
-        [SerializeField] private GameObject _uiManagerPrefab;
+        [SerializeField] private GameObject _uiPrefab;
 
         public override void InstallBindings()
         {
@@ -25,11 +26,11 @@ namespace Architecture.DI
 
             BindServices();
             
-            CreateAndBindUIManager();
+            CreateUI();
 
             BindWindows();
 
-            BindValidation();
+            BindGameplayButtons();
             
             BindFlow();
         }
@@ -46,10 +47,9 @@ namespace Architecture.DI
             Container.BindInterfacesTo<WordContainersService>().AsSingle();
         }
 
-        private void CreateAndBindUIManager()
+        private void CreateUI()
         {
-            var uiManager = Container.InstantiatePrefab(_uiManagerPrefab);
-            Container.Bind<UIManager>().FromComponentOn(uiManager).AsSingle();
+            Container.InstantiatePrefab(_uiPrefab);
         }
 
         private void BindWindows()
@@ -61,11 +61,13 @@ namespace Architecture.DI
             Container.BindPresenterWithView<UIWordGridPresenter, UIWordGridView>();
             Container.BindPresenterWithView<UIGameplayPresenter, UIGameplayView>();
             Container.BindPresenterWithView<UIVictoryPresenter, UIVictoryView>();
+            Container.BindPresenterWithView<UISettingsPanelPresenter, UISettingsPanelView>();
         }
 
-        private void BindValidation()
+        private void BindGameplayButtons()
         {
             Container.BindPresenterWithView<UIValidationButtonPresenter, UIValidationButtonView>();
+            Container.BindPresenterWithView<UISettingsButtonPresenter, UISettingsButtonView>();
         }
 
         private void BindFlow()

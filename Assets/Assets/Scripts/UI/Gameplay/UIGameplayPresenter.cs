@@ -2,14 +2,14 @@
 using Core.Services.Models;
 using Cysharp.Threading.Tasks;
 using UI.Abstract;
-using UI.Gameplay.BottomPanel;
+using UI.Gameplay.ClustersPanel;
 using Zenject;
 
 namespace UI.Gameplay
 {
-    public class UIGameplayPresenter : UIPresenter<UIGameplayView>
+    public sealed class UIGameplayPresenter : UIPresenter<UIGameplayView>
     {
-        private UIBottomPanelPresenter _bottomPanelPresenter;
+        private UIClustersPanelPresenter _clustersPanelPresenter;
         private UIWordGridPresenter _wordGridPresenter;
 
         public UIGameplayPresenter(UIGameplayView view) : base(view)
@@ -17,9 +17,9 @@ namespace UI.Gameplay
         }
 
         [Inject]
-        public void Construct(UIBottomPanelPresenter bottomPanelPresenter, UIWordGridPresenter wordGridPresenter)
+        public void Construct(UIClustersPanelPresenter clustersPanelPresenter, UIWordGridPresenter wordGridPresenter)
         {
-            _bottomPanelPresenter = bottomPanelPresenter;
+            _clustersPanelPresenter = clustersPanelPresenter;
             _wordGridPresenter = wordGridPresenter;
         }
 
@@ -27,7 +27,7 @@ namespace UI.Gameplay
         {
             var clusters = GetAllClustersFromLevel(levelData);
             
-            _bottomPanelPresenter.UpdateData(clusters);
+            _clustersPanelPresenter.UpdateData(clusters);
             _wordGridPresenter.UpdateData(levelData.words.Length, 6);
             
             await UniTask.CompletedTask;

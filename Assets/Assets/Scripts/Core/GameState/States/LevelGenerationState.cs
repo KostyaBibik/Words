@@ -1,12 +1,12 @@
 ﻿using System;
-using Core.Services.Abstract;
+using Core.Services;
 using Cysharp.Threading.Tasks;
 using UI.Gameplay;
 using UnityEngine;
 
 namespace Core.GameState.States
 {
-    public class LevelGenerationState : IGameState
+    public sealed class LevelGenerationState : IGameState
     {
         private readonly IGameDataRepository _dataRepository;
         private readonly UIGameplayPresenter _gameplayPresenter;

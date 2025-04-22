@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace UI.Gameplay
 {
-    public class DragEndHandler
+    public sealed class DragEndHandler
     {
         public async void CompleteDrag(UIClusterElementView cluster, PointerEventData eventData, UIWordContainerView lastHovered)
         {

@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 namespace UI.Gameplay.Elements
 {
-    public class UIWordContainerView : UIView, IClusterDropZone
+    public sealed class UIWordContainerView : UIView, IClusterDropZone
     {
         [SerializeField] private UILetterSlotView _letterSlotPrefab;
         

@@ -2,6 +2,7 @@
 using Core.GameState.States;
 using Core.Services.DataRepository;
 using Core.Services.Validation;
+using Core.Systems.SessionManage;
 using Core.Systems.WordContainer;
 using Infrastructure;
 using Infrastructure.RemoteConfig;
@@ -9,7 +10,7 @@ using Zenject;
 
 namespace Architecture.DI
 {
-    public class CoreInstaller : MonoInstaller<CoreInstaller>
+    public sealed class CoreInstaller : MonoInstaller<CoreInstaller>
     {
         public override void InstallBindings()
         {
@@ -55,6 +56,7 @@ namespace Architecture.DI
         private void BindServices()
         {
             Container.BindInterfacesTo<ValidationService>().AsSingle();
+            Container.BindInterfacesTo<GameSessionCleaner>().AsSingle();
         }
 
         private void BindEntryPoint()

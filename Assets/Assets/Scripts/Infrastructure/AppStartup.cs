@@ -1,6 +1,7 @@
 ﻿using System;
 using Core.GameState;
 using Core.GameState.States;
+using Core.Services;
 using Core.Services.Abstract;
 using Cysharp.Threading.Tasks;
 using Scripts.Enums;
@@ -18,8 +19,8 @@ namespace Infrastructure
         [Inject] private readonly IGameDataRepository _dataRepository;
         [Inject] private readonly IUIFlowManager _flowManager;
         [Inject] private readonly IGameStateMachine _gameStateMachine;
-        
-        public ReactiveProperty<ELoadPhase> CurrentPhase { get; } = new(ELoadPhase.None);
+
+        private ReactiveProperty<ELoadPhase> CurrentPhase { get; } = new(ELoadPhase.None);
         
         public void Initialize() 
         {
@@ -63,8 +64,6 @@ namespace Infrastructure
         
         private void UpdateState(ELoadPhase state)
         {
-            Debug.Log($"Current state: {state}");
-            
             CurrentPhase.Value = state;
         }
     }

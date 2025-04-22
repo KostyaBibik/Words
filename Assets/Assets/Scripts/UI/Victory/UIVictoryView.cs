@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace UI.Victory
 {
-    public class UIVictoryView : UIView
+    public sealed class UIVictoryView : UIView
     {
         [Header("Buttons")]
         [SerializeField] private Button _continueBtn;

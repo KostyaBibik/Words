@@ -2,26 +2,23 @@
 using Core.Factories;
 using Core.Systems.WordContainer;
 using UI.Abstract;
+using UI.Victory.Grid;
 using UniRx;
 using Zenject;
 
 namespace UI.Victory
 {
-    public class UIVictoryPresenter : UIPresenter<UIVictoryView>
+    public sealed class UIVictoryPresenter : UIPresenter<UIVictoryView>
     {
         private WordRepositoryTracker _repositoryTracker;
         private IUIWordContainerFactory _wordContainerFactory;
+        private UIFinallyWordPresenter[] _finallyWords;
 
         public IObservable<Unit> OnMenuBtnClick => _view.MenuBtn.OnClickAsObservable();
         public IObservable<Unit> OnContinueBtnClick => _view.ContinueBtn.OnClickAsObservable();
         
         public UIVictoryPresenter(UIVictoryView view) : base(view)
         {
-        }
-
-        public override void Initialize()
-        {
-            Hide();
         }
 
         [Inject]
@@ -33,7 +30,10 @@ namespace UI.Victory
             _repositoryTracker = repositoryTracker;
             _wordContainerFactory = wordContainerFactory;
         }
-        
+
+        public override void Initialize() =>
+            Hide();
+
         protected override void BeforeShow()
         {
             var data = _repositoryTracker.GetOrderedWords();
@@ -41,9 +41,20 @@ namespace UI.Victory
             var gridElementPrefab = _view.ElementPrefab;
             var gridParentLayer = _view.GridTransform;
 
-            var finallyWords = _wordContainerFactory.CreateFinallyWords(gridElementPrefab, gridParentLayer, data);
+            _finallyWords = _wordContainerFactory.CreateFinallyWords(gridElementPrefab, gridParentLayer, data);
+        }
 
-            //_view.UpdateView(data);
+        protected override void BeforeHide() => Clear();
+        
+        private void Clear()
+        {
+            if(_finallyWords == null)
+                return;
+            
+            for (var iterator = 0; iterator < _finallyWords.Length; iterator++)
+            {
+                _finallyWords[iterator].Destroy();
+            }
         }
     }
 }

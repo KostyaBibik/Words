@@ -1,12 +1,12 @@
 ﻿using Core.Factories;
 using Core.Services;
-using Core.Services.Validation;
+using Core.Services.WordContainers;
 using Gameplay.Utils;
 using UI.Core;
 using UI.ErrorLoading;
 using UI.Flow;
 using UI.Gameplay;
-using UI.Gameplay.BottomPanel;
+using UI.Gameplay.ClustersPanel;
 using UI.Gameplay.Validation;
 using UI.Loading;
 using UI.Victory;
@@ -15,7 +15,7 @@ using Zenject;
 
 namespace Architecture.DI
 {
-    public class UIInstaller : MonoInstaller
+    public sealed class UIInstaller : MonoInstaller
     {
         [SerializeField] private GameObject _uiManagerPrefab;
 
@@ -36,13 +36,14 @@ namespace Architecture.DI
 
         private void InstallFactories()
         {
-            Container.BindInterfacesTo<ClusterFactory>().AsSingle();
+            Container.BindInterfacesTo<UIClusterFactory>().AsSingle();
             Container.BindInterfacesTo<UIWordContainerFactory>().AsSingle();
         }
 
         private void BindServices()
         {
             Container.BindInterfacesTo<UIClustersService>().AsSingle();
+            Container.BindInterfacesTo<WordContainersService>().AsSingle();
         }
 
         private void CreateAndBindUIManager()
@@ -56,7 +57,7 @@ namespace Architecture.DI
             Container.BindPresenterWithView<UILoadingPresenter, UILoadingView>();
             Container.BindPresenterWithView<UIErrorLoadingPresenter, UIErrorLoadingView>();
             Container.BindPresenterWithView<UIMainMenuPresenter, UIMainMenuView>();
-            Container.BindPresenterWithView<UIBottomPanelPresenter, UIBottomPanelView>();
+            Container.BindPresenterWithView<UIClustersPanelPresenter, UIClustersPanelView>();
             Container.BindPresenterWithView<UIWordGridPresenter, UIWordGridView>();
             Container.BindPresenterWithView<UIGameplayPresenter, UIGameplayView>();
             Container.BindPresenterWithView<UIVictoryPresenter, UIVictoryView>();

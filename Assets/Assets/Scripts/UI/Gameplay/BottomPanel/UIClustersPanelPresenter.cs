@@ -1,7 +1,6 @@
 ﻿using Core.Services;
 using Core.Services.Models;
 using Core.Systems;
-using Core.Systems.BottomView;
 using UI.Abstract;
 using UI.Gameplay.Elements;
 using UniRx;
@@ -9,14 +8,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Zenject;
 
-namespace UI.Gameplay.BottomPanel
+namespace UI.Gameplay.ClustersPanel
 {
-    public class UIBottomPanelPresenter : UIPresenter<UIBottomPanelView>
+    public class UIClustersPanelPresenter : UIPresenter<UIClustersPanelView>
     {
         private IClustersService _clustersService;
         private IDropPlacementHelper _dropPlacementHandler;
 
-        public UIBottomPanelPresenter(UIBottomPanelView view) : base(view)
+        public UIClustersPanelPresenter(UIClustersPanelView view) : base(view)
         {
             SubscribeToViewEvents();
         }
@@ -27,7 +26,14 @@ namespace UI.Gameplay.BottomPanel
             _clustersService = clustersService;
         }
 
-        public override void Initialize()
+        public void UpdateData(ClusterData[] clusters)
+        {
+            InitializeServices();
+            
+            _clustersService.UpdateClusters(clusters, _view);
+        }
+
+        private void InitializeServices()
         {
             var settings = _view.ClusterPanelSettings;
             var canvas = _view.transform.GetComponentInParent<Canvas>();
@@ -36,7 +42,7 @@ namespace UI.Gameplay.BottomPanel
 
             _dropPlacementHandler = new BottomDropPlacementHandler(settings.ClustersContainer);
         }
-        
+
         private void SubscribeToViewEvents()
         {
             _view.OnClusterDropped
@@ -53,9 +59,6 @@ namespace UI.Gameplay.BottomPanel
                 .AddTo(_view);
         }
 
-        public void UpdateData(ClusterData[] clusters) =>
-            _clustersService.UpdateClusters(clusters, _view);
-        
         private void OnDrop(PointerEventData eventData)
         {
             if (eventData.pointerDrag != null && 

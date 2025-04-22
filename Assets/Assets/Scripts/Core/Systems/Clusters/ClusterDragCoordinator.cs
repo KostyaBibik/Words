@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace UI.Gameplay
 {
-    public class ClusterDragCoordinator
+    public sealed class ClusterDragCoordinator
     {
         private readonly DragStartHandler _dragStartHandler;
         private readonly DragMoveHandler _dragMoveHandler;

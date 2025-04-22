@@ -2,7 +2,7 @@
 using UI.Gameplay.Elements;
 using UnityEngine;
 
-namespace UI.Gameplay.BottomPanel
+namespace UI.Gameplay.ClustersPanel
 {
     [Serializable]
     public class ClusterPanelSettings

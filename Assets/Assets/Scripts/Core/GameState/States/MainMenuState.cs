@@ -5,7 +5,7 @@ using UniRx;
 
 namespace Core.GameState.States
 {
-    public class MainMenuState : IGameState
+    public sealed class MainMenuState : IGameState
     {
         private readonly IGameStateMachine _gameStateMachine;
         private readonly UIMainMenuPresenter _mainMenuPresenter;

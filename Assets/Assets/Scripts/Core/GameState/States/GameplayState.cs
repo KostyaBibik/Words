@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Core.Services.Abstract;
+﻿using Core.Services;
 using Cysharp.Threading.Tasks;
 using UI.Gameplay;
 using UniRx;
@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Core.GameState.States
 {
-    public class GameplayState : IGameState
+    public sealed class GameplayState : IGameState
     {
         [Inject] private readonly UIGameplayPresenter _gameplayPresenter;
         [Inject] private readonly IValidationService _validationService;

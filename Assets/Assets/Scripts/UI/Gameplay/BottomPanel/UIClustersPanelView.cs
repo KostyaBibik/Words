@@ -6,9 +6,9 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace UI.Gameplay.BottomPanel
+namespace UI.Gameplay.ClustersPanel
 {
-    public class UIBottomPanelView : UIView, IClusterDropZone
+    public sealed class UIClustersPanelView : UIView, IClusterDropZone
     {
         [SerializeField] private ClusterPanelSettings _clusterPanelSettings;
         
@@ -29,8 +29,6 @@ namespace UI.Gameplay.BottomPanel
 
         public async UniTask<bool> TryDrop(UIClusterElementView cluster, PointerEventData eventData)
         {
-            Debug.Log("UIBottomPanelView TryDrop");
-            
             var taskSource = new UniTaskCompletionSource<bool>();
             _onTryDrop.OnNext((cluster, eventData, taskSource));
             return await taskSource.Task;

@@ -1,12 +1,12 @@
 ﻿using Core.Services.Models;
-using UI.Gameplay.BottomPanel;
+using UI.Gameplay.ClustersPanel;
 using UI.Gameplay.Elements;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.Factories
 {
-    public class ClusterFactory : IClusterFactory
+    public class UIClusterFactory : IUIClusterFactory
     {
         public UIClusterElementView CreateCluster(ClusterData data, ClusterPanelSettings settings)
         {

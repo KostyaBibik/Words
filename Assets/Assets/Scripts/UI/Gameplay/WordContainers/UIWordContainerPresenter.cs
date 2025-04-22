@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Core.Factories;
-using Core.Services.Models;
-using Core.Systems;
 using Core.Systems.WordContainer;
 using UI.Abstract;
 using UI.Gameplay.Elements;
 using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Object = UnityEngine.Object;
 
 namespace UI.Gameplay.WordContainers
 {
-    public class UIWordContainerPresenter : UIPresenter<UIWordContainerView>, IWordContainerStatus
+    public sealed class UIWordContainerPresenter : UIPresenter<UIWordContainerView>, IWordContainerStatus
     {
         private readonly IUIWordContainerFactory _wordContainerFactory;
         private readonly int _containerIndex;
@@ -29,6 +27,8 @@ namespace UI.Gameplay.WordContainers
         public IObservable<Unit> OnFullyFilled => _dataModel.OnFullyFilled;
         public IObservable<Unit> OnBecameIncomplete  => _dataModel.OnBecameIncomplete;
         public bool IsFullyFilled => _dataModel.IsFullyFilled.Value;
+
+        private readonly CompositeDisposable _disposable = new();
         
         public UIWordContainerPresenter(
             UIWordContainerView view, 
@@ -58,7 +58,7 @@ namespace UI.Gameplay.WordContainers
         {
             _view.OnClusterDropped
                 .Subscribe(OnDrop)
-                .AddTo(_view); 
+                .AddTo(_disposable); 
             
             _view.OnTryDrop
                 .Subscribe(tuple =>
@@ -67,7 +67,7 @@ namespace UI.Gameplay.WordContainers
                     var result = TryDrop(cluster, eventData);
                     tcs.TrySetResult(result);
                 })
-                .AddTo(_view);
+                .AddTo(_disposable);
         }
         
         public void ShowPlaceholder(UIClusterElementView cluster, int startIndex) =>
@@ -90,9 +90,18 @@ namespace UI.Gameplay.WordContainers
 
         public Dictionary<UIClusterElementPresenter, int> GetPlacedClusters()
         {
-            return _dataModel
-                .ClusterStartIndices
-                .ToDictionary(kvp => kvp.Key.Presenter, kvp => kvp.Value);
+            var result = new Dictionary<UIClusterElementPresenter, int>();
+
+            foreach (var kvp in _dataModel.ClusterStartIndices)
+            {
+                var clusterView = kvp.Key;
+                if (_dataModel.PlacedClusters.ContainsKey(clusterView))
+                {
+                    result[clusterView.Presenter] = kvp.Value;
+                }
+            }
+
+            return result;
         }
 
         private void OnDrop(PointerEventData eventData)
@@ -106,5 +115,11 @@ namespace UI.Gameplay.WordContainers
 
         private bool TryDrop(UIClusterElementView cluster, PointerEventData eventData) =>
             _dropPlacementHelper.TryDropCluster(cluster, eventData);
+
+        public void Destroy()
+        {
+            _disposable?.Dispose();
+            Object.Destroy(_view.gameObject);
+        }
     }
 }

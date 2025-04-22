@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UI.Victory.Grid
 {
-    public class UIFinallyWordView : UIView
+    public sealed class UIFinallyWordView : UIView
     {
         [SerializeField] private TextMeshProUGUI _text;
 

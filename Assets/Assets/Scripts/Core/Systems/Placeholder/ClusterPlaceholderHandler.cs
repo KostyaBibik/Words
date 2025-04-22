@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core.Systems.Placeholder
 {
-    public class ClusterPlaceholderHandler
+    public sealed class ClusterPlaceholderHandler
     {
         private UIPlaceholderView _placeholder;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UI.Gameplay
 {
-    public class DragMoveHandler
+    public sealed class DragMoveHandler
     {
         private readonly RectTransform _canvasRectTransform;
 

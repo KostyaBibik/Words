@@ -1,16 +1,16 @@
 ﻿using Core.Factories;
 using Core.Services.Models;
-using UI.Gameplay.BottomPanel;
+using UI.Gameplay.ClustersPanel;
 using UI.Gameplay.Elements;
 
 namespace UI.Gameplay
 {
-    public class ClusterSpawner
+    public sealed class ClusterSpawner
     {
-        private readonly IClusterFactory _factory;
+        private readonly IUIClusterFactory _factory;
         private readonly ClusterPanelSettings _settings;
 
-        public ClusterSpawner(IClusterFactory factory, ClusterPanelSettings settings)
+        public ClusterSpawner(IUIClusterFactory factory, ClusterPanelSettings settings)
         {
             _factory = factory;
             _settings = settings;

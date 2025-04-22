@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UI.Gameplay
 {
-    public class UIWordGridView : UIView
+    public sealed class UIWordGridView : UIView
     {
         [SerializeField] private UIWordContainerView _containerPrefab;
         [SerializeField] private Transform _containersParent;

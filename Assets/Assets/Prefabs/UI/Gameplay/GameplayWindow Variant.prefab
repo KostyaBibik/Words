@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6302053207233659316}
   - component: {fileID: 2383705464682761283}
   m_Layer: 0
-  m_Name: WordContainers
+  m_Name: ContainersPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 6752949632272552980}
   - component: {fileID: 782050871790272203}
   m_Layer: 0
-  m_Name: Clusters
+  m_Name: Layout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 5340279122620336141}
   - component: {fileID: 8436269412439222784}
   m_Layer: 0
-  m_Name: Bottom
+  m_Name: ClustersPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

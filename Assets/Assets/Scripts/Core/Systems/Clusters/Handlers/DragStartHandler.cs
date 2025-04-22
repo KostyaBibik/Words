@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UI.Gameplay
 {
-    public class DragStartHandler
+    public sealed class DragStartHandler
     {
         private readonly RectTransform _canvasRectTransform;
         private readonly Transform _dragLayer;

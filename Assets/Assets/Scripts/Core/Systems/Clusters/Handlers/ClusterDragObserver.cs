@@ -5,7 +5,7 @@ using UniRx;
 
 namespace UI.Gameplay
 {
-    public class ClusterDragObserver
+    public sealed class ClusterDragObserver
     {
         private readonly ClusterDragCoordinator _dragCoordinator;
         private readonly ClusterPlaceholderHandler _placeholderHandler;

@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using Core.Services.Models;
+﻿using Core.Services.Models;
 
-namespace Core.Services.Abstract
+namespace Core.Services
 {
     public interface IGameDataRepository
     {
-        IReadOnlyList<ProcessedLevelData> LoadedLevels { get; }
-        ProcessedLevelData CurrentLevel { get; }
-        void SetLevels(ProcessedLevelData[] levels);
-        void SetCurrentLevel(int index);
+        public ProcessedLevelData CurrentLevel { get; }
+        public void SetLevels(ProcessedLevelData[] levels);
+        public void IncreaseLevel();
     }
 }

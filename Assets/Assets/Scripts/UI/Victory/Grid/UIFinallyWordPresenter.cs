@@ -1,8 +1,9 @@
 ﻿using UI.Abstract;
+using UnityEngine;
 
 namespace UI.Victory.Grid
 {
-    public class UIFinallyWordPresenter : UIPresenter<UIFinallyWordView>
+    public sealed class UIFinallyWordPresenter : UIPresenter<UIFinallyWordView>
     {
         public UIFinallyWordPresenter(UIFinallyWordView view) : base(view)
         {
@@ -10,5 +11,8 @@ namespace UI.Victory.Grid
 
         public void UpdateData(string text) =>
             _view.UpdateText(text);
+
+        public void Destroy() =>
+            Object.Destroy(_view.gameObject);
     }
 }

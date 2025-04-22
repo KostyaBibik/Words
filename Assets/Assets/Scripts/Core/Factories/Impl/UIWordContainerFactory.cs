@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
-using Core.Services;
 using Core.Services.Models;
 using UI.Gameplay.Elements;
 using UI.Gameplay.WordContainers;
 using UI.Victory.Grid;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 namespace Core.Factories
 {
-    public class UIWordContainerFactory : IUIWordContainerFactory
+    public sealed class UIWordContainerFactory : IUIWordContainerFactory
     {
         public UILetterSlotView[] CreateLetterSlots(
             UILetterSlotView letterSlotPrefab, 

@@ -2,23 +2,24 @@
 using Core.Services.Models;
 using Core.Systems.Placeholder;
 using UI.Gameplay;
-using UI.Gameplay.BottomPanel;
+using UI.Gameplay.ClustersPanel;
 using UI.Gameplay.Elements;
 using UnityEngine;
 
 namespace Core.Services
 {
-    public class UIClustersService : IClustersService
+    public sealed class UIClustersService : IClustersService
     {
         private ClusterDragCoordinator _dragCoordinator;
         private UIPlaceholderView _placeholder;
         private ClusterPlaceholderHandler _placeholderHandler;
         private ClusterSpawner _clusterSpawner;
         private ClusterDragObserver _dragObserver;
-        
-        private readonly IClusterFactory _clusterFactory;
+        private UIClusterElementView[] _spawnedClusters;
 
-        public UIClustersService(IClusterFactory clusterFactory)
+        private readonly IUIClusterFactory _clusterFactory;
+
+        public UIClustersService(IUIClusterFactory clusterFactory)
         {
             _clusterFactory = clusterFactory;
         }
@@ -32,19 +33,27 @@ namespace Core.Services
 
         public void UpdateClusters(ClusterData[] clusters, MonoBehaviour owner)
         {
-            var spawnedClusters = _clusterSpawner.SpawnClusters(clusters);
-            
-            for (var index = 0; index < spawnedClusters.Length; index++)
+            _spawnedClusters = _clusterSpawner.SpawnClusters(clusters);
+
+            for (var index = 0; index < _spawnedClusters.Length; index++)
             {
-                var cluster = spawnedClusters[index];
+                var cluster = _spawnedClusters[index];
                 _dragObserver.Observe(cluster, owner);
             }
         }
 
-        private void InitializeDragCoordinator(ClusterPanelSettings settings, Canvas canvas)
+        public void Clear()
         {
-            _dragCoordinator = new ClusterDragCoordinator(settings.DragLayer, canvas);
+            for (var i = 0; i < _spawnedClusters.Length; i++)
+            {
+                Object.Destroy(_spawnedClusters[i].gameObject); 
+            }
+            
+            Object.Destroy(_placeholder.gameObject); 
         }
+
+        private void InitializeDragCoordinator(ClusterPanelSettings settings, Canvas canvas) =>
+            _dragCoordinator = new ClusterDragCoordinator(settings.DragLayer, canvas);
 
         private void InitializePlaceholderSystem(ClusterPanelSettings settings)
         {
@@ -59,5 +68,4 @@ namespace Core.Services
             _dragObserver = new ClusterDragObserver(_dragCoordinator, _placeholderHandler);
         }
     }
-
 }

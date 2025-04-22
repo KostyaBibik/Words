@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Core.Systems.BottomView
+namespace Core.Systems
 {
-    public class BottomDropPlacementHandler : IDropPlacementHelper
+    public sealed class BottomDropPlacementHandler : IDropPlacementHelper
     {
         private readonly Transform _parentLayer;
 

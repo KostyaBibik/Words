@@ -17,6 +17,8 @@ namespace UI.Gameplay.ClustersPanel
         
         public UIClustersPanelPresenter(UIClustersPanelView view) : base(view)
         {
+            _view.Initialize(this);
+            
             SubscribeToViewEvents();
         }
 
@@ -26,7 +28,7 @@ namespace UI.Gameplay.ClustersPanel
             _clustersService = clustersService;
             _dropPlacementHandler = dropPlacementHelper;
         }
-
+        
         public void UpdateData(ClusterData[] clusters)
         {
             InitializeServices();

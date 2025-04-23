@@ -25,6 +25,8 @@ namespace UI.Gameplay
 
         public override void Initialize()
         {
+            Hide();
+            
             OnStartPlayBtnClick
                 .Subscribe(_ => PlayAudioClick()) 
                 .AddTo(_view);

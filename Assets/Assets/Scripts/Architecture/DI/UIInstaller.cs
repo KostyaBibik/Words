@@ -1,40 +1,23 @@
 ﻿using Core.Factories;
+using Core.Runtime;
 using Core.Services;
 using Core.Services.WordContainers;
 using Core.Systems;
 using Core.Systems.WordContainer;
-using Gameplay.Utils;
-using UI.ErrorLoading;
 using UI.Flow;
-using UI.Gameplay;
-using UI.Gameplay.ClustersPanel;
-using UI.Gameplay.Settings;
-using UI.Gameplay.Validation;
-using UI.Loading;
+using UI.Loaders;
 using UI.Services;
-using UI.Settings;
-using UI.Victory;
-using UnityEngine;
 using Zenject;
 
 namespace Architecture.DI
 {
     public sealed class UIInstaller : MonoInstaller
     {
-        [SerializeField] private GameObject _uiPrefab;
-
         public override void InstallBindings()
         {
             InstallFactories();
-
             BindServices();
-            
-            CreateUI();
-
-            BindWindows();
-
-            BindGameplayButtons();
-            
+            BindWindowLoader();
             BindFlow();
         }
 
@@ -53,32 +36,14 @@ namespace Architecture.DI
             Container.Bind<IContainerDropPlacementHelper>().To<ContainerDropPlacementHelper>().AsSingle();
         }
 
-        private void CreateUI()
+        private void BindWindowLoader()
         {
-            Container.InstantiatePrefab(_uiPrefab);
-        }
-
-        private void BindWindows()
-        {
-            Container.BindPresenterWithView<UILoadingPresenter, UILoadingView>();
-            Container.BindPresenterWithView<UIErrorLoadingPresenter, UIErrorLoadingView>();
-            Container.BindPresenterWithView<UIMainMenuPresenter, UIMainMenuView>();
-            Container.BindPresenterWithView<UIClustersPanelPresenter, UIClustersPanelView>();
-            Container.BindPresenterWithView<UIWordGridPresenter, UIWordGridView>();
-            Container.BindPresenterWithView<UIGameplayPresenter, UIGameplayView>();
-            Container.BindPresenterWithView<UIVictoryPresenter, UIVictoryView>();
-            Container.BindPresenterWithView<UISettingsPanelPresenter, UISettingsPanelView>();
-        }
-
-        private void BindGameplayButtons()
-        {
-            Container.BindPresenterWithView<UIValidationButtonPresenter, UIValidationButtonView>();
-            Container.BindPresenterWithView<UISettingsButtonPresenter, UISettingsButtonView>();
+            Container.Bind<IUIWindowLoader>().To<AddressablesWindowLoader>().AsSingle();
         }
 
         private void BindFlow()
         {
-            Container.BindInterfacesAndSelfTo<UIFlowManager>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UIFlowManager>().AsSingle().Lazy();
         }
     }
 }

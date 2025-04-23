@@ -11,23 +11,24 @@ namespace Core.Services.Audio
         private bool _activityStatus = true;
         
         private readonly float _masterVolume = 1f;
-        private readonly AudioSettings _settings;
+        private AudioSettings _settings;
         
-        private const string AudioSourceName = "AudioSource";
-        
-        public AudioService(AudioSettings settings)
-        {
-            _settings = settings;
-        }
+        private const string AUDIO_SOURCE_NAME = "AudioSource";
         
         public void Initialize()
         {
             CreateAudioSource();
         }
 
+        public void SetSettings(AudioSettings settings) =>
+            _settings = settings;
+
         public void PlaySound(ESoundType type, float volumeScale = 1f)
         {
             if(!_activityStatus)
+                return;
+            
+            if(_settings == null)
                 return;
             
             var clip = _settings.GetClip(type);
@@ -42,7 +43,7 @@ namespace Core.Services.Audio
 
         private void CreateAudioSource()
         {
-            var sourceGO = new GameObject(AudioSourceName);
+            var sourceGO = new GameObject(AUDIO_SOURCE_NAME);
             _audioSource = sourceGO.AddComponent<AudioSource>();
             
             _audioSource.spatialBlend = 0;

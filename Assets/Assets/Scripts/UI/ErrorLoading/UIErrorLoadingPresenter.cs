@@ -8,6 +8,11 @@ namespace UI.ErrorLoading
         {
         }
 
+        public override void Initialize()
+        {
+            Hide();
+        }
+
         public void UpdateText(string info) =>
             _view.UpdateText(info);
     }

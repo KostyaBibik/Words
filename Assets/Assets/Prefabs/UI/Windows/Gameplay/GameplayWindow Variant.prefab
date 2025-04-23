@@ -1578,3 +1578,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 5550545268542057518}
+  _clustersPanel: {fileID: 8436269412439222784}
+  _wordGridView: {fileID: 2383705464682761283}

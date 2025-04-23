@@ -10,6 +10,7 @@ namespace UI.Gameplay
         
         public UIWordGridPresenter(UIWordGridView view) : base(view)
         {
+            _view.Initialize(this);
         }
 
         [Inject]

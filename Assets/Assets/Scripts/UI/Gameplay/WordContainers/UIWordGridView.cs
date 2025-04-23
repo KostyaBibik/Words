@@ -11,5 +11,10 @@ namespace UI.Gameplay
         
         public UIWordContainerView ContainerPrefab => _containerPrefab;
         public Transform ContainersParent => _containersParent;
+        public UIWordGridPresenter Presenter { get; private set; }
+
+
+        public void Initialize(UIWordGridPresenter presenter) =>
+            Presenter = presenter;
     }
 }

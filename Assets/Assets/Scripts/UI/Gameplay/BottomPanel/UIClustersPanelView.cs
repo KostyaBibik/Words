@@ -18,7 +18,9 @@ namespace UI.Gameplay.ClustersPanel
 
         private readonly Subject<(UIClusterElementView cluster, PointerEventData eventData, UniTaskCompletionSource<bool> tcs)>
             _onTryDrop = new();
-        
+
+        public UIClustersPanelPresenter Presenter { get; private set; }
+
         public IObservable<PointerEventData> OnClusterDropped => _onClusterDropped;
 
         public IObservable<(UIClusterElementView cluster, PointerEventData eventData, UniTaskCompletionSource<bool> tcs)>
@@ -27,6 +29,9 @@ namespace UI.Gameplay.ClustersPanel
         public void OnDrop(PointerEventData eventData) =>
             _onClusterDropped.OnNext(eventData);
 
+        public void Initialize(UIClustersPanelPresenter presenter) =>
+            Presenter = presenter;
+        
         public async UniTask<bool> TryDrop(UIClusterElementView cluster, PointerEventData eventData)
         {
             var taskSource = new UniTaskCompletionSource<bool>();

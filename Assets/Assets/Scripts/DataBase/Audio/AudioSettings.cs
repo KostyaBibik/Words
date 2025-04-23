@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Gameplay.Data.Audio
 {
     [CreateAssetMenu(menuName = "Audio/AudioSettings")]
-    public class AudioSettings: ScriptableObject
+    public class AudioSettings : ScriptableObject
     {
         public SoundClip[] SoundClips;
 

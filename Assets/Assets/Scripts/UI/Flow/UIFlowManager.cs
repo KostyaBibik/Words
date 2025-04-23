@@ -3,20 +3,23 @@ using UI.ErrorLoading;
 using UI.Gameplay;
 using UI.Loading;
 using UniRx;
-using Zenject;
 
 namespace UI.Flow
 {
-    public class UIFlowManager : IUIFlowManager, IInitializable
+    public class UIFlowManager : IUIFlowManager
     {
-        [Inject] private readonly UILoadingPresenter _loadingPresenter;
-        [Inject] private readonly UIMainMenuPresenter _mainMenuPresenter;
-        [Inject] private readonly UIErrorLoadingPresenter _errorLoadingPresenter;
-        [Inject] private readonly UIGameplayPresenter _gameplayPresenter;
+        private UILoadingPresenter _loadingPresenter;
+        private UIMainMenuPresenter _mainMenuPresenter;
+        private UIErrorLoadingPresenter _errorLoadingPresenter;
 
-        public void Initialize()
+        public void Init(
+            UILoadingPresenter loadingPresenter,
+            UIMainMenuPresenter mainMenuPresenter,
+            UIErrorLoadingPresenter errorLoadingPresenter)
         {
-            _gameplayPresenter.Hide();
+            _loadingPresenter = loadingPresenter;
+            _mainMenuPresenter = mainMenuPresenter;
+            _errorLoadingPresenter = errorLoadingPresenter;
         }
 
         public void TrackProgress(IReadOnlyReactiveProperty<ELoadPhase> loadingPhase) =>

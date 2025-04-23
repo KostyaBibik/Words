@@ -2,33 +2,28 @@
 using Cysharp.Threading.Tasks;
 using DataBase.Models;
 using UI.Abstract;
-using UI.Gameplay.ClustersPanel;
-using Zenject;
 
 namespace UI.Gameplay
 {
     public sealed class UIGameplayPresenter : UIPresenter<UIGameplayView>
     {
-        private UIClustersPanelPresenter _clustersPanelPresenter;
-        private UIWordGridPresenter _wordGridPresenter;
-
         public UIGameplayPresenter(UIGameplayView view) : base(view)
         {
         }
 
-        [Inject]
-        public void Construct(UIClustersPanelPresenter clustersPanelPresenter, UIWordGridPresenter wordGridPresenter)
+        public override void Initialize()
         {
-            _clustersPanelPresenter = clustersPanelPresenter;
-            _wordGridPresenter = wordGridPresenter;
+            Hide();
         }
 
         public async UniTask Initialize(ProcessedLevelData levelData)
         {
+            var clustersPanelPresenter = _view.ClustersPanel.Presenter;
+            var wordGridPresenter = _view.WordGridView.Presenter;
             var clusters = GetAllClustersFromLevel(levelData);
             
-            _clustersPanelPresenter.UpdateData(clusters);
-            _wordGridPresenter.UpdateData(levelData.words.Length, 6);
+            clustersPanelPresenter.UpdateData(clusters);
+            wordGridPresenter.UpdateData(levelData.words.Length, 6);
             
             await UniTask.CompletedTask;
         }

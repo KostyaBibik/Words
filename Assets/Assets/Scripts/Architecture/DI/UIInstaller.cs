@@ -1,6 +1,8 @@
 ﻿using Core.Factories;
 using Core.Services;
 using Core.Services.WordContainers;
+using Core.Systems;
+using Core.Systems.WordContainer;
 using Gameplay.Utils;
 using UI.ErrorLoading;
 using UI.Flow;
@@ -9,6 +11,7 @@ using UI.Gameplay.ClustersPanel;
 using UI.Gameplay.Settings;
 using UI.Gameplay.Validation;
 using UI.Loading;
+using UI.Services;
 using UI.Settings;
 using UI.Victory;
 using UnityEngine;
@@ -37,6 +40,7 @@ namespace Architecture.DI
 
         private void InstallFactories()
         {
+            Container.BindInterfacesTo<UIWordContainerDependenciesFactory>().AsSingle();
             Container.BindInterfacesTo<UIClusterFactory>().AsSingle();
             Container.BindInterfacesTo<UIWordContainerFactory>().AsSingle();
         }
@@ -45,6 +49,8 @@ namespace Architecture.DI
         {
             Container.BindInterfacesTo<UIClustersService>().AsSingle();
             Container.BindInterfacesTo<WordContainersService>().AsSingle();
+            Container.Bind<IDropPlacementHelper>().To<BottomDropPlacementHandler>().AsSingle();
+            Container.Bind<IContainerDropPlacementHelper>().To<ContainerDropPlacementHelper>().AsSingle();
         }
 
         private void CreateUI()

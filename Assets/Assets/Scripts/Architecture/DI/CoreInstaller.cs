@@ -1,5 +1,4 @@
 ﻿using Core.GameState;
-using Core.GameState.States;
 using Core.Services.DataRepository;
 using Core.Services.Validation;
 using Core.Systems.SessionManage;
@@ -40,7 +39,7 @@ namespace Architecture.DI
 
         private void BindTrackers()
         {
-            Container.BindInterfacesAndSelfTo<WordRepositoryTracker>().AsSingle();
+            Container.BindInterfacesTo<WordRepositoryTracker>().AsSingle();
         }
         
         private void BindGameStates()

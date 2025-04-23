@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using Core.Services.Models;
 using Cysharp.Threading.Tasks;
+using DataBase.Models;
 using UI.Abstract;
 using UI.Gameplay.ClustersPanel;
 using Zenject;

@@ -1,5 +1,5 @@
-﻿using Core.Services;
-using UI.Abstract;
+﻿using UI.Abstract;
+using UI.Services;
 using Zenject;
 
 namespace UI.Gameplay

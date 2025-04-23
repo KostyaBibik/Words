@@ -1,4 +1,4 @@
-﻿using Core.Services.Models;
+﻿using DataBase.Models;
 using UI.Abstract;
 using UniRx;
 using UnityEngine;

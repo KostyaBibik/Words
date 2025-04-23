@@ -1,0 +1,23 @@
+{
+    "name": "Core.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:5a7fa6c7c79c1244eb1690d097a860bf",
+        "GUID:3898ec669dbbc7443ae2fd1972882f95",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:1bd21ef01cb3c574dbd5b44be4052be8",
+        "GUID:0a5e24c39e6debb419056755650f4845",
+        "GUID:41853e4f3a3937941802c09405ab77ca"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

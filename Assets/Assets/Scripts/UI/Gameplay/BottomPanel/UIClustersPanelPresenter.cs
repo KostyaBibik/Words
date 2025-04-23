@@ -1,8 +1,7 @@
-﻿using Core.Services;
-using Core.Services.Models;
-using Core.Systems;
+﻿using DataBase.Models;
 using UI.Abstract;
 using UI.Gameplay.Elements;
+using UI.Services;
 using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -14,16 +13,18 @@ namespace UI.Gameplay.ClustersPanel
     {
         private IClustersService _clustersService;
         private IDropPlacementHelper _dropPlacementHandler;
-
+        private Transform _dropLayer;
+        
         public UIClustersPanelPresenter(UIClustersPanelView view) : base(view)
         {
             SubscribeToViewEvents();
         }
 
         [Inject]
-        public void Construct(IClustersService clustersService)
+        public void Construct(IClustersService clustersService, IDropPlacementHelper dropPlacementHelper)
         {
             _clustersService = clustersService;
+            _dropPlacementHandler = dropPlacementHelper;
         }
 
         public void UpdateData(ClusterData[] clusters)
@@ -37,10 +38,10 @@ namespace UI.Gameplay.ClustersPanel
         {
             var settings = _view.ClusterPanelSettings;
             var canvas = _view.transform.GetComponentInParent<Canvas>();
-            
-            _clustersService.Initialize(settings, canvas);
 
-            _dropPlacementHandler = new BottomDropPlacementHandler(settings.ClustersContainer);
+            _dropLayer = settings.ClustersContainer;
+            _clustersService.Initialize(settings, canvas);
+            //_dropPlacementHandler = new BottomDropPlacementHandler(settings.ClustersContainer);
         }
 
         private void SubscribeToViewEvents()
@@ -69,6 +70,6 @@ namespace UI.Gameplay.ClustersPanel
         }
         
         private bool TryDrop(UIClusterElementView cluster, PointerEventData eventData) =>
-            _dropPlacementHandler.TryDropCluster(cluster, eventData);
+            _dropPlacementHandler.TryDropCluster(cluster, eventData, _dropLayer);
     }
 }

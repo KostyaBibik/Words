@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Core.Factories;
-using Core.Systems.WordContainer;
 using UI.Abstract;
+using UI.Factories;
 using UI.Gameplay.Elements;
+using UI.Models;
+using UI.Services;
 using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,17 +12,18 @@ using Object = UnityEngine.Object;
 
 namespace UI.Gameplay.WordContainers
 {
-    public sealed class UIWordContainerPresenter : UIPresenter<UIWordContainerView>, IWordContainerStatus
+    public sealed class UIWordContainerPresenter : UIPresenter<UIWordContainerView>
     {
         private readonly IUIWordContainerFactory _wordContainerFactory;
+        private readonly IUIWordContainerDependenciesFactory _wordContainerDependenciesFactory;
         private readonly int _containerIndex;
 
-        private WordContainerData _dataModel;
+        private IWordContainerModel _dataModel;
         
-        private WordSlotHandler _slotHandler;
+        private IWordSlotHandler _slotHandler;
         private IContainerDropPlacementHelper _dropPlacementHelper;
-        private ClusterTracker _clusterTracker;
-        private SlotPlaceholderHelper _placeholderHelper;
+        private IClusterTracker _clusterTracker;
+        private ISlotPlaceholderHelper _placeholderHelper;
         
         public int Index => _containerIndex;
         public IObservable<Unit> OnFullyFilled => _dataModel.OnFullyFilled;
@@ -33,10 +35,12 @@ namespace UI.Gameplay.WordContainers
         public UIWordContainerPresenter(
             UIWordContainerView view, 
             IUIWordContainerFactory wordContainerFactory,
+            IUIWordContainerDependenciesFactory wordContainerDependenciesFactory,
             int containerIndex
         ) : base(view)
         {
             _wordContainerFactory = wordContainerFactory;
+            _wordContainerDependenciesFactory = wordContainerDependenciesFactory;
             _containerIndex = containerIndex;
 
             SubscribeToViewEvents();
@@ -45,13 +49,14 @@ namespace UI.Gameplay.WordContainers
         public void InitializeContainer(int wordLength)
         {
             var letterSlots = _wordContainerFactory.CreateLetterSlots(_view.LetterSlotPrefab, _view.transform, wordLength);
-            
-            _dataModel = new WordContainerData(letterSlots);
-            
-            _slotHandler = new WordSlotHandler(_dataModel);
-            _placeholderHelper = new SlotPlaceholderHelper(_dataModel);
-            _dropPlacementHelper = new ContainerDropPlacementHelper(_dataModel, _slotHandler, _placeholderHelper, _view.transform, _containerIndex);
-            _clusterTracker = new ClusterTracker(_dataModel, _slotHandler);
+
+            var dependencies = _wordContainerDependenciesFactory.Create(letterSlots, _view.transform, _containerIndex);
+
+            _dataModel = dependencies.Item1;
+            _slotHandler = dependencies.Item2;
+            _placeholderHelper = dependencies.Item3;
+            _dropPlacementHelper = dependencies.Item4;
+            _clusterTracker = dependencies.Item5;
         }
         
         private void SubscribeToViewEvents()
@@ -114,7 +119,7 @@ namespace UI.Gameplay.WordContainers
         }
 
         private bool TryDrop(UIClusterElementView cluster, PointerEventData eventData) =>
-            _dropPlacementHelper.TryDropCluster(cluster, eventData);
+            _dropPlacementHelper.TryDropCluster(cluster, eventData, _view.transform);
 
         public void Destroy()
         {

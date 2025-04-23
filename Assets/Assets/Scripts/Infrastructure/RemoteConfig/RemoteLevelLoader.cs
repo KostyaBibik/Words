@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Core.Services.Abstract;
-using Core.Services.Models;
 using Cysharp.Threading.Tasks;
+using DataBase.Models;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.RemoteConfig;

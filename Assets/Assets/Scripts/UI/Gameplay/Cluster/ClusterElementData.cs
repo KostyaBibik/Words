@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Core.Services.Models;
+using DataBase.Models;
 using UnityEngine;
 
 namespace UI.Gameplay.Elements

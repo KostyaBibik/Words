@@ -1,9 +1,9 @@
 ﻿using System;
-using Core.Factories;
 using Core.Services;
-using Core.Systems.WordContainer;
 using Enums;
 using UI.Abstract;
+using UI.Factories;
+using UI.Services;
 using UI.Victory.Grid;
 using UniRx;
 using Zenject;
@@ -12,7 +12,7 @@ namespace UI.Victory
 {
     public sealed class UIVictoryPresenter : UIPresenter<UIVictoryView>
     {
-        private WordRepositoryTracker _repositoryTracker;
+        private IWordRepositoryTracker _repositoryTracker;
         private IUIWordContainerFactory _wordContainerFactory;
         private UIFinallyWordPresenter[] _finallyWords;
         private IAudioService _audioService;
@@ -26,7 +26,7 @@ namespace UI.Victory
 
         [Inject]
         public void Construct(
-            WordRepositoryTracker repositoryTracker,
+            IWordRepositoryTracker repositoryTracker,
             IUIWordContainerFactory wordContainerFactory,
             IAudioService audioService
         )

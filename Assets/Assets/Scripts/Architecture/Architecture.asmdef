@@ -1,0 +1,22 @@
+{
+    "name": "Architecture",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:3898ec669dbbc7443ae2fd1972882f95",
+        "GUID:5a7fa6c7c79c1244eb1690d097a860bf",
+        "GUID:41853e4f3a3937941802c09405ab77ca",
+        "GUID:c0656b908bb190246866881d5f2ae8d4",
+        "GUID:1bd21ef01cb3c574dbd5b44be4052be8",
+        "GUID:bdb74474fae409a47aae22efc4c42c0f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

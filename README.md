@@ -17,9 +17,9 @@
 
 ## Используемые плагины
 
-- **Zenject **
-- **UniTask **
-- **UniRx ** 
+- **Zenject**
+- **UniTask**
+- **UniRx** 
 - **TextMeshPro** 
 - **Unity Addressables System**
 - **Unity Remote Config** 

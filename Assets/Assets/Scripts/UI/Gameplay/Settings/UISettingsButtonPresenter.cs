@@ -10,7 +10,7 @@ namespace UI.Gameplay.Settings
     public class UISettingsButtonPresenter : UIPresenter<UISettingsButtonView>
     {
         private UISettingsPanelPresenter _panelPresenter;
-        private UIGameplayPresenter _gameplayPresenter;
+        private UIMainMenuPresenter _menuPresenter;
         private IAudioService _audioService;
         
         public UISettingsButtonPresenter(UISettingsButtonView view) : base(view)
@@ -20,12 +20,12 @@ namespace UI.Gameplay.Settings
         [Inject]
         public void Construct(
             UISettingsPanelPresenter panelPresenter,
-            UIGameplayPresenter gameplayPresenter,
+            UIMainMenuPresenter menuPresenter,
             IAudioService audioService
         )
         {
             _panelPresenter = panelPresenter;
-            _gameplayPresenter = gameplayPresenter;
+            _menuPresenter = menuPresenter;
             _audioService = audioService;
         }
         
@@ -40,7 +40,7 @@ namespace UI.Gameplay.Settings
         private void OnButtonClick()
         {
             PlayAudioClick();
-            _gameplayPresenter.Hide(false);
+            _menuPresenter.Hide(false);
             _panelPresenter.Show(false);
         }
         

@@ -11,7 +11,6 @@ namespace UI.Settings
     {
         [Header("References")]
         [SerializeField] private LeanButton _returnBtn;
-        [SerializeField] private LeanButton _menuBtn;
         [SerializeField] private Button _soundButton;
         [SerializeField] private Image _sounds;
         [Header("Sprites")] 
@@ -20,7 +19,6 @@ namespace UI.Settings
 
         private bool _soundStatus = true;
         
-        public IObservable<Unit> OnMenuBtnClick => _menuBtn.OnClick.AsObservable();
         public IObservable<Unit> OnReturnBtnClick => _returnBtn.OnClick.AsObservable();
         public IObservable<Unit> OnSoundsBtnClick => _soundButton.OnClickAsObservable();
 

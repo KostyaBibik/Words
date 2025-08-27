@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using Core.Services;
+using Cysharp.Threading.Tasks;
 using UI.Flow;
 using UI.Gameplay;
 using UniRx;
@@ -11,6 +12,7 @@ namespace Core.GameState
         [Inject] private readonly IGameStateMachine _gameStateMachine;
         [Inject] private readonly UIMainMenuPresenter _mainMenuPresenter;
         [Inject] private readonly IUIFlowManager _uiFlowManager;
+        [Inject] private readonly IGameDataRepository _dataRepository;
         
         private readonly CompositeDisposable _disposable = new();
 
@@ -21,6 +23,9 @@ namespace Core.GameState
                 .OnStartPlayBtnClick
                 .Subscribe(_ => OnStartPlayBtnClick())
                 .AddTo(_disposable);
+
+            var progressLevel = _dataRepository.CurrentLevel.id;
+            _mainMenuPresenter.SetProgressText(progressLevel);
                 
             await UniTask.CompletedTask;
         }

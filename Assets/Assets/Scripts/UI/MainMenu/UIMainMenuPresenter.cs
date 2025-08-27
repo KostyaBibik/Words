@@ -12,9 +12,10 @@ namespace UI.Gameplay
         {
         }
 
-        public override void Initialize()
-        {
+        public override void Initialize() =>
             Hide();
-        }
+
+        public void SetProgressText(int progress) =>
+            _view.ProgressText.text = $"Current Level:{progress}";
     }
 }

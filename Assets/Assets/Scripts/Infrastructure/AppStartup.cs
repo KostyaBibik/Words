@@ -12,10 +12,8 @@ using UniRx;
 using Zenject;
 using Gameplay.Utils;
 using UI.Gameplay.ClustersPanel;
-using UI.Gameplay.Settings;
 using UI.Gameplay.Validation;
 using UI.Loaders;
-using UI.Settings;
 using UI.Victory;
 using Utils;
 
@@ -75,12 +73,10 @@ namespace Infrastructure
             UpdateState(ELoadPhase.AssetsLoading);
             
             await _container.BindPresenterWithViewFromAddressableAsync<UIVictoryPresenter, UIVictoryView>(_uiLoader, UIAddressableKeys.VictoryWindow);
-            await _container.BindPresenterWithViewFromAddressableAsync<UISettingsPanelPresenter, UISettingsPanelView>(_uiLoader, UIAddressableKeys.SettingsWindow);
         }
 
         private async UniTask BindWindowComponents()
         {
-            await _container.BindPresenterWithViewAsync<UISettingsButtonPresenter, UISettingsButtonView>();
             await _container.BindPresenterWithViewFromAddressableAsync<UIGameplayPresenter, UIGameplayView>(UIAddressableKeys.GameplayWindow, _uiLoader);
             await _container.BindPresenterWithViewAsync<UIClustersPanelPresenter, UIClustersPanelView>();
             await _container.BindPresenterWithViewAsync<UIWordGridPresenter, UIWordGridView>();

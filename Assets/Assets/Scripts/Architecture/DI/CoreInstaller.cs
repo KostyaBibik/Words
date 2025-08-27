@@ -1,4 +1,5 @@
-﻿using Core.GameState;
+﻿using Assets.Scripts.Infrastructure.RemoteConfig;
+using Core.GameState;
 using Core.Services.DataRepository;
 using Core.Services.Validation;
 using Core.Systems.SessionManage;
@@ -29,11 +30,12 @@ namespace Architecture.DI
         private void BindDataRepository()
         {
             Container.BindInterfacesTo<GameDataRepository>().AsSingle();
+            Container.BindInterfacesTo<LevelDataSaver>().AsSingle();
         }
 
         private void BindInitSystems()
         {
-            Container.BindInterfacesTo<RemoteLevelLoader>().AsSingle();
+            Container.BindInterfacesTo<LevelDataLoader>().AsSingle();
             Container.BindInterfacesTo<LevelProcessor>().AsSingle();
         }
 

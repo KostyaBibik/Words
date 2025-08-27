@@ -10,12 +10,14 @@ using UnityEngine;
 
 namespace Infrastructure.RemoteConfig
 {
-    public sealed class RemoteLevelLoader : ILevelLoader
+    public sealed class LevelDataLoader : ILevelDataLoader
     {
-        private const string REMOTE_KEY = "levels_json";
+        private const string REMOTE_LEVELS_KEY = "levels_json";
+        private const string PROGRESS_KEY = "level_progress";
+        
         private readonly RemoteLevelsContainer _defaultRemoteLevels;
         
-        public RemoteLevelLoader()
+        public LevelDataLoader()
         {
             _defaultRemoteLevels = new RemoteLevelsContainer
             {
@@ -26,7 +28,7 @@ namespace Infrastructure.RemoteConfig
             };
         }
 
-        public async UniTask<RemoteLevelData[]> LoadLevelsAsync()
+        public async UniTask<RemoteLevelData[]> LoadLevels()
         {
             try
             {
@@ -34,12 +36,12 @@ namespace Infrastructure.RemoteConfig
 
                 await FetchConfig();
             
-                var json = RemoteConfigService.Instance.appConfig.GetJson(REMOTE_KEY);
+                var jsonData = RemoteConfigService.Instance.appConfig.GetJson(REMOTE_LEVELS_KEY);
                 
-                if (string.IsNullOrEmpty(json)) 
+                if (string.IsNullOrEmpty(jsonData)) 
                     return _defaultRemoteLevels.levels;
             
-                return JsonUtility.FromJson<RemoteLevelsContainer>(json).levels;
+                return JsonUtility.FromJson<RemoteLevelsContainer>(jsonData).levels;
             }
             catch (Exception e)
             {
@@ -47,18 +49,29 @@ namespace Infrastructure.RemoteConfig
                 return _defaultRemoteLevels.levels;
             }
         }
-        
+
+        public int LoadLevelProgress()
+        {
+            try
+            {
+                var progress = PlayerPrefs.GetInt(PROGRESS_KEY, 0);
+                
+                return progress;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Remote Config failed: {e.Message}");
+                return default;
+            }
+        }
+
         private async Task InitializeRemoteConfig()
         {
             if (UnityServices.State != ServicesInitializationState.Initialized)
-            {
                 await UnityServices.InitializeAsync();
-            }
-
+            
             if (!AuthenticationService.Instance.IsSignedIn)
-            {
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            }
         }
         
         private async Task FetchConfig()

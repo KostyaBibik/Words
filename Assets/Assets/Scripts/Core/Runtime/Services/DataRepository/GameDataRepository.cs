@@ -13,10 +13,14 @@ namespace Core.Services.DataRepository
                 ? _levels[_currentLevelIndex]
                 : null;
 
-        public void SetLevels(ProcessedLevelData[] levels)
+        public void SetData(ProcessedLevelData[] levels, int progressId)
         {
             _levels = levels ?? throw new ArgumentNullException(nameof(levels));
-            _currentLevelIndex = 0;
+            for (var i = 0; i < _levels.Length; i++)
+            {
+                if (_levels[i].id == progressId)
+                    _currentLevelIndex = i;
+            }
         }
 
         public void IncreaseLevel()

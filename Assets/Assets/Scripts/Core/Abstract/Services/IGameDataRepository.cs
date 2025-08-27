@@ -5,7 +5,7 @@ namespace Core.Services
     public interface IGameDataRepository
     {
         public ProcessedLevelData CurrentLevel { get; }
-        public void SetLevels(ProcessedLevelData[] levels);
+        public void SetData(ProcessedLevelData[] levels, int progressId);
         public void IncreaseLevel();
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using UI.Abstract;
 using UI.Loaders;
 using UnityEngine;
@@ -35,9 +34,7 @@ namespace Gameplay.Utils
             var presenter = container.Instantiate<TPresenter>(new object[] { view });
 
             if (presenter is IInitializable initializable)
-            {
                 initializable.Initialize();
-            }
 
             container.BindInterfacesAndSelfTo<TPresenter>().FromInstance(presenter).AsSingle();
 
@@ -51,16 +48,14 @@ namespace Gameplay.Utils
             where TPresenter : UIPresenter<TView>
             where TView : Component, IUIView
         {
-            var view = await loader.LoadWindowAsync<TView>(address);
+            var view = await loader.LoadWindow<TView>(address);
             
             container.BindInterfacesAndSelfTo<TView>().FromInstance(view).AsSingle();
             
             var presenter = container.Instantiate<TPresenter>(new object[] { view });
             
             if (presenter is IInitializable initializable)
-            {
                 initializable.Initialize();
-            }
             
             container.BindInterfacesAndSelfTo<TPresenter>().FromInstance(presenter).AsSingle();
         }
@@ -72,15 +67,13 @@ namespace Gameplay.Utils
             where TPresenter : UIPresenter<TView>
             where TView : Component, IUIView
         {
-            var view = await loader.LoadWindowAsync<TView>(address);
+            var view = await loader.LoadWindow<TView>(address);
 
             container.BindInterfacesAndSelfTo<TView>().FromInstance(view).AsSingle();
 
             var presenter = container.Instantiate<TPresenter>(new object[] { view });
             if (presenter is IInitializable initializable)
-            {
                 initializable.Initialize();
-            }
         
             container.BindInterfacesAndSelfTo<TPresenter>().FromInstance(presenter).AsSingle();
 

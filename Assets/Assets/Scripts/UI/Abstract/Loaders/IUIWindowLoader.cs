@@ -6,6 +6,6 @@ namespace UI.Loaders
 {
     public interface IUIWindowLoader
     {
-        UniTask<TView> LoadWindowAsync<TView>(string address) where TView : Component, IUIView;
+        public UniTask<TView> LoadWindow<TView>(string address) where TView : Component, IUIView;
     }
 }

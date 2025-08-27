@@ -1,4 +1,5 @@
-﻿using Core.Services;
+﻿using Assets.Scripts.Core.Abstract.Services;
+using Core.Services;
 using Core.Systems;
 using Cysharp.Threading.Tasks;
 using UI.Victory;
@@ -13,6 +14,7 @@ namespace Core.GameState
         [Inject] private readonly UIVictoryPresenter _victoryPresenter;
         [Inject] private readonly IGameDataRepository _gameDataRepository;
         [Inject] private readonly IGameSessionCleaner _sessionCleaner;
+        [Inject] private readonly ILevelDataSaver _levelDataSaver;
 
         private readonly CompositeDisposable _disposable = new();
 
@@ -31,6 +33,7 @@ namespace Core.GameState
                 .AddTo(_disposable);
 
             _gameDataRepository.IncreaseLevel();
+            _levelDataSaver.SaveProgress(_gameDataRepository.CurrentLevel.id);
 
             await UniTask.CompletedTask;
         }

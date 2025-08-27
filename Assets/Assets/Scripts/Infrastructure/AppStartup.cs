@@ -25,7 +25,7 @@ namespace Infrastructure
     {
         [Inject] private readonly DiContainer _container;
         [Inject] private readonly IUIWindowLoader _uiLoader;
-        [Inject] private readonly ILevelLoader _levelLoader;
+        [Inject] private readonly ILevelDataLoader _levelDataLoader;
         [Inject] private readonly ILevelProcessor _levelProcessor;
         [Inject] private readonly IGameDataRepository _dataRepository;
         [Inject] private readonly IGameStateMachine _gameStateMachine;
@@ -91,21 +91,19 @@ namespace Infrastructure
         {
             UpdateState(ELoadPhase.ConfigsLoading);
 
-            var levels = await _levelLoader.LoadLevelsAsync();
+            var levels = await _levelDataLoader.LoadLevels();
             if (levels == null || levels.Length == 0)
-            {
                 throw new Exception("No valid levels found.");
-            }
 
             UpdateState(ELoadPhase.ConfigsProcessing);
 
             var processedLevels = _levelProcessor.Process(levels);
             if (processedLevels == null || processedLevels.Length == 0)
-            {
                 throw new Exception("Failed to process levels.");
-            }
 
-            _dataRepository.SetLevels(processedLevels);
+            var progress = _levelDataLoader.LoadLevelProgress();
+            
+            _dataRepository.SetData(processedLevels, progress);
             UpdateState(ELoadPhase.Completed);
         }
         

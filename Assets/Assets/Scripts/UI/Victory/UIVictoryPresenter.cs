@@ -1,6 +1,4 @@
 ﻿using System;
-using Core.Services;
-using Enums;
 using UI.Abstract;
 using UI.Factories;
 using UI.Services;
@@ -12,10 +10,9 @@ namespace UI.Victory
 {
     public sealed class UIVictoryPresenter : UIPresenter<UIVictoryView>
     {
-        private IWordRepositoryTracker _repositoryTracker;
-        private IUIWordContainerFactory _wordContainerFactory;
+        [Inject] private IWordRepositoryTracker _repositoryTracker;
+        [Inject] private IUIWordContainerFactory _wordContainerFactory;
         private UIFinallyWordPresenter[] _finallyWords;
-        private IAudioService _audioService;
 
         public IObservable<Unit> OnMenuBtnClick => _view.MenuBtn.OnClick.AsObservable();
         public IObservable<Unit> OnContinueBtnClick => _view.ContinueBtn.OnClick.AsObservable();
@@ -24,31 +21,9 @@ namespace UI.Victory
         {
         }
 
-        [Inject]
-        public void Construct(
-            IWordRepositoryTracker repositoryTracker,
-            IUIWordContainerFactory wordContainerFactory,
-            IAudioService audioService
-        )
-        {
-            _repositoryTracker = repositoryTracker;
-            _wordContainerFactory = wordContainerFactory;
-            _audioService = audioService;
-        }
-
         public override void Initialize() 
         {
             Hide();
-
-            AddAudioSubsToButton(OnMenuBtnClick);
-            AddAudioSubsToButton(OnContinueBtnClick);
-        }
-
-        private void AddAudioSubsToButton(IObservable<Unit> button)
-        {
-            button
-                .Subscribe(_ => PlayAudioClick())
-                .AddTo(_view);
         }
 
         protected override void BeforeShow()
@@ -63,18 +38,13 @@ namespace UI.Victory
 
         protected override void BeforeHide() => Clear();
         
-        private void PlayAudioClick() =>
-            _audioService.PlaySound(ESoundType.UI_Click);
-        
         private void Clear()
         {
             if(_finallyWords == null)
                 return;
             
             for (var iterator = 0; iterator < _finallyWords.Length; iterator++)
-            {
                 _finallyWords[iterator].Destroy();
-            }
         }
     }
 }

@@ -54,11 +54,9 @@ namespace Infrastructure
             return processedLevels.ToArray();
         }
 
-        private bool CheckWordsLength(string[] words)
-        {
-            return words.Any(word => word.Length != REQUIRED_WORD_LENGTH);
-        }
-
+        private bool CheckWordsLength(string[] words) =>
+             words.Any(word => word.Length != REQUIRED_WORD_LENGTH);
+        
         private ClusterData[] GenerateClusters(string word, int wordIndex)
         {
             int[] possibleSizes = { 2, 3, 4 };
@@ -103,7 +101,7 @@ namespace Infrastructure
             return new[]
             {
                 new ClusterData { value = word.Substring(0, 3), orderInWord = 0, wordGroupIndex = wordIndex },
-                new ClusterData { value = word.Substring(3, 3), orderInWord = 1, wordGroupIndex = wordIndex }
+                new ClusterData { value = word.Substring(3, 3), orderInWord = 1, wordGroupIndex = wordIndex },
             };
         }
     }

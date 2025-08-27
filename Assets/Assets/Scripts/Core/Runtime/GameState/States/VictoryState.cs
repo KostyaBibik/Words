@@ -3,30 +3,18 @@ using Core.Systems;
 using Cysharp.Threading.Tasks;
 using UI.Victory;
 using UniRx;
+using Zenject;
 
 namespace Core.GameState
 {
     public sealed class VictoryState : IGameState
     {
-        private readonly IGameStateMachine _gameStateMachine;
-        private readonly UIVictoryPresenter _victoryPresenter;
-        private readonly IGameDataRepository _gameDataRepository;
-        private readonly IGameSessionCleaner _sessionCleaner;
+        [Inject] private readonly IGameStateMachine _gameStateMachine;
+        [Inject] private readonly UIVictoryPresenter _victoryPresenter;
+        [Inject] private readonly IGameDataRepository _gameDataRepository;
+        [Inject] private readonly IGameSessionCleaner _sessionCleaner;
 
         private readonly CompositeDisposable _disposable = new();
-
-        public VictoryState(
-            IGameStateMachine gameStateMachine,
-            UIVictoryPresenter victoryPresenter,
-            IGameDataRepository gameDataRepository,
-            IGameSessionCleaner sessionCleaner
-        )
-        {
-            _gameStateMachine = gameStateMachine;
-            _victoryPresenter = victoryPresenter;
-            _gameDataRepository = gameDataRepository;
-            _sessionCleaner = sessionCleaner;
-        }
 
         public async UniTask Enter()
         {

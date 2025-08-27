@@ -10,15 +10,10 @@ namespace Core.GameState
     {
         [Inject] private readonly UIGameplayPresenter _gameplayPresenter;
         [Inject] private readonly IValidationService _validationService;
+        [Inject] private readonly IGameStateMachine _stateMachine;
         
-        private readonly IGameStateMachine _stateMachine;
         private readonly CompositeDisposable _disposable = new();
 
-        public GameplayState(IGameStateMachine stateMachine)
-        {
-            _stateMachine = stateMachine;
-        }
-        
         public async UniTask Enter()
         {
             _gameplayPresenter.Show(false);

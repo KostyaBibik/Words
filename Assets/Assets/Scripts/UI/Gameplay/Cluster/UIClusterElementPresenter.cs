@@ -70,12 +70,12 @@ namespace UI.Gameplay.Elements
         public ClusterData GetData() =>
              _dataModel.Data;
         
-        public void ReturnToOriginalPosition()
+        public async void ReturnToOriginalPosition()
         {
             _viewTransform.SetParent(_dataModel.OriginalParent);
             _viewTransform.localPosition = Vector3.zero;
             _viewTransform.SetSiblingIndex(_dataModel.OriginalSiblingIndex);
-            _view.Show();
+            await _view.Show();
         }
 
         public void Clear() =>

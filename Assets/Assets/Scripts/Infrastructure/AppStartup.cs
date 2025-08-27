@@ -3,7 +3,6 @@ using Core.GameState;
 using Core.Services;
 using Core.Services.Abstract;
 using Cysharp.Threading.Tasks;
-using Gameplay.Data.Audio;
 using Scripts.Enums;
 using UI.ErrorLoading;
 using UI.Flow;
@@ -18,8 +17,6 @@ using UI.Gameplay.Validation;
 using UI.Loaders;
 using UI.Settings;
 using UI.Victory;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using Utils;
 
 namespace Infrastructure
@@ -33,15 +30,12 @@ namespace Infrastructure
         [Inject] private readonly IGameDataRepository _dataRepository;
         [Inject] private readonly IGameStateMachine _gameStateMachine;
         [Inject] private readonly IUIFlowManager _flowManager;
-        [Inject] private readonly IAudioService _audioService;
         
         private ReactiveProperty<ELoadPhase> CurrentPhase { get; } = new(ELoadPhase.None);
         
-        public void Initialize() 
-        {
+        public void Initialize() =>
             StartLoadProcess().Forget();
-        }
-
+        
         private async UniTaskVoid StartLoadProcess()
         {
             try
@@ -56,8 +50,6 @@ namespace Infrastructure
                 await BindWindowComponents();
                 
                 await LoadAndProcessLevels();
-
-                await LoadAudioSettings();
                 
                 _gameStateMachine.SwitchState<MainMenuState>().Forget();
             }
@@ -115,21 +107,6 @@ namespace Infrastructure
 
             _dataRepository.SetLevels(processedLevels);
             UpdateState(ELoadPhase.Completed);
-        }
-        
-        private async UniTask LoadAudioSettings()
-        {
-            UpdateState(ELoadPhase.AudioLoading); 
-
-            var handle = Addressables.LoadAssetAsync<AudioSettings>("Audio Settings");
-            await handle.Task;
-
-            if (handle.Status != AsyncOperationStatus.Succeeded)
-                throw new Exception("Failed to load AudioSettings");
-
-            var settings = handle.Result;
-            _audioService.SetSettings(settings);
-            _container.Bind<AudioSettings>().FromInstance(settings).AsSingle(); 
         }
         
         private void UpdateState(ELoadPhase state) =>

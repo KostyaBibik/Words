@@ -3,22 +3,18 @@ using DataBase.Models;
 using Cysharp.Threading.Tasks;
 using UI.Services;
 using UniRx;
+using Zenject;
 
 namespace Core.Services.Validation
 {
     public sealed class ValidationService : IValidationService
     {
-        private readonly IGameDataRepository _gameDataRepository;
-        private readonly IWordContainersService _containersService;
+        [Inject] private readonly IGameDataRepository _gameDataRepository;
+        [Inject] private readonly IWordContainersService _containersService;
+        
         private readonly ReactiveProperty<bool> _validationStatus = new(false);
         
         public IReadOnlyReactiveProperty<bool> ValidationStatus => _validationStatus;
-
-        public ValidationService(IGameDataRepository gameDataRepository, IWordContainersService containersService)
-        {
-            _gameDataRepository = gameDataRepository;
-            _containersService = containersService;
-        }
 
         public async UniTask<bool> Validate()
         {
@@ -88,15 +84,15 @@ namespace Core.Services.Validation
 
                         var isCorrect = true;
 
-                        for (var i = 0; i < expectedClusters.Length; i++)
+                        for (var clusterIterator = 0; clusterIterator < expectedClusters.Length; clusterIterator++)
                         {
-                            var expectedCluster = expectedClusters[i];
+                            var expectedCluster = expectedClusters[clusterIterator];
 
                             var matchFound = false;
 
-                            for (var j = 0; j < matchingGroup.Count; j++)
+                            for (var matchIterator = 0; matchIterator < matchingGroup.Count; matchIterator++)
                             {
-                                var actualCluster = matchingGroup[j];
+                                var actualCluster = matchingGroup[matchIterator];
 
                                 if (actualCluster.orderInWord == expectedCluster.orderInWord &&
                                     actualCluster.value == expectedCluster.value)

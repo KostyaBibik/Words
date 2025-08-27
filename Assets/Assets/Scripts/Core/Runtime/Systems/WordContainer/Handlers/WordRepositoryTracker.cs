@@ -55,9 +55,7 @@ namespace Core.Systems.WordContainer
 
             _currentOrder = 0;
             foreach (var entry in ordered)
-            {
                 entry.Value.filledOrder = _currentOrder++;
-            }
         }
 
         private ValidatedWordData BuildValidatedWordData(UIWordContainerPresenter container)

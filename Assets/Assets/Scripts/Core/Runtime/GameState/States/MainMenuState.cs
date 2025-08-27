@@ -2,26 +2,17 @@
 using UI.Flow;
 using UI.Gameplay;
 using UniRx;
+using Zenject;
 
 namespace Core.GameState
 {
     public sealed class MainMenuState : IGameState
     {
-        private readonly IGameStateMachine _gameStateMachine;
-        private readonly UIMainMenuPresenter _mainMenuPresenter;
-        private readonly IUIFlowManager _uiFlowManager;
-        private readonly CompositeDisposable _disposable = new();
+        [Inject] private readonly IGameStateMachine _gameStateMachine;
+        [Inject] private readonly UIMainMenuPresenter _mainMenuPresenter;
+        [Inject] private readonly IUIFlowManager _uiFlowManager;
         
-        public MainMenuState(
-            IGameStateMachine gameStateMachine,
-            UIMainMenuPresenter mainMenuPresenter,
-            IUIFlowManager uiFlowManager
-        )
-        {
-            _gameStateMachine = gameStateMachine;
-            _mainMenuPresenter = mainMenuPresenter;
-            _uiFlowManager = uiFlowManager;
-        }
+        private readonly CompositeDisposable _disposable = new();
 
         public async UniTask Enter()
         {

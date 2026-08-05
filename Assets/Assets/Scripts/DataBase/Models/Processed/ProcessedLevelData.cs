@@ -6,6 +6,7 @@ namespace DataBase.Models
     public class ProcessedLevelData
     {
         public int id;
+        public string category;
         public WordEntry[] words;
     }
 }

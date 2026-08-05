@@ -1,12 +1,13 @@
 {
   "dependencies": {
-    "com.ivanmurzak.unity.mcp": "0.81.0",
     "com.blackbox.kimicuyandexgames": "https://github.com/21Vladimir21/KimicuYandexGames.git",
+    "com.ivanmurzak.unity.mcp": "0.81.0",
     "com.unity.addressables": "1.22.3",
     "com.unity.collab-proxy": "2.7.1",
     "com.unity.feature.development": "1.0.1",
     "com.unity.localization": "1.5.7",
     "com.unity.nuget.newtonsoft-json": "3.2.1",
+    "com.unity.recorder": "4.0.3",
     "com.unity.remote-config": "4.1.1",
     "com.unity.services.authentication": "3.2.0",
     "com.unity.services.deployment": "1.4.0",
@@ -46,7 +47,7 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-    },
+  },
   "scopedRegistries": [
     {
       "name": "package.openupm.com",

@@ -25,7 +25,7 @@ namespace Infrastructure.RemoteConfig
             {
                 levels = new[]
                 {
-                    new RemoteLevelData { id = 0, words = new[] {"Резерв"}}
+                    new RemoteLevelData { id = 0, category = "Резерв", words = new[] {"Резерв"}}
                 }
             };
         }

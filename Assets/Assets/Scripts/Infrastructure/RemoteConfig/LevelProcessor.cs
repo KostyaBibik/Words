@@ -41,6 +41,7 @@ namespace Infrastructure
                 processedLevels.Add(new ProcessedLevelData
                 {
                     id = level.id,
+                    category = level.category,
                     words = processedWords
                 });
             }

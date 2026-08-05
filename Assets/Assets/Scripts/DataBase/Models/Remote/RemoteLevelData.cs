@@ -6,6 +6,7 @@ namespace DataBase.Models
     public class RemoteLevelData
     {
         public int id;
+        public string category;
         public string[] words;
     }
 }

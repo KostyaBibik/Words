@@ -21,9 +21,10 @@ namespace UI.Gameplay
             var clustersPanelPresenter = _view.ClustersPanel.Presenter;
             var wordGridPresenter = _view.WordGridView.Presenter;
             var clusters = GetAllClustersFromLevel(levelData);
-            
+
             clustersPanelPresenter.UpdateData(clusters);
             wordGridPresenter.UpdateData(levelData.words.Length, 6);
+            _view.CategoryText.text = levelData.category;
             
             await UniTask.CompletedTask;
         }

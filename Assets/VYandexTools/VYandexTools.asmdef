@@ -1,0 +1,25 @@
+{
+    "name": "VYandexTools",
+    "rootNamespace": "",
+    "references": [
+        "KimicuYandexGames.Runtime",
+        "KimicuYandexGames.Extensions",
+        "KimicuYandexGames.Utils",
+        "Agava.YandexGames",
+        "Agava.WebUtility",
+        "Agava.YandexMetrica",
+        "Unity.TextMeshPro",
+        "Unity.Localization",
+        "Unity.ResourceManager",
+        "GameAnalytics.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

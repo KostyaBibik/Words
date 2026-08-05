@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/VYandexTools/Scene/Boot.unity
+    guid: 985fb763f5ac04f4bb368ea51ecb59e0
+  - enabled: 1
     path: Assets/Assets/Scenes/GameScene.unity
     guid: 0e9b2db831e581e4e81e08df53bd653b
   m_configObjects:

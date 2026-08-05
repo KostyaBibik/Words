@@ -13,8 +13,7 @@ namespace Infrastructure.RemoteConfig
     public sealed class LevelDataLoader : ILevelDataLoader
     {
         private const string REMOTE_LEVELS_KEY = "levels_json";
-        private const string PROGRESS_KEY = "level_progress";
-        
+
         private readonly RemoteLevelsContainer _defaultRemoteLevels;
         
         public LevelDataLoader()
@@ -54,9 +53,7 @@ namespace Infrastructure.RemoteConfig
         {
             try
             {
-                var progress = PlayerPrefs.GetInt(PROGRESS_KEY, 0);
-                
-                return progress;
+                return SaveSystem.SaveData.LevelProgress;
             }
             catch (Exception e)
             {

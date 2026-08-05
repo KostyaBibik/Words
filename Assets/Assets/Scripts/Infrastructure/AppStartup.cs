@@ -13,6 +13,7 @@ using Zenject;
 using Gameplay.Utils;
 using UI.Gameplay.ClustersPanel;
 using UI.Gameplay.Validation;
+using UI.Juice;
 using UI.Loaders;
 using UI.Victory;
 using Utils;
@@ -39,8 +40,10 @@ namespace Infrastructure
         {
             try
             {
+                await _uiLoader.LoadComponent<UIVfxLayer>(UIAddressableKeys.VfxLayer);
+
                 await BindCriticalUI();
-           
+
                 _flowManager.ShowLoadingScreen();
                 _flowManager.TrackProgress(CurrentPhase);
                 

@@ -1,5 +1,6 @@
 ﻿using Core.Services;
 using Cysharp.Threading.Tasks;
+using UI.Ads;
 using UI.Gameplay;
 using UniRx;
 using Zenject;
@@ -11,15 +12,17 @@ namespace Core.GameState
         [Inject] private readonly UIGameplayPresenter _gameplayPresenter;
         [Inject] private readonly IValidationService _validationService;
         [Inject] private readonly IGameStateMachine _stateMachine;
-        
+        [Inject] private readonly IAdsIconView _adsIconView;
+
         private readonly CompositeDisposable _disposable = new();
 
         public async UniTask Enter()
         {
             _gameplayPresenter.Show(false);
+            _adsIconView.Show();
 
             SubscribeToCorrectValidation();
-            
+
             await UniTask.CompletedTask;
         }
 
@@ -41,9 +44,10 @@ namespace Core.GameState
 
         public async UniTask Exit()
         {
+            _adsIconView.Hide();
             _gameplayPresenter.Hide(false);
             _disposable?.Clear();
-            
+
             await UniTask.CompletedTask;
         }
     }

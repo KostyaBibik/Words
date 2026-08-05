@@ -8,5 +8,6 @@
         public const string VictoryWindow = "VictoryWindow";
         public const string SettingsWindow = "SettingsWindow";
         public const string GameplayWindow = "GameplayWindow";
+        public const string VfxLayer = "VfxLayer";
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UI.Gameplay.Elements;
+using UI.Juice;
 using UI.Services;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -82,7 +83,10 @@ namespace Core.Systems.WordContainer
             UpdateClustersOrderInWord();
             UpdateClusterContainerIndex(cluster);
             _slotHandler.ReevaluateFullState();
-            
+
+            if (UIVfxLayer.Instance != null)
+                UIVfxLayer.Instance.BurstAt((RectTransform)cluster.transform, 10, 550f);
+
             return true;
         }
 

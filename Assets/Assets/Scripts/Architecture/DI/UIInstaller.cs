@@ -4,6 +4,7 @@ using Core.Services;
 using Core.Services.WordContainers;
 using Core.Systems;
 using Core.Systems.WordContainer;
+using UI.Ads;
 using UI.Flow;
 using UI.Loaders;
 using UI.Services;
@@ -19,6 +20,7 @@ namespace Architecture.DI
             BindServices();
             BindWindowLoader();
             BindFlow();
+            BindAds();
         }
 
         private void InstallFactories()
@@ -44,6 +46,11 @@ namespace Architecture.DI
         private void BindFlow()
         {
             Container.BindInterfacesAndSelfTo<UIFlowManager>().AsSingle().Lazy();
+        }
+
+        private void BindAds()
+        {
+            Container.Bind<IAdsIconView>().To<AdsIconView>().FromComponentInHierarchy().AsSingle();
         }
     }
 }

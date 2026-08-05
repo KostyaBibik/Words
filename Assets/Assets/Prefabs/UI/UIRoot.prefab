@@ -860,6 +860,7 @@ MonoBehaviour:
     _placeholderPrefab: {fileID: 2931131591230214973, guid: e307cfd73c7c5814c8cf4c2f77bf21c4, type: 3}
     _clustersContainer: {fileID: 2137638379030462816}
     _dragLayer: {fileID: 8197768506413613196}
+    _scrollRect: {fileID: 0}
   _clustersReveal: {fileID: 0}
 --- !u!224 &8197768506413613196 stripped
 RectTransform:

@@ -2,7 +2,9 @@ using Cysharp.Threading.Tasks;
 using DataBase.Models;
 using UI.Gameplay.Elements;
 using UI.Gameplay.WordContainers;
+using UI.Juice;
 using UI.Services;
+using UnityEngine;
 using Zenject;
 
 namespace Core.Services.Hints
@@ -100,6 +102,9 @@ namespace Core.Services.Hints
                 await _clustersService.RevealCluster(candidate.View);
 
             candidate.View.PlayHintPulse();
+
+            if (UIVfxLayer.Instance != null)
+                UIVfxLayer.Instance.BurstAt((RectTransform)candidate.View.transform, 6, 320f);
 
             if (candidate.Container == null || candidate.StartIndex < 0)
                 return;

@@ -15,14 +15,15 @@ namespace UI.Juice
     [DisallowMultipleComponent]
     public sealed class UIVfxLayer : MonoBehaviour
     {
-        private const int DEFAULT_POOL_SIZE = 48;
+        private const int DEFAULT_POOL_SIZE = 260;
 
         public static UIVfxLayer Instance { get; private set; }
 
         [SerializeField] private Sprite _particleSprite;
         [SerializeField] private int _poolSize = DEFAULT_POOL_SIZE;
         [SerializeField] private Vector2 _particleSize = new(22f, 22f);
-        [SerializeField] private float _gravity = 2600f;
+        [Tooltip("Lower = floatier confetti that hangs in the air longer before falling off screen.")]
+        [SerializeField] private float _gravity = 1100f;
         [SerializeField] private Color[] _palette =
         {
             new(1f, 0.85f, 0.25f),
@@ -35,6 +36,7 @@ namespace UI.Juice
         private readonly Stack<Image> _pool = new();
         private RectTransform _rect;
         private CancellationTokenSource _cts;
+        private CancellationTokenSource _continuousRainCts;
 
         private void Awake()
         {
@@ -100,8 +102,8 @@ namespace UI.Juice
                 BurstAtWorld(target.position, count, force);
         }
 
-        /// <summary>Confetti falling from above the screen — used on the victory screen.</summary>
-        public void Rain(int count = 40, float force = 260f)
+        /// <summary>One-off confetti wave falling from above the screen.</summary>
+        public void Rain(int count = 160, float force = 260f)
         {
             if (_cts == null)
                 return;
@@ -109,7 +111,56 @@ namespace UI.Juice
             RainAsync(count, force, _cts.Token).SuppressCancellationThrow().Forget();
         }
 
+        /// <summary>
+        /// Keeps dropping confetti at a steady trickle until <see cref="StopContinuousRain"/> is
+        /// called — pair with an initial <see cref="Rain"/> burst for a big wave that settles
+        /// into light, ongoing snow. Safe to call again; restarts the loop.
+        /// </summary>
+        public void StartContinuousRain(float spawnInterval = 0.15f, int perTick = 8, float force = 220f)
+        {
+            StopContinuousRain();
+
+            if (_cts == null)
+                return;
+
+            _continuousRainCts = CancellationTokenSource.CreateLinkedTokenSource(_cts.Token);
+
+            ContinuousRainAsync(spawnInterval, perTick, force, _continuousRainCts.Token)
+                .SuppressCancellationThrow()
+                .Forget();
+        }
+
+        public void StopContinuousRain()
+        {
+            _continuousRainCts?.Cancel();
+            _continuousRainCts?.Dispose();
+            _continuousRainCts = null;
+        }
+
         private async UniTask RainAsync(int count, float force, CancellationToken token)
+        {
+            for (var i = 0; i < count; i++)
+            {
+                SpawnRainDrop(force, token);
+
+                await UniTask.Delay(12, DelayType.UnscaledDeltaTime, cancellationToken: token);
+            }
+        }
+
+        private async UniTask ContinuousRainAsync(float spawnInterval, int perTick, float force, CancellationToken token)
+        {
+            while (true)
+            {
+                token.ThrowIfCancellationRequested();
+
+                for (var i = 0; i < perTick; i++)
+                    SpawnRainDrop(force, token);
+
+                await UniTask.Delay((int)(spawnInterval * 1000f), DelayType.UnscaledDeltaTime, cancellationToken: token);
+            }
+        }
+
+        private void SpawnRainDrop(float force, CancellationToken token)
         {
             var corners = new Vector3[4];
             _rect.GetWorldCorners(corners);
@@ -118,15 +169,12 @@ namespace UI.Juice
             var right = corners[2].x;
             var top = corners[1].y;
 
-            for (var i = 0; i < count; i++)
-            {
-                var spawn = new Vector3(Random.Range(left, right), top + Random.Range(0f, 200f), 0f);
-                var velocity = new Vector2(Random.Range(-force, force), Random.Range(-force * 0.2f, force * 0.4f));
+            // Kept close to the top edge on purpose: with the old wide spawn band, a chunk of
+            // each particle's short lifetime elapsed before it ever crossed into view.
+            var spawn = new Vector3(Random.Range(left, right), top + Random.Range(0f, 40f), 0f);
+            var velocity = new Vector2(Random.Range(-force, force), Random.Range(-force * 0.2f, force * 0.4f));
 
-                AnimateParticle(spawn, velocity, token).SuppressCancellationThrow().Forget();
-
-                await UniTask.Delay(30, DelayType.UnscaledDeltaTime, cancellationToken: token);
-            }
+            AnimateParticle(spawn, velocity, token).SuppressCancellationThrow().Forget();
         }
 
         private async UniTask AnimateParticle(Vector3 worldPosition, Vector2 velocity, CancellationToken token)
@@ -141,7 +189,7 @@ namespace UI.Juice
             rect.localScale = Vector3.one * Random.Range(0.7f, 1.25f);
 
             var spin = Random.Range(-540f, 540f);
-            var lifetime = Random.Range(0.75f, 1.3f);
+            var lifetime = Random.Range(1.6f, 2.4f);
             var elapsed = 0f;
             var baseColor = image.color;
 

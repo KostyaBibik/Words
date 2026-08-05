@@ -1,27 +1,26 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Core.Services.Abstract;
 using Cysharp.Threading.Tasks;
 using DataBase.Models;
-using Unity.Services.Authentication;
-using Unity.Services.Core;
-using Unity.Services.RemoteConfig;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 
 namespace Infrastructure.RemoteConfig
 {
+    // Levels ship bundled in Resources/Levels rather than via Unity Remote Config:
+    // Yandex Games' player CSP blocks connect-src to unity.com domains, so
+    // UGS Authentication/Remote Config can never succeed inside the Yandex sandbox.
     public sealed class LevelDataLoader : ILevelDataLoader
     {
-        private const string REMOTE_LEVELS_KEY_RU = "levels_ru";
-        private const string REMOTE_LEVELS_KEY_EN = "levels_en";
+        private const string LEVELS_RESOURCE_PATH_RU = "Levels/levels_ru";
+        private const string LEVELS_RESOURCE_PATH_EN = "Levels/levels_en";
         private const string ENGLISH_LOCALE_PREFIX = "en";
 
-        private readonly RemoteLevelsContainer _defaultRemoteLevels;
-        
+        private readonly RemoteLevelsContainer _defaultLevels;
+
         public LevelDataLoader()
         {
-            _defaultRemoteLevels = new RemoteLevelsContainer
+            _defaultLevels = new RemoteLevelsContainer
             {
                 levels = new[]
                 {
@@ -30,25 +29,21 @@ namespace Infrastructure.RemoteConfig
             };
         }
 
-        public async UniTask<RemoteLevelData[]> LoadLevels()
+        public UniTask<RemoteLevelData[]> LoadLevels()
         {
             try
             {
-                await InitializeRemoteConfig();
+                var asset = Resources.Load<TextAsset>(GetLevelsResourcePath());
 
-                await FetchConfig();
+                if (asset == null)
+                    return UniTask.FromResult(_defaultLevels.levels);
 
-                var jsonData = RemoteConfigService.Instance.appConfig.GetJson(GetLevelsKey());
-
-                if (string.IsNullOrEmpty(jsonData))
-                    return _defaultRemoteLevels.levels;
-            
-                return JsonUtility.FromJson<RemoteLevelsContainer>(jsonData).levels;
+                return UniTask.FromResult(JsonUtility.FromJson<RemoteLevelsContainer>(asset.text).levels);
             }
             catch (Exception e)
             {
-                Debug.LogError($"Remote Config failed: {e.Message}");
-                return _defaultRemoteLevels.levels;
+                Debug.LogError($"Levels load failed: {e.Message}");
+                return UniTask.FromResult(_defaultLevels.levels);
             }
         }
 
@@ -60,46 +55,20 @@ namespace Infrastructure.RemoteConfig
             }
             catch (Exception e)
             {
-                Debug.LogError($"Remote Config failed: {e.Message}");
+                Debug.LogError($"Levels load failed: {e.Message}");
                 return default;
             }
         }
 
-        private static string GetLevelsKey()
+        private static string GetLevelsResourcePath()
         {
             var code = LocalizationSettings.HasSettings
                 ? LocalizationSettings.SelectedLocale?.Identifier.Code
                 : null;
 
             return code != null && code.StartsWith(ENGLISH_LOCALE_PREFIX, StringComparison.OrdinalIgnoreCase)
-                ? REMOTE_LEVELS_KEY_EN
-                : REMOTE_LEVELS_KEY_RU;
+                ? LEVELS_RESOURCE_PATH_EN
+                : LEVELS_RESOURCE_PATH_RU;
         }
-
-        private async Task InitializeRemoteConfig()
-        {
-            if (UnityServices.State != ServicesInitializationState.Initialized)
-                await UnityServices.InitializeAsync();
-            
-            if (!AuthenticationService.Instance.IsSignedIn)
-                await AuthenticationService.Instance.SignInAnonymouslyAsync();
-        }
-        
-        private async Task FetchConfig()
-        {
-            try
-            {
-                await RemoteConfigService.Instance.FetchConfigsAsync(
-                    new UserAttributes(), 
-                    new AppAttributes());
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"Remote Config fetch failed: {e.Message}");
-            }
-        }
-        
-        private struct UserAttributes {}
-        private struct AppAttributes {}
     }
 }

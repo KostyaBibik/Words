@@ -1,0 +1,504 @@
+{
+  "levels": [
+    {
+      "id": 1,
+      "category": "Animals",
+      "words": [
+        "MONKEY",
+        "RABBIT",
+        "TURTLE",
+        "BEAVER"
+      ]
+    },
+    {
+      "id": 2,
+      "category": "Fruits",
+      "words": [
+        "ORANGE",
+        "BANANA",
+        "CHERRY",
+        "PAPAYA"
+      ]
+    },
+    {
+      "id": 3,
+      "category": "Countries",
+      "words": [
+        "FRANCE",
+        "POLAND",
+        "MEXICO",
+        "NORWAY"
+      ]
+    },
+    {
+      "id": 4,
+      "category": "Colors",
+      "words": [
+        "YELLOW",
+        "PURPLE",
+        "VIOLET",
+        "MAROON"
+      ]
+    },
+    {
+      "id": 5,
+      "category": "Body",
+      "words": [
+        "FINGER",
+        "TONGUE",
+        "EYELID",
+        "KIDNEY"
+      ]
+    },
+    {
+      "id": 6,
+      "category": "Furniture",
+      "words": [
+        "DRAWER",
+        "CLOSET",
+        "BUREAU",
+        "SETTEE"
+      ]
+    },
+    {
+      "id": 7,
+      "category": "Kitchen",
+      "words": [
+        "KETTLE",
+        "COOKER",
+        "TUREEN",
+        "SKEWER"
+      ]
+    },
+    {
+      "id": 8,
+      "category": "School",
+      "words": [
+        "PENCIL",
+        "MARKER",
+        "FOLDER",
+        "ERASER"
+      ]
+    },
+    {
+      "id": 9,
+      "category": "Sports",
+      "words": [
+        "SOCCER",
+        "TENNIS",
+        "HOCKEY",
+        "BOXING"
+      ]
+    },
+    {
+      "id": 10,
+      "category": "Space",
+      "words": [
+        "PLANET",
+        "GALAXY",
+        "METEOR",
+        "ROCKET"
+      ]
+    },
+    {
+      "id": 11,
+      "category": "Jewels",
+      "words": [
+        "SILVER",
+        "GARNET",
+        "RUBIES",
+        "PEARLS"
+      ]
+    },
+    {
+      "id": 12,
+      "category": "Professions",
+      "words": [
+        "DOCTOR",
+        "FARMER",
+        "WRITER",
+        "WAITER"
+      ]
+    },
+    {
+      "id": 13,
+      "category": "Weather",
+      "words": [
+        "BREEZE",
+        "SUNSET",
+        "STORMY",
+        "CLOUDY"
+      ]
+    },
+    {
+      "id": 14,
+      "category": "Insects",
+      "words": [
+        "BEETLE",
+        "SPIDER",
+        "MANTIS",
+        "WEEVIL"
+      ]
+    },
+    {
+      "id": 15,
+      "category": "Birds",
+      "words": [
+        "TOUCAN",
+        "FALCON",
+        "PARROT",
+        "PIGEON"
+      ]
+    },
+    {
+      "id": 16,
+      "category": "Fish",
+      "words": [
+        "SALMON",
+        "MARLIN",
+        "GOBIES",
+        "MINNOW"
+      ]
+    },
+    {
+      "id": 17,
+      "category": "Tools",
+      "words": [
+        "HAMMER",
+        "WRENCH",
+        "CHISEL",
+        "PLIERS"
+      ]
+    },
+    {
+      "id": 18,
+      "category": "Clothing",
+      "words": [
+        "JACKET",
+        "BEANIE",
+        "SANDAL",
+        "JUMPER"
+      ]
+    },
+    {
+      "id": 19,
+      "category": "Vehicles",
+      "words": [
+        "PICKUP",
+        "TRUCKS",
+        "MOPEDS",
+        "WAGONS"
+      ]
+    },
+    {
+      "id": 20,
+      "category": "Instruments",
+      "words": [
+        "VIOLIN",
+        "GUITAR",
+        "MARACA",
+        "BANJOS"
+      ]
+    },
+    {
+      "id": 21,
+      "category": "Buildings",
+      "words": [
+        "CASTLE",
+        "TEMPLE",
+        "CHURCH",
+        "GARAGE"
+      ]
+    },
+    {
+      "id": 22,
+      "category": "Toys",
+      "words": [
+        "PUZZLE",
+        "MARBLE",
+        "ROBOTS",
+        "RATTLE"
+      ]
+    },
+    {
+      "id": 23,
+      "category": "Sweets",
+      "words": [
+        "COOKIE",
+        "TOFFEE",
+        "NOUGAT",
+        "WAFFLE"
+      ]
+    },
+    {
+      "id": 24,
+      "category": "Drinks",
+      "words": [
+        "COFFEE",
+        "EGGNOG",
+        "SQUASH",
+        "MATCHA"
+      ]
+    },
+    {
+      "id": 25,
+      "category": "Fabrics",
+      "words": [
+        "VELVET",
+        "FLEECE",
+        "MOHAIR",
+        "BURLAP"
+      ]
+    },
+    {
+      "id": 26,
+      "category": "Metals",
+      "words": [
+        "COPPER",
+        "BRONZE",
+        "NICKEL",
+        "PEWTER"
+      ]
+    },
+    {
+      "id": 27,
+      "category": "Flowers",
+      "words": [
+        "DAHLIA",
+        "CROCUS",
+        "TULIPS",
+        "ORCHID"
+      ]
+    },
+    {
+      "id": 28,
+      "category": "Trees",
+      "words": [
+        "WILLOW",
+        "WALNUT",
+        "SPRUCE",
+        "POPLAR"
+      ]
+    },
+    {
+      "id": 29,
+      "category": "Reptiles",
+      "words": [
+        "LIZARD",
+        "IGUANA",
+        "GECKOS",
+        "COBRAS"
+      ]
+    },
+    {
+      "id": 30,
+      "category": "Sea animals",
+      "words": [
+        "OYSTER",
+        "SHRIMP",
+        "URCHIN",
+        "WALRUS"
+      ]
+    },
+    {
+      "id": 31,
+      "category": "Holidays",
+      "words": [
+        "EASTER",
+        "PICNIC",
+        "PARADE",
+        "FIESTA"
+      ]
+    },
+    {
+      "id": 32,
+      "category": "Capitals",
+      "words": [
+        "LONDON",
+        "MOSCOW",
+        "MADRID",
+        "OTTAWA"
+      ]
+    },
+    {
+      "id": 33,
+      "category": "Space 2",
+      "words": [
+        "SATURN",
+        "URANUS",
+        "COSMOS",
+        "ASTRAL"
+      ]
+    },
+    {
+      "id": 34,
+      "category": "Games",
+      "words": [
+        "DOMINO",
+        "RIDDLE",
+        "ARCADE",
+        "CARROM"
+      ]
+    },
+    {
+      "id": 35,
+      "category": "Landscape",
+      "words": [
+        "VALLEY",
+        "FOREST",
+        "DESERT",
+        "CANYON"
+      ]
+    },
+    {
+      "id": 36,
+      "category": "Everyday objects",
+      "words": [
+        "WALLET",
+        "PILLOW",
+        "BASKET",
+        "BOTTLE"
+      ]
+    },
+    {
+      "id": 37,
+      "category": "Electronics",
+      "words": [
+        "CAMERA",
+        "TABLET",
+        "MODEMS",
+        "GADGET"
+      ]
+    },
+    {
+      "id": 38,
+      "category": "Home textile",
+      "words": [
+        "DUVETS",
+        "SHEETS",
+        "THROWS",
+        "DRAPES"
+      ]
+    },
+    {
+      "id": 39,
+      "category": "Weapons",
+      "words": [
+        "DAGGER",
+        "MUSKET",
+        "SABERS",
+        "ARROWS"
+      ]
+    },
+    {
+      "id": 40,
+      "category": "Vegetables",
+      "words": [
+        "CARROT",
+        "POTATO",
+        "ONIONS",
+        "TURNIP"
+      ]
+    },
+    {
+      "id": 41,
+      "category": "Animals 2",
+      "words": [
+        "JAGUAR",
+        "OTTERS",
+        "BADGER",
+        "WEASEL"
+      ]
+    },
+    {
+      "id": 42,
+      "category": "Professions 2",
+      "words": [
+        "LAWYER",
+        "TAILOR",
+        "BARBER",
+        "DRIVER"
+      ]
+    },
+    {
+      "id": 43,
+      "category": "Fruits 2",
+      "words": [
+        "LYCHEE",
+        "QUINCE",
+        "GUAVAS",
+        "MELONS"
+      ]
+    },
+    {
+      "id": 44,
+      "category": "Countries 2",
+      "words": [
+        "ISRAEL",
+        "SWEDEN",
+        "KUWAIT",
+        "BELIZE"
+      ]
+    },
+    {
+      "id": 45,
+      "category": "Clothing 2",
+      "words": [
+        "BLOUSE",
+        "GLOVES",
+        "HOODIE",
+        "ROMPER"
+      ]
+    },
+    {
+      "id": 46,
+      "category": "Furniture 2",
+      "words": [
+        "LOUNGE",
+        "DAYBED",
+        "STOOLS",
+        "SCREEN"
+      ]
+    },
+    {
+      "id": 47,
+      "category": "Shoes",
+      "words": [
+        "LOAFER",
+        "OXFORD",
+        "BOOTIE",
+        "WEDGES"
+      ]
+    },
+    {
+      "id": 48,
+      "category": "Headwear",
+      "words": [
+        "FEDORA",
+        "BONNET",
+        "VISORS",
+        "BERETS"
+      ]
+    },
+    {
+      "id": 49,
+      "category": "Kitchen 2",
+      "words": [
+        "PLATES",
+        "SPOONS",
+        "TRIVET",
+        "TEAPOT"
+      ]
+    },
+    {
+      "id": 50,
+      "category": "Nature",
+      "words": [
+        "PEBBLE",
+        "BRANCH",
+        "ACORNS",
+        "BUSHES"
+      ]
+    }
+  ]
+}

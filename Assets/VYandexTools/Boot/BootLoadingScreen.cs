@@ -25,6 +25,11 @@ namespace DefaultNamespace.Yandex
         private float _displayedProgress;
         private float _targetProgress;
 
+        // The script lives on a child ("Loader") of the prefab root that also holds the Canvas
+        // with the actual art - DontDestroyOnLoad/Destroy must target the root, not this.gameObject,
+        // or the art gets left behind (DontDestroyOnLoad only affects root GameObjects).
+        private GameObject _root;
+
         public static BootLoadingScreen Instance { get; private set; }
 
         public static BootLoadingScreen Show()
@@ -39,8 +44,10 @@ namespace DefaultNamespace.Yandex
                 return null;
             }
 
-            var instance = Instantiate(prefab).GetComponentInChildren<BootLoadingScreen>();
-            DontDestroyOnLoad(instance.gameObject);
+            var root = Instantiate(prefab);
+            var instance = root.GetComponentInChildren<BootLoadingScreen>();
+            DontDestroyOnLoad(root);
+            instance._root = root;
             Instance = instance;
             Instance.ResetProgress();
             return Instance;
@@ -99,7 +106,7 @@ namespace DefaultNamespace.Yandex
 
             yield return new WaitForEndOfFrame();
             Instance = null;
-            Destroy(gameObject);
+            Destroy(_root);
         }
     }
 }

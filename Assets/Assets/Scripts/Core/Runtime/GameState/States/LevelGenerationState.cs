@@ -19,8 +19,10 @@ namespace Core.GameState
             {
                 var levelData = _dataRepository.CurrentLevel;
 
+                GaEventProvider.LevelStarted(levelData.id);
+
                 await _gameplayPresenter.Initialize(levelData);
-                
+
                 await _stateMachine.SwitchState<GameplayState>();
             }
             catch (Exception e)

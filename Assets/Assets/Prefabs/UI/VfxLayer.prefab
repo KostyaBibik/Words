@@ -110,9 +110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSprite: {fileID: 21300000, guid: f196065f35d566f46978d4ec2c7699e2, type: 3}
-  _poolSize: 48
+  _poolSize: 260
   _particleSize: {x: 22, y: 22}
-  _gravity: 2600
+  _gravity: 1100
   _palette:
   - {r: 1, g: 0.85, b: 0.25, a: 1}
   - {r: 1, g: 0.45, b: 0.2, a: 1}

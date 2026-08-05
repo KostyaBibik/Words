@@ -11,6 +11,7 @@ namespace UI.Gameplay
         [SerializeField] private UIClustersPanelView _clustersPanel;
         [SerializeField] private UIWordGridView _wordGridView;
         [SerializeField] private TMP_Text _categoryText;
+        [SerializeField] private UICategoryBackgroundView _categoryBackground;
 
         [Header("Header")]
         [SerializeField] private TMP_Text _levelText;
@@ -41,6 +42,12 @@ namespace UI.Gameplay
         {
             if (_hintLabel != null)
                 _hintLabel.text = text;
+        }
+
+        public void SetCategoryTheme(string category)
+        {
+            if (_categoryBackground != null)
+                _categoryBackground.SetCategory(category);
         }
     }
 }

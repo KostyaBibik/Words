@@ -36,6 +36,7 @@ public class NoAdButton : MonoBehaviour
         {
             Billing.ConsumeProduct(purchaseProductResponse.purchaseData.purchaseToken);
             SaveSystem.SaveData.NoAds = true;
+            SaveSystem.Instance.SaveToStorage();
 
             // NoAds покупается мимо магазина игры, поэтому событие шлём отсюда — иначе
             // эта покупка не попадёт в аналитику вообще.

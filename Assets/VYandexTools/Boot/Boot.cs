@@ -93,7 +93,10 @@ namespace DefaultNamespace.Yandex
             {
                 var product = purchaseProducts[i];
                 if (product.productID.Equals(PurchaseIndexes.NoAD.ToString()))
+                {
                     SaveSystem.SaveData.NoAds = true;
+                    SaveSystem.Instance.SaveToStorage();
+                }
 
 
                 Billing.ConsumeProduct(product.purchaseToken);
@@ -123,7 +126,10 @@ namespace DefaultNamespace.Yandex
         private void LoadScene()
         {
             if (_loadingScreen != null)
-                StartCoroutine(_loadingScreen.LoadTargetScene(GameSceneBuildIndex, progressFrom: 0.85f));
+                // Start on _loadingScreen, not on Boot: Boot lives in the Boot scene and gets
+                // destroyed when it unloads, which would kill this coroutine mid-flight before
+                // it reaches Destroy(_root). _loadingScreen is DontDestroyOnLoad'd and survives.
+                _loadingScreen.StartCoroutine(_loadingScreen.LoadTargetScene(GameSceneBuildIndex, progressFrom: 0.85f));
             else
                 SceneManager.LoadScene(GameSceneBuildIndex);
         }

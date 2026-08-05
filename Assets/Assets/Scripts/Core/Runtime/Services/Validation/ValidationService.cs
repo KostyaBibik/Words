@@ -41,14 +41,15 @@ namespace Core.Services.Validation
 
         public void Clear() => _validationStatus.Value = false;
 
-        private async UniTask<bool> AreAllClustersPlacedCorrectly(
+        // Runs synchronously (no UniTask.RunOnThreadPool): WebGL has no real ThreadPool, so
+        // SwitchToThreadPool() there registers a callback nothing ever services, and the
+        // await hangs forever. The comparison below is cheap in-memory work anyway.
+        private UniTask<bool> AreAllClustersPlacedCorrectly(
             WordEntry[] expectedWords,
             List<(ClusterData clusterData, int startIndex)> actualClusters
         )
         {
-            return await UniTask.RunOnThreadPool(() =>
-            {
-                var matchedWordIndices = new HashSet<int>();
+            var matchedWordIndices = new HashSet<int>();
 
                 for (var actualClusterIndex = 0; actualClusterIndex < actualClusters.Count; actualClusterIndex++)
                 {
@@ -110,15 +111,14 @@ namespace Core.Services.Validation
                         }
 
                         if (!isCorrect)
-                            return false;
+                            return UniTask.FromResult(false);
 
                         matchedWordIndices.Add(expectedWordIndex);
                         break;
                     }
                 }
 
-                return matchedWordIndices.Count == expectedWords.Length;
-            });
+            return UniTask.FromResult(matchedWordIndices.Count == expectedWords.Length);
         }
     }
 }

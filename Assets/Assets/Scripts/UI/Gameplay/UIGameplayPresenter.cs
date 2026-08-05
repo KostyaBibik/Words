@@ -39,6 +39,7 @@ namespace UI.Gameplay
             wordGridPresenter.UpdateData(levelData.words.Length, 6);
 
             _view.CategoryText.text = levelData.category;
+            _view.SetCategoryTheme(levelData.category);
             _view.SetLevel(Loc.Format(LocalizationKey.gameplay_level_format, "Уровень {0}", levelData.id));
 
             TrackProgress(levelData);

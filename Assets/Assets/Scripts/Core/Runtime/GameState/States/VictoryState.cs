@@ -32,6 +32,8 @@ namespace Core.GameState
                 .Subscribe(_ => OnMenuBtnClick())
                 .AddTo(_disposable);
 
+            GaEventProvider.LevelCompleted(_gameDataRepository.CurrentLevel.id);
+
             _gameDataRepository.IncreaseLevel();
             _levelDataSaver.SaveProgress(_gameDataRepository.CurrentLevel.id);
 

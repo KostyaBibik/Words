@@ -1,0 +1,36 @@
+﻿[resolve-unity] Проект 2022.3.62f3 -> D:\UnityEditors\2022.3.62f3\Editor\Unity.exe
+[build] Папка билда: D:\WebGl\Words\builds\2026-08-05\Words_v4 (версия за сутки: 4)
+[build] ProjectSettings: LOCK_ASPECT_RATIO=pc
+[build] Canvas: 9x16, RunInBackground=true, LOCK_ASPECT_RATIO=pc
+[build] MCP Runtime -> editor-only (в билд не попадёт): com.IvanMurzak.Unity.MCP.Runtime.asmdef
+[build] Сборка D:\WebGl\Words через D:\UnityEditors\2022.3.62f3\Editor\Unity.exe ...
+
+[build] Итог из лога:
+  [YandexBuild] PlayerSettings applied: template=PROJECT:AT2.1.1, Brotli, dataCaching, decompressionFallback, runInBackground, canvas 9x16
+  [YandexBuild] EventSystem -> WebEventSystem replaced: 0
+  [YandexBuild] WARNING: GameAnalytics keys not configured — analytics will not be sent. Заполни Game Key / Secret Key и добавь платформу WebGL (Window → GameAnalytics → Select Settings). См. Шаг 6.1 в YANDEX_PORT_PLAYBOOK.md.
+  [YandexBuild] Building 2 scenes -> D:\WebGl\Words\builds\2026-08-05\Words_v4
+  [YandexBuild] Result=Succeeded Errors=0 Warnings=2 Size=14555423 Time=00:08:19.9996247 Output=D:/WebGl/Words/builds/2026-08-05/Words_v4
+  [YandexBuild] Несжатый размер билда ~13,9 МБ (лимит Яндекса 100 МБ)
+  [YandexBuild] Топ-20 тяжёлых ассетов:
+  [YandexBuild]   2,67 МБ  Built-in Texture2D: Splash Screen Unity Logo
+  [YandexBuild]   1,33 МБ  Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Media/Imported/SpaceShip/Textures/1K_Body-NM.jpg
+  [YandexBuild]   1,03 МБ  Assets/Plugins/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
+  [YandexBuild]   1,02 МБ  Assets/Assets/Fonts/TMP/Rubik-Bold SDF.asset
+  [YandexBuild]   0,67 МБ  Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Media/Imported/SpaceShip/Textures/1K_Body-TXTR.jpg
+  [YandexBuild]   0,34 МБ  Assets/Plugins/TextMesh Pro/Fonts/LiberationSans.ttf
+  [YandexBuild]   0,33 МБ  Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Media/Imported/Textures/SmokeB.psd
+  [YandexBuild]   0,33 МБ  Assets/Plugins/TextMesh Pro/Sprites/EmojiOne.png
+  [YandexBuild]   0,33 МБ  Assets/Assets/Art/UI/Grid.png
+  [YandexBuild]   0,25 МБ  Assets/VYandexTools/Advertisements/NoAds/NoAdsButton/Sprites/NoAdsIcon.png
+  [YandexBuild]   0,19 МБ  Assets/VYandexTools/Review/Sprites/Box Heading Orange.png
+  [YandexBuild]   0,18 МБ  Assets/VYandexTools/Review/Sprites/Button Rectangle Green.png
+  [YandexBuild]   0,18 МБ  Resources/unity_builtin_extra
+  [YandexBuild]   0,11 МБ  Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Media/Imported/SpaceShip/Space_Shooter.fbx
+  [YandexBuild]   0,05 МБ  Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Media/Sounds/NearExplosionA.ogg
+  [YandexBuild]   0,03 МБ  Assets/VYandexTools/Fonts/LilitaOneRus/lilitaonerus.ttf
+  [YandexBuild]   0,02 МБ  Assets/VYandexTools/Review/Sprites/Close Button Orange.png
+  [YandexBuild]   0,02 МБ  Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Media/Imported/Rocks/textures/normal.jpg
+  [YandexBuild]   0,02 МБ  Assets/Plugins/Zenject/OptionalExtras/SampleGame1 (Beginner)/Media/Imported/Rocks/textures/diffuse.tga
+  [YandexBuild]   0,02 МБ  Assets/VYandexTools/Review/Sprites/star.png
+[build] exit code: 0

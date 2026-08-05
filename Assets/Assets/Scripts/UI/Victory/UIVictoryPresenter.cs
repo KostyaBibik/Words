@@ -52,16 +52,27 @@ namespace UI.Victory
                 _finallyWords[iterator].PlayReveal(VICTORY_REVEAL_DELAY + iterator * VICTORY_REVEAL_STEP);
 
             if (UIVfxLayer.Instance != null)
-                UIVfxLayer.Instance.Rain();
+            {
+                // Big opening wave, then it settles into a light, ongoing trickle for as long
+                // as the victory screen stays up — stopped in BeforeHide.
+                UIVfxLayer.Instance.Rain(160, 340f);
+                UIVfxLayer.Instance.StartContinuousRain();
+            }
         }
 
-        protected override void BeforeHide() => Clear();
-        
+        protected override void BeforeHide()
+        {
+            if (UIVfxLayer.Instance != null)
+                UIVfxLayer.Instance.StopContinuousRain();
+
+            Clear();
+        }
+
         private void Clear()
         {
             if(_finallyWords == null)
                 return;
-            
+
             for (var iterator = 0; iterator < _finallyWords.Length; iterator++)
                 _finallyWords[iterator].Destroy();
         }

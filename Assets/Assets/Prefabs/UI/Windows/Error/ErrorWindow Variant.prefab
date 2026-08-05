@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e5a4b3359d389b4891afc8128de29c1, type: 2}
+  m_sharedMaterial: {fileID: 3551754758534455941, guid: 0e5a4b3359d389b4891afc8128de29c1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -354,6 +354,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 397302450362812653}
+  _transition: 0
+  _content: {fileID: 0}
+  _showDuration: 0.3
+  _hideDuration: 0.2
+  _popFromScale: 0.82
+  _slideDistance: 220
   _text: {fileID: 3829468606669934095}
 --- !u!224 &5909423153554459171 stripped
 RectTransform:

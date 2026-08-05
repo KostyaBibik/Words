@@ -34,6 +34,8 @@ namespace UI.Gameplay.ClustersPanel
             InitializeServices();
             
             _clustersService.UpdateClusters(clusters, _view);
+
+            _view.PlayIntro();
         }
 
         private void InitializeServices()

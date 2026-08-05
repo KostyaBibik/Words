@@ -25,6 +25,8 @@ namespace UI.Gameplay
             var containerParent = _view.ContainersParent;
             
             _containersService.UpdateClusters(containerPrefab, containerParent, wordCount, lettersPerWord);
+
+            _view.PlayIntro();
         }
     }
 }

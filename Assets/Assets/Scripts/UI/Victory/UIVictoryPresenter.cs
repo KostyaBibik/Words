@@ -1,9 +1,11 @@
 ﻿using System;
 using UI.Abstract;
 using UI.Factories;
+using UI.Juice;
 using UI.Services;
 using UI.Victory.Grid;
 using UniRx;
+using VYandexTools.Localization.Scripts;
 using Zenject;
 
 namespace UI.Victory
@@ -12,6 +14,10 @@ namespace UI.Victory
     {
         [Inject] private IWordRepositoryTracker _repositoryTracker;
         [Inject] private IUIWordContainerFactory _wordContainerFactory;
+
+        private const float VICTORY_REVEAL_DELAY = 0.25f;
+        private const float VICTORY_REVEAL_STEP = 0.09f;
+
         private UIFinallyWordPresenter[] _finallyWords;
 
         public IObservable<Unit> OnMenuBtnClick => _view.MenuBtn.OnClick.AsObservable();
@@ -28,12 +34,25 @@ namespace UI.Victory
 
         protected override void BeforeShow()
         {
+            _view.SetTitle(Loc.Text(LocalizationKey.victory_title, "ПОБЕДА!"));
+
             var data = _repositoryTracker.GetOrderedWords();
 
             var gridElementPrefab = _view.ElementPrefab;
             var gridParentLayer = _view.GridTransform;
 
             _finallyWords = _wordContainerFactory.CreateFinallyWords(gridElementPrefab, gridParentLayer, data);
+
+            PlayCelebration();
+        }
+
+        private void PlayCelebration()
+        {
+            for (var iterator = 0; iterator < _finallyWords.Length; iterator++)
+                _finallyWords[iterator].PlayReveal(VICTORY_REVEAL_DELAY + iterator * VICTORY_REVEAL_STEP);
+
+            if (UIVfxLayer.Instance != null)
+                UIVfxLayer.Instance.Rain();
         }
 
         protected override void BeforeHide() => Clear();

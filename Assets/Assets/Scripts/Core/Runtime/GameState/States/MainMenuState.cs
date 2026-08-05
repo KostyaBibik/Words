@@ -32,7 +32,7 @@ namespace Core.GameState
 
         public async UniTask Exit()
         {
-            _mainMenuPresenter.Hide();
+            _mainMenuPresenter.Hide(false);
             _disposable?.Clear();
             
             await UniTask.CompletedTask;

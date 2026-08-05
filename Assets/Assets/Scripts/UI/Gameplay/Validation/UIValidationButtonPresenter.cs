@@ -26,9 +26,13 @@ namespace UI.Gameplay.Validation
         {
             _validationService.Validate()
                 .ToObservable()
-                .Subscribe(isValid => 
+                .Subscribe(isValid =>
                 {
-                    if (!isValid)
+                    if (isValid)
+                    {
+                        _view.ShowSuccessBurst();
+                    }
+                    else
                     {
                         OnValidationFailed();
                     }

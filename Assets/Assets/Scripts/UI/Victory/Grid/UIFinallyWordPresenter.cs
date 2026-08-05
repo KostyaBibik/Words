@@ -12,6 +12,9 @@ namespace UI.Victory.Grid
         public void UpdateData(string text) =>
             _view.UpdateText(text);
 
+        public void PlayReveal(float delay) =>
+            _view.PlayReveal(delay);
+
         public void Destroy() =>
             Object.Destroy(_view.gameObject);
     }

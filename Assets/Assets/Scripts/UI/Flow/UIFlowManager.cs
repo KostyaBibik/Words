@@ -30,7 +30,7 @@ namespace UI.Flow
             _mainMenuPresenter.Hide();
             _errorLoadingPresenter.Hide();
             
-            _loadingPresenter.Show();
+            _loadingPresenter.Show(false);
         }
 
         public void ShowMainMenuScreen()
@@ -46,7 +46,7 @@ namespace UI.Flow
             _mainMenuPresenter.Hide();
             _loadingPresenter.Hide();
 
-            _errorLoadingPresenter.Show();
+            _errorLoadingPresenter.Show(false);
             _errorLoadingPresenter.UpdateText(message);
         }
     }

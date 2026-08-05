@@ -11,6 +11,8 @@ namespace UI.Gameplay.ClustersPanel
     public sealed class UIClustersPanelView : UIView, IClusterDropZone
     {
         [SerializeField] private ClusterPanelSettings _clusterPanelSettings;
+        [Tooltip("Optional stagger played once the clusters have been spawned.")]
+        [SerializeField] private UI.Juice.UIStaggerReveal _clustersReveal;
 
         public ClusterPanelSettings ClusterPanelSettings => _clusterPanelSettings;
 
@@ -24,6 +26,12 @@ namespace UI.Gameplay.ClustersPanel
 
         public void Initialize(UIClustersPanelPresenter presenter) =>
             Presenter = presenter;
+
+        public void PlayIntro()
+        {
+            if (_clustersReveal != null)
+                _clustersReveal.Play();
+        }
 
         public async UniTask<bool> TryDrop(UIClusterElementView cluster, PointerEventData eventData)
         {

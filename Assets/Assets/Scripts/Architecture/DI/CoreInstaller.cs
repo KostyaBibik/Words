@@ -1,6 +1,8 @@
 ﻿using Assets.Scripts.Infrastructure.RemoteConfig;
 using Core.GameState;
 using Core.Services.DataRepository;
+using Core.Services.Hints;
+using Core.Services.Progress;
 using Core.Services.Validation;
 using Core.Systems.SessionManage;
 using Core.Systems.WordContainer;
@@ -57,6 +59,8 @@ namespace Architecture.DI
         private void BindServices()
         {
             Container.BindInterfacesTo<ValidationService>().AsSingle();
+            Container.BindInterfacesTo<WordProgressService>().AsSingle();
+            Container.BindInterfacesTo<HintService>().AsSingle();
             Container.BindInterfacesTo<GameSessionCleaner>().AsSingle();
         }
 

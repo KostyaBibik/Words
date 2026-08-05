@@ -87,6 +87,26 @@ MonoBehaviour:
     m_Key: review_cta
     m_Metadata:
       m_Items: []
+  - m_Id: 157899455193088
+    m_Key: menu_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 157899513913344
+    m_Key: gameplay_level_format
+    m_Metadata:
+      m_Items: []
+  - m_Id: 157899513913345
+    m_Key: gameplay_progress_format
+    m_Metadata:
+      m_Items: []
+  - m_Id: 157899513913346
+    m_Key: gameplay_hint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 157899513913347
+    m_Key: victory_title
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

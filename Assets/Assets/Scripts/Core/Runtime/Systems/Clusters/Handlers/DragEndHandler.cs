@@ -25,6 +25,8 @@ namespace UI.Gameplay
                         cluster.Presenter.SetContainer(wordContainer);
                     }
 
+                    cluster.PlaySnapJuice();
+
                     wasDropped = true;
                     break;
                 }

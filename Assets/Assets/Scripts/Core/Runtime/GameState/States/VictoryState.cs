@@ -20,7 +20,7 @@ namespace Core.GameState
 
         public async UniTask Enter()
         {
-            _victoryPresenter.Show();
+            _victoryPresenter.Show(false);
 
             _victoryPresenter
                 .OnContinueBtnClick
@@ -40,7 +40,7 @@ namespace Core.GameState
 
         public async UniTask Exit()
         {
-            _victoryPresenter.Hide();
+            _victoryPresenter.Hide(false);
             
             _disposable.Clear();
             _sessionCleaner.Cleanup();

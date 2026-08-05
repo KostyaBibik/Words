@@ -18,4 +18,9 @@ public enum LocalizationKey
     review_title,
     review_body,
     review_cta,
+    menu_title,
+    gameplay_level_format,
+    gameplay_progress_format,
+    gameplay_hint,
+    victory_title,
 }

@@ -16,9 +16,11 @@ namespace Core.Services
         private ClusterPlaceholderHandler _placeholderHandler;
         private ClusterSpawner _clusterSpawner;
         private ClusterDragObserver _dragObserver;
-        private UIClusterElementView[] _spawnedClusters;
+        private UIClusterElementView[] _spawnedClusters = System.Array.Empty<UIClusterElementView>();
 
         private readonly IUIClusterFactory _clusterFactory;
+
+        public System.Collections.Generic.IReadOnlyList<UIClusterElementView> SpawnedClusters => _spawnedClusters;
 
         public UIClustersService(IUIClusterFactory clusterFactory)
         {
@@ -47,10 +49,14 @@ namespace Core.Services
         {
             for (var i = 0; i < _spawnedClusters.Length; i++)
             {
-                Object.Destroy(_spawnedClusters[i].gameObject); 
+                if (_spawnedClusters[i] != null)
+                    Object.Destroy(_spawnedClusters[i].gameObject);
             }
-            
-            Object.Destroy(_placeholder.gameObject); 
+
+            _spawnedClusters = System.Array.Empty<UIClusterElementView>();
+
+            if (_placeholder != null)
+                Object.Destroy(_placeholder.gameObject);
         }
 
         private void InitializeDragCoordinator(ClusterPanelSettings settings, Canvas canvas) =>

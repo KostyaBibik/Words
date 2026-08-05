@@ -189,7 +189,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 2589905746544457979}
+  _transition: 1
+  _content: {fileID: 0}
+  _showDuration: 0.34
+  _hideDuration: 0.2
+  _popFromScale: 0.82
+  _slideDistance: 220
   _frame: {fileID: 2263551552481683513}
+  _grabbedScale: 1.12
+  _grabbedTilt: 4
+  _grabDuration: 0.14
+  _dropDuration: 0.22
+  _liftShadow: {fileID: 0}
+  _liftShadowAlpha: 0.35
 --- !u!225 &2589905746544457979
 CanvasGroup:
   m_ObjectHideFlags: 0

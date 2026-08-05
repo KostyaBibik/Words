@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressSlider: {fileID: 4662003084436807858}
   progressText: {fileID: 5397940689414899474}
+  progressSmoothSpeed: 1.2
 --- !u!1 &3347329886776488468
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,8 +222,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Text...99%
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8ba20b472606d1540a47e986996ca101, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 4bccecd6a4495a643ab129848e2e88d4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0e5a4b3359d389b4891afc8128de29c1, type: 2}
+  m_sharedMaterial: {fileID: 3551754758534455941, guid: 0e5a4b3359d389b4891afc8128de29c1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

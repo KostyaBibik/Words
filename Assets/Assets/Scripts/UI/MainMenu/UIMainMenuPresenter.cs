@@ -13,8 +13,11 @@ namespace UI.Gameplay
         {
         }
 
-        public override void Initialize() =>
+        public override void Initialize()
+        {
+            _view.SetTitle(Loc.Text(LocalizationKey.menu_title, "СЛОВА\nИЗ КУСОЧКОВ"));
             Hide();
+        }
 
         public void SetProgressText(int progress) =>
             _view.ProgressText.text = Loc.Format(LocalizationKey.menu_progress_format, "Current Level: {0}", progress);

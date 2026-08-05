@@ -62,10 +62,7 @@ namespace Core.Systems.WordContainer
         {
             return new ValidatedWordData
             {
-                text = new string(container.GetPlacedClusters()
-                    .OrderBy(kvp => kvp.Value)
-                    .SelectMany(kvp => kvp.Key.GetData().value)
-                    .ToArray())
+                text = container.GetAssembledWord()
             };
         }
     }

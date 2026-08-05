@@ -29,6 +29,8 @@ namespace UI.Gameplay.WordContainers
         public IObservable<Unit> OnFullyFilled => _dataModel.OnFullyFilled;
         public IObservable<Unit> OnBecameIncomplete  => _dataModel.OnBecameIncomplete;
         public bool IsFullyFilled => _dataModel.IsFullyFilled.Value;
+        public IReadOnlyReactiveProperty<bool> FilledState => _dataModel.IsFullyFilled;
+        public UIWordContainerView View => _view;
 
         private readonly CompositeDisposable _disposable = new();
         
@@ -104,6 +106,26 @@ namespace UI.Gameplay.WordContainers
 
             return result;
         }
+
+        /// <summary>Letters currently sitting in this row, read left to right.</summary>
+        public string GetAssembledWord()
+        {
+            var ordered = new List<KeyValuePair<UIClusterElementPresenter, int>>(GetPlacedClusters());
+            ordered.Sort((a, b) => a.Value.CompareTo(b.Value));
+
+            var builder = new System.Text.StringBuilder();
+
+            for (var iterator = 0; iterator < ordered.Count; iterator++)
+                builder.Append(ordered[iterator].Key.GetData().value);
+
+            return builder.ToString();
+        }
+
+        public void SetSolved(bool isSolved) =>
+            _view.SetSolved(isSolved);
+
+        public void PlayHintPulse() =>
+            _view.PlayHintPulse();
 
         private bool TryDrop(UIClusterElementView cluster, PointerEventData eventData) =>
             _dropPlacementHelper.TryDropCluster(cluster, eventData, _view.transform);

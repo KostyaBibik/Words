@@ -431,9 +431,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -855,6 +855,7 @@ GameObject:
   - component: {fileID: 3784078184302047521}
   - component: {fileID: 3812125659760954023}
   - component: {fileID: 3801532985190158955}
+  - component: {fileID: 3812125659760954024}
   m_Layer: 0
   m_Name: Skybox
   m_TagString: Untagged
@@ -912,6 +913,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3789694455804916197}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &3812125659760954024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3789694455804916197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71fb6239da7281344a64b15b179f7cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scrollSpeed: {x: 0, y: 0}
+  _breathAmount: 0.02
+  _breathSpeed: 0.14
 --- !u!4 &4480476332156934690
 Transform:
   m_ObjectHideFlags: 0
@@ -1007,6 +1023,7 @@ GameObject:
   - component: {fileID: 7463383974567382339}
   - component: {fileID: 5405650996658910948}
   - component: {fileID: 4827794043635723033}
+  - component: {fileID: 7463383974567382340}
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
@@ -1052,6 +1069,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4480476332156934690}
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+--- !u!114 &7463383974567382340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543407581039547642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71fb6239da7281344a64b15b179f7cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scrollSpeed: {x: 0.004, y: 0.0015}
+  _breathAmount: 0.006
+  _breathSpeed: 0.21
 --- !u!1 &9029735485709695472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,6 +1095,7 @@ GameObject:
   - component: {fileID: 7077983526708038153}
   - component: {fileID: 7093670642197982544}
   - component: {fileID: 1988612827610898854}
+  - component: {fileID: 9029735485709695473}
   m_Layer: 0
   m_Name: Front
   m_TagString: Untagged
@@ -1070,6 +1103,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9029735485709695473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9029735485709695472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71fb6239da7281344a64b15b179f7cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scrollSpeed: {x: 0.01, y: 0.004}
+  _breathAmount: 0.01
+  _breathSpeed: 0.32
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

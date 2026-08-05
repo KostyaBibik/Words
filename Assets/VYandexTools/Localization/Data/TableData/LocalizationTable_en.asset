@@ -90,6 +90,28 @@ MonoBehaviour:
     m_Localized: Rate the game!
     m_Metadata:
       m_Items: []
+  - m_Id: 157899455193088
+    m_Localized: 'WORDS
+
+      FROM PIECES'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 157899513913344
+    m_Localized: Level {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 157899513913345
+    m_Localized: '{0} / {1}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 157899513913346
+    m_Localized: Hint
+    m_Metadata:
+      m_Items: []
+  - m_Id: 157899513913347
+    m_Localized: VICTORY!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

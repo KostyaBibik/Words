@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 namespace UI.Gameplay.Elements
 {
-    public interface IClusterDropZone: IDropHandler
+    public interface IClusterDropZone
     {
         public UniTask<bool> TryDrop(UIClusterElementView cluster, PointerEventData eventData);
     }

@@ -37,17 +37,12 @@ namespace Core.Systems.WordContainer
 
             if (bufferSlots.IsEmpty())
                 return;
-            
-            var min = bufferSlots[0];
-            for (var iterator = 1; iterator < bufferSlots.Count; iterator++)
+
+            foreach (var slot in bufferSlots)
             {
-                if (bufferSlots[iterator].Index < min.Index)
-                {
-                    min = bufferSlots[iterator];
-                }
+                slot.SetOccupied(true);
             }
-            
-            _slotHandler.OccupySlots(min.Index, bufferSlots.Count);
+
             bufferSlots.Clear();
             _slotHandler.ReevaluateFullState();
         }

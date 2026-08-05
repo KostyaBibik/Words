@@ -48,10 +48,6 @@ namespace UI.Gameplay.ClustersPanel
 
         private void SubscribeToViewEvents()
         {
-            _view.OnClusterDropped
-                .Subscribe(OnDrop)
-                .AddTo(_view); 
-            
             _view.OnTryDrop
                 .Subscribe(tuple =>
                 {
@@ -62,15 +58,6 @@ namespace UI.Gameplay.ClustersPanel
                 .AddTo(_view);
         }
 
-        private void OnDrop(PointerEventData eventData)
-        {
-            if (eventData.pointerDrag != null && 
-                eventData.pointerDrag.TryGetComponent<UIClusterElementView>(out var cluster))
-            {
-                TryDrop(cluster, eventData);
-            }
-        }
-        
         private bool TryDrop(UIClusterElementView cluster, PointerEventData eventData) =>
             _dropPlacementHandler.TryDropCluster(cluster, eventData, _dropLayer);
     }

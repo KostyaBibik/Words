@@ -61,10 +61,6 @@ namespace UI.Gameplay.WordContainers
         
         private void SubscribeToViewEvents()
         {
-            _view.OnClusterDropped
-                .Subscribe(OnDrop)
-                .AddTo(_disposable); 
-            
             _view.OnTryDrop
                 .Subscribe(tuple =>
                 {
@@ -107,15 +103,6 @@ namespace UI.Gameplay.WordContainers
             }
 
             return result;
-        }
-
-        private void OnDrop(PointerEventData eventData)
-        {
-            if (eventData.pointerDrag != null && 
-                eventData.pointerDrag.TryGetComponent<UIClusterElementView>(out var cluster))
-            {
-                TryDrop(cluster, eventData);
-            }
         }
 
         private bool TryDrop(UIClusterElementView cluster, PointerEventData eventData) =>

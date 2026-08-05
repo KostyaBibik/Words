@@ -16,6 +16,7 @@ using UI.Gameplay.Validation;
 using UI.Loaders;
 using UI.Victory;
 using Utils;
+using VYandexTools.Localization.Scripts;
 
 namespace Infrastructure
 {
@@ -55,7 +56,7 @@ namespace Infrastructure
             {
                 UnityEngine.Debug.LogError($"Startup failed: {e}");
                 UpdateState(ELoadPhase.Failed);
-                _flowManager.ShowErrorScreen(e.Message);
+                _flowManager.ShowErrorScreen(Loc.Text(LocalizationKey.error_generic, "Something went wrong. Please reload the game."));
             }
         }
 

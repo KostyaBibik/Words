@@ -531,6 +531,7 @@ GameObject:
   - component: {fileID: 2059660859231092840}
   - component: {fileID: 2464450358165861948}
   - component: {fileID: 3214301106637341911}
+  - component: {fileID: 4653291372608220501}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -654,6 +655,31 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4653291372608220501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5769318196148125946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6e1c37be0c4162a8eab25930ad584b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 3214301106637341911}
+  localizedString:
+    m_TableReference:
+      m_TableCollectionName: LocalizationTable
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: gameplay_validation_error
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &6569388753815798940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,6 +1190,7 @@ GameObject:
   - component: {fileID: 7501396013901720897}
   - component: {fileID: 309286900740720034}
   - component: {fileID: 986968269973687501}
+  - component: {fileID: 792438524817911009}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -1287,6 +1314,31 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &792438524817911009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8142887784151304680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6e1c37be0c4162a8eab25930ad584b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 986968269973687501}
+  localizedString:
+    m_TableReference:
+      m_TableCollectionName: LocalizationTable
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: gameplay_validate
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &8186961588818913932
 GameObject:
   m_ObjectHideFlags: 0

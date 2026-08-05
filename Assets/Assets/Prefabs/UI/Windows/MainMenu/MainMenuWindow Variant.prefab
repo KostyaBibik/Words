@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 4181745756547865335}
   - component: {fileID: 6221734696581722644}
   - component: {fileID: 2670221918602832436}
+  - component: {fileID: 5933960140125314098}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -210,6 +211,31 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5933960140125314098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2527536687716253278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6e1c37be0c4162a8eab25930ad584b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 2670221918602832436}
+  localizedString:
+    m_TableReference:
+      m_TableCollectionName: LocalizationTable
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: menu_start
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &3865169086225583093
 GameObject:
   m_ObjectHideFlags: 0

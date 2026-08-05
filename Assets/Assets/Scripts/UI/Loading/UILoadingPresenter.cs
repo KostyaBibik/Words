@@ -1,6 +1,7 @@
 ﻿using Scripts.Enums;
 using UI.Abstract;
 using UniRx;
+using VYandexTools.Localization.Scripts;
 
 namespace UI.Loading
 {
@@ -13,7 +14,7 @@ namespace UI.Loading
         private const string AUDIO_LOADING_TEXT = "Loading sounds...";
         private const string COMPLETED_TEXT = "Completed!";
         private const string FAILED_TEXT = "Loading error";
-        
+
         private readonly CompositeDisposable _disposables = new();
         
         public UILoadingPresenter(UILoadingView view) : base(view) 
@@ -37,13 +38,13 @@ namespace UI.Loading
         {
             return phase switch
             {
-                ELoadPhase.AssetsLoading => ASSETS_LOADING_TEXT,
-                ELoadPhase.ConfigsLoading => CONFIGS_LOADING_TEXT,
-                ELoadPhase.ConfigsProcessing => CONFIGS_PROCESSING_TEXT,
-                ELoadPhase.AudioLoading => AUDIO_LOADING_TEXT,
-                ELoadPhase.Completed => COMPLETED_TEXT,
-                ELoadPhase.Failed => FAILED_TEXT,
-                _ => INITIALIZING_TEXT
+                ELoadPhase.AssetsLoading => Loc.Text(LocalizationKey.loading_assets, ASSETS_LOADING_TEXT),
+                ELoadPhase.ConfigsLoading => Loc.Text(LocalizationKey.loading_configs, CONFIGS_LOADING_TEXT),
+                ELoadPhase.ConfigsProcessing => Loc.Text(LocalizationKey.loading_processing, CONFIGS_PROCESSING_TEXT),
+                ELoadPhase.AudioLoading => Loc.Text(LocalizationKey.loading_audio, AUDIO_LOADING_TEXT),
+                ELoadPhase.Completed => Loc.Text(LocalizationKey.loading_completed, COMPLETED_TEXT),
+                ELoadPhase.Failed => Loc.Text(LocalizationKey.loading_failed, FAILED_TEXT),
+                _ => Loc.Text(LocalizationKey.loading_initializing, INITIALIZING_TEXT)
             };
         }
 

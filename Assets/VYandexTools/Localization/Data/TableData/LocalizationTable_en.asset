@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: LocalizationTable_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 03cefaf21dd0afd4f9c69d491b3271a0, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 3492798464
+    m_Localized: Initializing...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3526352896
+    m_Localized: Loading assets...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3526352897
+    m_Localized: Loading configurations...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3526352898
+    m_Localized: Processing data...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547200
+    m_Localized: Loading sounds...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547201
+    m_Localized: Completed!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547202
+    m_Localized: Loading error
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547203
+    m_Localized: Something went wrong. Please reload the game.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547204
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547205
+    m_Localized: 'Current Level: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547206
+    m_Localized: Validate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547207
+    m_Localized: The words are not made up correctly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547208
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547209
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547210
+    m_Localized: Ad in {0:F1}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547211
+    m_Localized: Rate the game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547212
+    m_Localized: Rate the game and leave a review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547213
+    m_Localized: Rate the game!
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: LocalizationTable Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: LocalizationTable
+  m_TableCollectionNameGuidString: 03cefaf21dd0afd4f9c69d491b3271a0
+  m_Entries:
+  - m_Id: 3492798464
+    m_Key: loading_initializing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3526352896
+    m_Key: loading_assets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3526352897
+    m_Key: loading_configs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3526352898
+    m_Key: loading_processing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547200
+    m_Key: loading_audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547201
+    m_Key: loading_completed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547202
+    m_Key: loading_failed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547203
+    m_Key: error_generic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547204
+    m_Key: menu_start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547205
+    m_Key: menu_progress_format
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547206
+    m_Key: gameplay_validate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547207
+    m_Key: gameplay_validation_error
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547208
+    m_Key: victory_continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547209
+    m_Key: victory_menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547210
+    m_Key: ad_timer_format
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547211
+    m_Key: review_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547212
+    m_Key: review_body
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3530547213
+    m_Key: review_cta
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2121644139760320536
+  references:
+    version: 2
+    RefIds:
+    - rid: 2121644139760320536
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1785892878273

@@ -1,4 +1,21 @@
 public enum LocalizationKey
 {
-    New_Entry,
+    loading_initializing,
+    loading_assets,
+    loading_configs,
+    loading_processing,
+    loading_audio,
+    loading_completed,
+    loading_failed,
+    error_generic,
+    menu_start,
+    menu_progress_format,
+    gameplay_validate,
+    gameplay_validation_error,
+    victory_continue,
+    victory_menu,
+    ad_timer_format,
+    review_title,
+    review_body,
+    review_cta,
 }

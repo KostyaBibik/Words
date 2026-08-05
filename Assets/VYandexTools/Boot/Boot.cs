@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
+using VYandexTools.Localization.Scripts;
 using Billing = Kimicu.YandexGames.Billing;
 using WebApplication = Kimicu.YandexGames.WebApplication;
 using YandexGamesSdk = Kimicu.YandexGames.YandexGamesSdk;
@@ -50,9 +51,11 @@ namespace DefaultNamespace.Yandex
             SaveSystem.Instance.Init();
             yield return LocalizationSettings.InitializationOperation;
             SetLanguage();
+            yield return LocalizationSettings.StringDatabase.GetTableAsync(Loc.TableName);
             _loadingScreen?.SetProgress(0.85f);
 
-            Advertisement.ShowInterstitialAd();
+            global::Yandex.Advertisement.ShowInterstitial(placement: "boot");
+            global::Yandex.Gameplay.Start();
             LoadScene();
         }
 
@@ -100,7 +103,7 @@ namespace DefaultNamespace.Yandex
         private void SetLanguage()
         {
 #if UNITY_EDITOR
-            string lang = locale;
+            string lang = LocalizationTestOverride.HasLocaleCode ? LocalizationTestOverride.LocaleCode : locale;
 #else
              string lang = YandexGamesSdk.Environment.i18n.lang;
 #endif
@@ -109,6 +112,9 @@ namespace DefaultNamespace.Yandex
 
         private static void OnStopGame(bool value)
         {
+            if (value) global::Yandex.Gameplay.Start();
+            else global::Yandex.Gameplay.Stop();
+
             AudioListener.volume = value ? 1 : 0;
             AudioListener.pause = !value;
             Time.timeScale = value ? 1 : 0;

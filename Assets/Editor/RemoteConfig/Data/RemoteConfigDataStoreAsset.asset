@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
-  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"3c94836d-6297-4b70-a7a1-1d3ca48d19ef\"\r\n   
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"058131c6-8894-4099-9815-178ba4bf85a2\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"levels_ru\",\r\n      \"type\": \"json\",\r\n     
     \"schemaId\": null,\r\n      \"value\": {\r\n        \"levels\": [\r\n         
     {\r\n            \"id\": 1,\r\n            \"category\": \"\u0421\u0442\u0440\u0430\u043D\u044B\",\r\n           
@@ -218,7 +218,7 @@ MonoBehaviour:
     \"\u0421\u0412\u0415\u0427\u041A\u0410\",\r\n              \"\u0417\u041E\u041D\u0422\u0418\u041A\",\r\n             
     \"\u0420\u042E\u041A\u0417\u0410\u041A\"\r\n            ]\r\n          }\r\n       
     ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"81b55da0-78fe-4e04-8e75-620858df6d79\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"f4c69b95-0732-4396-bf54-14c192668729\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"levels_en\",\r\n      \"type\": \"json\",\r\n      \"schemaId\": null,\r\n     
     \"value\": {\r\n        \"levels\": [\r\n          {\r\n            \"id\": 1,\r\n           
     \"category\": \"Animals\",\r\n            \"words\": [\r\n              \"MONKEY\",\r\n             
@@ -371,7 +371,7 @@ MonoBehaviour:
     \"Nature\",\r\n            \"words\": [\r\n              \"PEBBLE\",\r\n             
     \"BRANCH\",\r\n              \"ACORNS\",\r\n              \"BUSHES\"\r\n           
     ]\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n]"
-  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"3c94836d-6297-4b70-a7a1-1d3ca48d19ef\"\r\n   
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"058131c6-8894-4099-9815-178ba4bf85a2\"\r\n   
     },\r\n    \"rs\": {\r\n      \"key\": \"levels_ru\",\r\n      \"type\": \"json\",\r\n     
     \"schemaId\": null,\r\n      \"value\": {\r\n        \"levels\": [\r\n         
     {\r\n            \"id\": 1,\r\n            \"category\": \"\u0421\u0442\u0440\u0430\u043D\u044B\",\r\n           
@@ -577,7 +577,7 @@ MonoBehaviour:
     \"\u0421\u0412\u0415\u0427\u041A\u0410\",\r\n              \"\u0417\u041E\u041D\u0422\u0418\u041A\",\r\n             
     \"\u0420\u042E\u041A\u0417\u0410\u041A\"\r\n            ]\r\n          }\r\n       
     ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"81b55da0-78fe-4e04-8e75-620858df6d79\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"f4c69b95-0732-4396-bf54-14c192668729\"\r\n    },\r\n    \"rs\": {\r\n     
     \"key\": \"levels_en\",\r\n      \"type\": \"json\",\r\n      \"schemaId\": null,\r\n     
     \"value\": {\r\n        \"levels\": [\r\n          {\r\n            \"id\": 1,\r\n           
     \"category\": \"Animals\",\r\n            \"words\": [\r\n              \"MONKEY\",\r\n             

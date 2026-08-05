@@ -12,6 +12,7 @@ namespace UI.Gameplay.Elements
         [SerializeField] private Color _occupiedColor = new Color(0.8f, 0f, 0.1f);
         [SerializeField] private Color _basedColor = Color.yellow;
         [SerializeField] private Color _placeholderColor = new Color(0.5f, 0f, 0.5f);
+        [SerializeField] private Color _hintColor = new Color(0.25f, 0.85f, 0.35f);
 
         [Header("References")]
         [SerializeField] private Image _background;
@@ -23,6 +24,7 @@ namespace UI.Gameplay.Elements
 
         private CancellationTokenSource _colorCts;
         private CancellationTokenSource _scaleCts;
+        private CancellationTokenSource _hintCts;
         private Vector3 _baseScale = Vector3.one;
         private bool _isPlaceholder;
 
@@ -35,6 +37,7 @@ namespace UI.Gameplay.Elements
         {
             CancelColor();
             CancelScale();
+            CancelHint();
         }
 
         public void Initialize(int index)
@@ -69,6 +72,44 @@ namespace UI.Gameplay.Elements
 
             TintTo(isPlaceholder ? _placeholderColor : _basedColor);
             ScaleTo(isPlaceholder ? _baseScale * _highlightScale : _baseScale);
+        }
+
+        /// <summary>
+        /// Marks this slot as the hint target: green tint + pop, auto-reverting after
+        /// <paramref name="duration"/> unless the slot gets occupied or re-marked before then.
+        /// </summary>
+        public void PlayHintHighlight(float duration = 1.4f)
+        {
+            if (IsOccupied)
+                return;
+
+            TintTo(_hintColor);
+            ScaleTo(_baseScale * _highlightScale);
+
+            CancelHint();
+            _hintCts = CancellationTokenSource.CreateLinkedTokenSource(this.GetCancellationTokenOnDestroy());
+
+            RevertHintAsync(duration, _hintCts.Token)
+                .SuppressCancellationThrow()
+                .Forget();
+        }
+
+        private async UniTask RevertHintAsync(float duration, CancellationToken token)
+        {
+            await UniTask.Delay((int)(duration * 1000f), DelayType.UnscaledDeltaTime, cancellationToken: token);
+
+            if (this == null || IsOccupied)
+                return;
+
+            TintTo(_isPlaceholder ? _placeholderColor : _basedColor);
+            ScaleTo(_isPlaceholder ? _baseScale * _highlightScale : _baseScale);
+        }
+
+        private void CancelHint()
+        {
+            _hintCts?.Cancel();
+            _hintCts?.Dispose();
+            _hintCts = null;
         }
 
         private void TintTo(Color color)

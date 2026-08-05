@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using DataBase.Models;
 using UI.Gameplay.ClustersPanel;
 using UI.Gameplay.Elements;
@@ -14,5 +15,11 @@ namespace UI.Services
         public void Initialize(ClusterPanelSettings settings, Canvas canvas);
         public void UpdateClusters(ClusterData[] clusters, MonoBehaviour owner);
         public void Clear();
+
+        /// <summary>True when enough of the cluster is inside the scrollable pool's viewport to be seen.</summary>
+        bool IsClusterVisible(UIClusterElementView cluster);
+
+        /// <summary>Scrolls the pool so the cluster ends up centred in the viewport.</summary>
+        UniTask RevealCluster(UIClusterElementView cluster);
     }
 }

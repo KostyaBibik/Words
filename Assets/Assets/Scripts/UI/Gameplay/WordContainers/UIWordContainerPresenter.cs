@@ -127,13 +127,49 @@ namespace UI.Gameplay.WordContainers
         public void PlayHintPulse() =>
             _view.PlayHintPulse();
 
+        /// <summary>Index of the first slot that is not currently occupied, or -1 if the row is full.</summary>
+        public int GetFirstEmptySlotIndex()
+        {
+            var slots = _dataModel.Slots;
+
+            for (var i = 0; i < slots.Length; i++)
+            {
+                if (!slots[i].IsOccupied)
+                    return i;
+            }
+
+            return -1;
+        }
+
+        /// <summary>Green-highlights the given slot range — the hint system's answer to "put it here".</summary>
+        public void PlayHintForRange(int startIndex, int length)
+        {
+            var slots = _dataModel.Slots;
+
+            for (var i = 0; i < length; i++)
+            {
+                var index = startIndex + i;
+
+                if (index >= 0 && index < slots.Length)
+                    slots[index].PlayHintHighlight();
+            }
+        }
+
         private bool TryDrop(UIClusterElementView cluster, PointerEventData eventData) =>
             _dropPlacementHelper.TryDropCluster(cluster, eventData, _view.transform);
 
         public void Destroy()
         {
             _disposable?.Dispose();
-            Object.Destroy(_view.gameObject);
+
+            if (_view != null)
+            {
+                // Destroy only runs at the end of the frame, and the next level is built inside
+                // the same frame — a still-parented row would be counted by the grid layout and
+                // by UIGridFitter's bounds, shrinking the new grid to roughly half its size.
+                _view.transform.SetParent(null, false);
+                Object.Destroy(_view.gameObject);
+            }
         }
     }
 }

@@ -2442,6 +2442,7 @@ MonoBehaviour:
     _placeholderPrefab: {fileID: 2931131591230214973, guid: e307cfd73c7c5814c8cf4c2f77bf21c4, type: 3}
     _clustersContainer: {fileID: 8568304125896060684}
     _dragLayer: {fileID: 1911359088302567136}
+    _scrollRect: {fileID: 7836262961727221530}
   _clustersReveal: {fileID: 4163226933176524285}
 --- !u!1 &8549133155853677340
 GameObject:

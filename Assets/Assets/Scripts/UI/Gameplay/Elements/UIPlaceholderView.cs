@@ -23,8 +23,22 @@ namespace UI.Gameplay.Elements
         private CancellationTokenSource _cts;
         private float _baseAlpha = 1f;
 
+        private bool _initialized;
+
         private void Awake()
         {
+            EnsureInitialized();
+            gameObject.SetActive(false);
+        }
+
+        // Activate/Deactivate can run before Awake in edit-mode tooling (Awake is only
+        // guaranteed for objects that go through Unity's normal Play Mode lifecycle), so both
+        // call this defensively instead of trusting Awake alone.
+        private void EnsureInitialized()
+        {
+            if (_initialized)
+                return;
+
             _rectTransform = GetComponent<RectTransform>();
             _originalSizeDelta = _rectTransform.sizeDelta;
             _baseScale = _rectTransform.localScale;
@@ -32,7 +46,7 @@ namespace UI.Gameplay.Elements
             if (_pulseGraphic != null)
                 _baseAlpha = _pulseGraphic.color.a;
 
-            gameObject.SetActive(false);
+            _initialized = true;
         }
 
         private void OnDestroy() => Cancel();
@@ -50,6 +64,8 @@ namespace UI.Gameplay.Elements
 
         public void Activate(RectTransform source)
         {
+            EnsureInitialized();
+
             _rectTransform.sizeDelta = source.sizeDelta;
 
             gameObject.SetActive(true);
@@ -66,6 +82,7 @@ namespace UI.Gameplay.Elements
 
         public void Deactivate()
         {
+            EnsureInitialized();
             Cancel();
 
             _rectTransform.sizeDelta = _originalSizeDelta;

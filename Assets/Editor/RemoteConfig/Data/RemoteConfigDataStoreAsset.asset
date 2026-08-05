@@ -12,40 +12,724 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
-  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"25207d71-b23b-4c3d-998c-53f82ad192ce\"\r\n   
-    },\r\n    \"rs\": {\r\n      \"key\": \"string_key\",\r\n      \"type\": \"string\",\r\n     
-    \"value\": \"string_value\"\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"6ee51814-36fb-4d60-ac3b-10eadd13108f\"\r\n    },\r\n    \"rs\":
-    {\r\n      \"key\": \"int_key\",\r\n      \"type\": \"long\",\r\n      \"value\":
-    1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"31263170-610f-4e3a-9843-9415475c3c64\"\r\n   
-    },\r\n    \"rs\": {\r\n      \"key\": \"bool_key\",\r\n      \"type\": \"bool\",\r\n     
-    \"value\": true\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"9b71835d-d03e-41e2-a7ac-86f61a3ed2ec\"\r\n    },\r\n    \"rs\": {\r\n     
-    \"key\": \"long_key\",\r\n      \"type\": \"long\",\r\n      \"value\": 10000\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"81d716f2-41bf-4191-a77c-9c14ce171b4f\"\r\n   
-    },\r\n    \"rs\": {\r\n      \"key\": \"float_key\",\r\n      \"type\": \"float\",\r\n     
-    \"value\": 1.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"7e13fcf4-fcff-4cbf-84c4-07f7959778cc\"\r\n    },\r\n    \"rs\": {\r\n     
-    \"key\": \"json_key\",\r\n      \"type\": \"json\",\r\n      \"schemaId\": null,\r\n     
-    \"value\": {\r\n        \"sample_key\": \"sample_value\"\r\n      }\r\n    }\r\n 
-    }\r\n]"
-  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"25207d71-b23b-4c3d-998c-53f82ad192ce\"\r\n   
-    },\r\n    \"rs\": {\r\n      \"key\": \"string_key\",\r\n      \"type\": \"string\",\r\n     
-    \"value\": \"string_value\"\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n     
-    \"entityId\": \"6ee51814-36fb-4d60-ac3b-10eadd13108f\"\r\n    },\r\n    \"rs\":
-    {\r\n      \"key\": \"int_key\",\r\n      \"type\": \"long\",\r\n      \"value\":
-    1\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"31263170-610f-4e3a-9843-9415475c3c64\"\r\n   
-    },\r\n    \"rs\": {\r\n      \"key\": \"bool_key\",\r\n      \"type\": \"bool\",\r\n     
-    \"value\": true\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"9b71835d-d03e-41e2-a7ac-86f61a3ed2ec\"\r\n    },\r\n    \"rs\": {\r\n     
-    \"key\": \"long_key\",\r\n      \"type\": \"long\",\r\n      \"value\": 10000\r\n   
-    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"81d716f2-41bf-4191-a77c-9c14ce171b4f\"\r\n   
-    },\r\n    \"rs\": {\r\n      \"key\": \"float_key\",\r\n      \"type\": \"float\",\r\n     
-    \"value\": 1.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
-    \"7e13fcf4-fcff-4cbf-84c4-07f7959778cc\"\r\n    },\r\n    \"rs\": {\r\n     
-    \"key\": \"json_key\",\r\n      \"type\": \"json\",\r\n      \"schemaId\": null,\r\n     
-    \"value\": {\r\n        \"sample_key\": \"sample_value\"\r\n      }\r\n    }\r\n 
-    }\r\n]"
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"443ef24b-4cd8-470f-8ad8-7045faaf51e9\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"levels_ru\",\r\n      \"type\": \"json\",\r\n     
+    \"schemaId\": null,\r\n      \"value\": {\r\n        \"levels\": [\r\n         
+    {\r\n            \"id\": 1,\r\n            \"category\": \"\u0421\u0442\u0440\u0430\u043D\u044B\",\r\n           
+    \"words\": [\r\n              \"\u0410\u0424\u0420\u0418\u041A\u0410\",\r\n             
+    \"\u0420\u041E\u0421\u0421\u0418\u042F\",\r\n              \"\u042F\u041F\u041E\u041D\u0418\u042F\",\r\n             
+    \"\u0413\u0420\u0415\u0426\u0418\u042F\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 2,\r\n            \"category\": \"\u0424\u0440\u0443\u043A\u0442\u044B\",\r\n           
+    \"words\": [\r\n              \"\u041F\u0415\u0420\u0421\u0418\u041A\",\r\n             
+    \"\u042F\u0411\u041B\u041E\u041A\u041E\",\r\n              \"\u041C\u0410\u041B\u0418\u041D\u0410\",\r\n             
+    \"\u0420\u042F\u0411\u0418\u041D\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 3,\r\n            \"category\": \"\u041E\u0434\u0435\u0436\u0434\u0430\",\r\n           
+    \"words\": [\r\n              \"\u0428\u0418\u041D\u0415\u041B\u042C\",\r\n             
+    \"\u0411\u041B\u0423\u0417\u041A\u0410\",\r\n              \"\u0421\u0412\u0418\u0422\u0415\u0420\",\r\n             
+    \"\u041F\u041B\u0410\u0422\u041E\u041A\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 4,\r\n            \"category\": \"\u0416\u0438\u0432\u043E\u0442\u043D\u044B\u0435\",\r\n           
+    \"words\": [\r\n              \"\u0421\u041E\u0411\u0410\u041A\u0410\",\r\n             
+    \"\u041C\u0410\u041A\u0410\u041A\u0410\",\r\n              \"\u0411\u0423\u0419\u0412\u041E\u041B\",\r\n             
+    \"\u041B\u041E\u0428\u0410\u0414\u042C\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 5,\r\n            \"category\": \"\u041F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0438\",\r\n           
+    \"words\": [\r\n              \"\u0414\u041E\u041A\u0422\u041E\u0420\",\r\n             
+    \"\u0425\u0418\u0420\u0423\u0420\u0413\",\r\n              \"\u0410\u0420\u0422\u0418\u0421\u0422\",\r\n             
+    \"\u041E\u0424\u0418\u0426\u0415\u0420\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 6,\r\n            \"category\": \"\u041E\u0432\u043E\u0449\u0438\",\r\n           
+    \"words\": [\r\n              \"\u0424\u0410\u0421\u041E\u041B\u042C\",\r\n             
+    \"\u0426\u0423\u041A\u0418\u041D\u0418\",\r\n              \"\u0420\u0415\u0414\u042C\u041A\u0410\",\r\n             
+    \"\u0428\u041F\u0418\u041D\u0410\u0422\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 7,\r\n            \"category\": \"\u041F\u0442\u0438\u0446\u044B\",\r\n           
+    \"words\": [\r\n              \"\u0421\u0418\u041D\u0418\u0426\u0410\",\r\n             
+    \"\u0421\u041E\u0420\u041E\u041A\u0410\",\r\n              \"\u0413\u041E\u041B\u0423\u0411\u042C\",\r\n             
+    \"\u041F\u0410\u0412\u041B\u0418\u041D\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 8,\r\n            \"category\": \"\u0420\u044B\u0431\u044B\",\r\n           
+    \"words\": [\r\n              \"\u0421\u0415\u041B\u042C\u0414\u042C\",\r\n             
+    \"\u041B\u041E\u0421\u041E\u0421\u042C\",\r\n              \"\u041A\u0410\u0420\u0410\u0421\u042C\",\r\n             
+    \"\u0424\u041E\u0420\u0415\u041B\u042C\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 9,\r\n            \"category\": \"\u0422\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442\",\r\n           
+    \"words\": [\r\n              \"\u041C\u0410\u0428\u0418\u041D\u0410\",\r\n             
+    \"\u0420\u0410\u041A\u0415\u0422\u0410\",\r\n              \"\u041A\u0410\u0420\u0415\u0422\u0410\",\r\n             
+    \"\u0422\u0415\u041B\u0415\u0413\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 10,\r\n            \"category\": \"\u0421\u043F\u043E\u0440\u0442\",\r\n           
+    \"words\": [\r\n              \"\u0424\u0423\u0422\u0411\u041E\u041B\",\r\n             
+    \"\u0425\u041E\u041A\u041A\u0415\u0419\",\r\n              \"\u0422\u0415\u041D\u041D\u0418\u0421\",\r\n             
+    \"\u0411\u041E\u0420\u042C\u0411\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 11,\r\n            \"category\": \"\u041F\u043E\u0433\u043E\u0434\u0430\",\r\n           
+    \"words\": [\r\n              \"\u041C\u041E\u041B\u041D\u0418\u042F\",\r\n             
+    \"\u0417\u0410\u0421\u0423\u0425\u0410\",\r\n              \"\u041F\u041E\u0413\u041E\u0414\u0410\",\r\n             
+    \"\u041C\u0415\u0422\u0415\u041B\u042C\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 12,\r\n            \"category\": \"\u041A\u043E\u0441\u043C\u043E\u0441\",\r\n           
+    \"words\": [\r\n              \"\u041A\u041E\u041C\u0415\u0422\u0410\",\r\n             
+    \"\u041E\u0420\u0411\u0418\u0422\u0410\",\r\n              \"\u0417\u0412\u0415\u0417\u0414\u0410\",\r\n             
+    \"\u041C\u0415\u0422\u0415\u041E\u0420\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 13,\r\n            \"category\": \"\u041A\u0430\u043C\u043D\u0438\",\r\n           
+    \"words\": [\r\n              \"\u042F\u041D\u0422\u0410\u0420\u042C\",\r\n             
+    \"\u0421\u0410\u041F\u0424\u0418\u0420\",\r\n              \"\u0416\u0415\u041C\u0427\u0423\u0413\",\r\n             
+    \"\u041A\u041E\u0420\u0410\u041B\u041B\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 14,\r\n            \"category\": \"\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B\",\r\n           
+    \"words\": [\r\n              \"\u041A\u041E\u041C\u041F\u041E\u0422\",\r\n             
+    \"\u0419\u041E\u0413\u0423\u0420\u0422\",\r\n              \"\u0422\u0412\u041E\u0420\u041E\u0413\",\r\n             
+    \"\u041D\u0410\u0421\u0422\u041E\u0419\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 15,\r\n            \"category\": \"\u0421\u043B\u0430\u0434\u043E\u0441\u0442\u0438\",\r\n           
+    \"words\": [\r\n              \"\u041F\u0420\u042F\u041D\u0418\u041A\",\r\n             
+    \"\u041F\u041E\u041D\u0427\u0418\u041A\",\r\n              \"\u0422\u041E\u0420\u0422\u0418\u041A\",\r\n             
+    \"\u0418\u0420\u0418\u0421\u041A\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 16,\r\n            \"category\": \"\u0428\u043A\u043E\u043B\u0430\",\r\n           
+    \"words\": [\r\n              \"\u041C\u0410\u0420\u041A\u0415\u0420\",\r\n             
+    \"\u0410\u041B\u042C\u0411\u041E\u041C\",\r\n              \"\u0411\u0423\u041C\u0410\u0413\u0410\",\r\n             
+    \"\u0413\u041B\u041E\u0411\u0423\u0421\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 17,\r\n            \"category\": \"\u0422\u0435\u043B\u043E\",\r\n           
+    \"words\": [\r\n              \"\u041B\u041E\u041A\u041E\u0422\u042C\",\r\n             
+    \"\u041B\u0410\u0414\u041E\u041D\u042C\",\r\n              \"\u041A\u041E\u041B\u0415\u041D\u041E\",\r\n             
+    \"\u0417\u0420\u0410\u0427\u041E\u041A\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 18,\r\n            \"category\": \"\u0417\u0434\u0430\u043D\u0438\u044F\",\r\n           
+    \"words\": [\r\n              \"\u0414\u0412\u041E\u0420\u0415\u0426\",\r\n             
+    \"\u041A\u041E\u0421\u0422\u0401\u041B\",\r\n              \"\u041C\u0415\u0427\u0415\u0422\u042C\",\r\n             
+    \"\u0412\u041E\u041A\u0417\u0410\u041B\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 19,\r\n            \"category\": \"\u041E\u0440\u0443\u0436\u0438\u0435\",\r\n           
+    \"words\": [\r\n              \"\u041C\u0423\u0428\u041A\u0415\u0422\",\r\n             
+    \"\u041A\u0418\u041D\u0416\u0410\u041B\",\r\n              \"\u041F\u0410\u041B\u0418\u0426\u0410\",\r\n             
+    \"\u041F\u0418\u0429\u0410\u041B\u042C\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 20,\r\n            \"category\": \"\u0418\u0433\u0440\u0443\u0448\u043A\u0438\",\r\n           
+    \"words\": [\r\n              \"\u041A\u0423\u0411\u0418\u041A\u0418\",\r\n             
+    \"\u0412\u041E\u041B\u0427\u041E\u041A\",\r\n              \"\u041A\u0410\u0427\u0415\u041B\u0418\",\r\n             
+    \"\u0417\u041C\u0415\u0419\u041A\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 21,\r\n            \"category\": \"\u0418\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442\u044B\",\r\n           
+    \"words\": [\r\n              \"\u041B\u041E\u041F\u0410\u0422\u0410\",\r\n             
+    \"\u041B\u041E\u0411\u0417\u0418\u041A\",\r\n              \"\u0417\u0423\u0411\u0418\u041B\u041E\",\r\n             
+    \"\u0414\u041E\u041B\u041E\u0422\u041E\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 22,\r\n            \"category\": \"\u041F\u043E\u0441\u0443\u0434\u0430\",\r\n           
+    \"words\": [\r\n              \"\u041A\u041E\u0412\u0428\u0418\u041A\",\r\n             
+    \"\u041A\u0420\u0423\u0416\u041A\u0410\",\r\n              \"\u0413\u0420\u0410\u0424\u0418\u041D\",\r\n             
+    \"\u041F\u041E\u0414\u041D\u041E\u0421\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 23,\r\n            \"category\": \"\u041C\u0435\u0431\u0435\u043B\u044C\",\r\n           
+    \"words\": [\r\n              \"\u041A\u0420\u0415\u0421\u041B\u041E\",\r\n             
+    \"\u0421\u0423\u041D\u0414\u0423\u041A\",\r\n              \"\u0421\u041A\u0410\u041C\u042C\u042F\",\r\n             
+    \"\u041F\u041E\u041B\u0410\u0422\u0418\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 24,\r\n            \"category\": \"\u041E\u0431\u0443\u0432\u044C\",\r\n           
+    \"words\": [\r\n              \"\u0413\u0410\u041B\u041E\u0428\u0418\",\r\n             
+    \"\u0411\u0410\u0425\u0418\u041B\u042B\",\r\n              \"\u0428\u041B\u0401\u041F\u041A\u0418\",\r\n             
+    \"\u0428\u041D\u0423\u0420\u041A\u0418\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 25,\r\n            \"category\": \"\u0413\u043E\u043B\u043E\u0432\u043D\u044B\u0435
+    \u0443\u0431\u043E\u0440\u044B\",\r\n            \"words\": [\r\n             
+    \"\u041F\u0410\u041D\u0410\u041C\u0410\",\r\n              \"\u0428\u041B\u042F\u041F\u041A\u0410\",\r\n             
+    \"\u0423\u0428\u0410\u041D\u041A\u0410\",\r\n              \"\u041A\u041E\u041B\u041F\u0410\u041A\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 26,\r\n            \"category\":
+    \"\u0422\u043A\u0430\u043D\u0438\",\r\n            \"words\": [\r\n             
+    \"\u0425\u041B\u041E\u041F\u041E\u041A\",\r\n              \"\u0411\u0410\u0422\u0418\u0421\u0422\",\r\n             
+    \"\u0412\u041E\u0419\u041B\u041E\u041A\",\r\n              \"\u041C\u0423\u0421\u041B\u0418\u041D\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 27,\r\n            \"category\":
+    \"\u041C\u0435\u0442\u0430\u043B\u043B\u044B\",\r\n            \"words\": [\r\n             
+    \"\u0417\u041E\u041B\u041E\u0422\u041E\",\r\n              \"\u041B\u0410\u0422\u0423\u041D\u042C\",\r\n             
+    \"\u0411\u0420\u041E\u041D\u0417\u0410\",\r\n              \"\u041D\u0418\u041A\u0415\u041B\u042C\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 28,\r\n            \"category\":
+    \"\u0424\u0440\u0443\u043A\u0442\u044B \u0438 \u044F\u0433\u043E\u0434\u044B\",\r\n           
+    \"words\": [\r\n              \"\u041A\u041B\u042E\u041A\u0412\u0410\",\r\n             
+    \"\u0411\u0410\u041D\u0410\u041D\u042B\",\r\n              \"\u0410\u041D\u0410\u041D\u0410\u0421\",\r\n             
+    \"\u0413\u0420\u0410\u041D\u0410\u0422\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 29,\r\n            \"category\": \"\u041C\u043E\u0440\u0441\u043A\u0438\u0435
+    \u0436\u0438\u0432\u043E\u0442\u043D\u044B\u0435\",\r\n            \"words\":
+    [\r\n              \"\u041C\u0415\u0414\u0423\u0417\u0410\",\r\n             
+    \"\u0422\u042E\u041B\u0415\u041D\u042C\",\r\n              \"\u041A\u0420\u0410\u0411\u0418\u041A\",\r\n             
+    \"\u041C\u041E\u0420\u0416\u0418\u041A\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 30,\r\n            \"category\": \"\u041F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0438
+    2\",\r\n            \"words\": [\r\n              \"\u041F\u0415\u041A\u0410\u0420\u042C\",\r\n             
+    \"\u041A\u0423\u0417\u041D\u0415\u0426\",\r\n              \"\u041B\u0401\u0422\u0427\u0418\u041A\",\r\n             
+    \"\u041F\u0415\u0412\u0418\u0426\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 31,\r\n            \"category\": \"\u0421\u0442\u0440\u0430\u043D\u044B
+    2\",\r\n            \"words\": [\r\n              \"\u0422\u0423\u0420\u0426\u0418\u042F\",\r\n             
+    \"\u041A\u0410\u041D\u0410\u0414\u0410\",\r\n              \"\u0418\u0422\u0410\u041B\u0418\u042F\",\r\n             
+    \"\u0415\u0413\u0418\u041F\u0415\u0422\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 32,\r\n            \"category\": \"\u041E\u0434\u0435\u0436\u0434\u0430
+    2\",\r\n            \"words\": [\r\n              \"\u041F\u0418\u0414\u0416\u0410\u041A\",\r\n             
+    \"\u041A\u0423\u0420\u0422\u041A\u0410\",\r\n              \"\u041A\u041E\u0421\u0422\u042E\u041C\",\r\n             
+    \"\u041F\u0410\u041B\u042C\u0422\u041E\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 33,\r\n            \"category\": \"\u0416\u0438\u0432\u043E\u0442\u043D\u044B\u0435
+    2\",\r\n            \"words\": [\r\n              \"\u0411\u0410\u0420\u0421\u0423\u041A\",\r\n             
+    \"\u041B\u0418\u0421\u0418\u0426\u0410\",\r\n              \"\u041A\u0423\u041D\u0418\u0426\u0410\",\r\n             
+    \"\u0413\u0415\u041F\u0410\u0420\u0414\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 34,\r\n            \"category\": \"\u0415\u0434\u0430\",\r\n           
+    \"words\": [\r\n              \"\u041C\u041E\u041B\u041E\u041A\u041E\",\r\n             
+    \"\u041A\u0415\u0422\u0427\u0423\u041F\",\r\n              \"\u041E\u041B\u0418\u0412\u042C\u0415\",\r\n             
+    \"\u0411\u041E\u0420\u0429\u0418\u041A\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 35,\r\n            \"category\": \"\u0417\u0434\u0430\u043D\u0438\u044F
+    2\",\r\n            \"words\": [\r\n              \"\u0410\u041F\u0422\u0415\u041A\u0410\",\r\n             
+    \"\u0422\u042E\u0420\u042C\u041C\u0410\",\r\n              \"\u0425\u0418\u0416\u0418\u041D\u0410\",\r\n             
+    \"\u041B\u0410\u0427\u0423\u0413\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 36,\r\n            \"category\": \"\u0421\u043F\u043E\u0440\u0442
+    2\",\r\n            \"words\": [\r\n              \"\u041A\u0410\u0420\u0410\u0422\u042D\",\r\n             
+    \"\u041F\u0410\u0420\u041A\u0423\u0420\",\r\n              \"\u0424\u0420\u0418\u0421\u0411\u0418\",\r\n             
+    \"\u0410\u0419\u041A\u0418\u0414\u041E\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 37,\r\n            \"category\": \"\u0422\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442
+    2\",\r\n            \"words\": [\r\n              \"\u0422\u0410\u041D\u041A\u0415\u0420\",\r\n             
+    \"\u0411\u0423\u041A\u0421\u0418\u0420\",\r\n              \"\u0424\u0423\u0420\u0413\u041E\u041D\",\r\n             
+    \"\u041B\u0410\u0419\u041D\u0415\u0420\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 38,\r\n            \"category\": \"\u041F\u043E\u0433\u043E\u0434\u0430
+    2\",\r\n            \"words\": [\r\n              \"\u0420\u0410\u0414\u0423\u0413\u0410\",\r\n             
+    \"\u041B\u0418\u0412\u0415\u041D\u042C\",\r\n              \"\u041E\u0411\u041B\u0410\u041A\u041E\",\r\n             
+    \"\u0421\u0423\u0413\u0420\u041E\u0411\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 39,\r\n            \"category\": \"\u041A\u043E\u0441\u043C\u043E\u0441
+    2\",\r\n            \"words\": [\r\n              \"\u041A\u041E\u0421\u041C\u041E\u0421\",\r\n             
+    \"\u041C\u041E\u0414\u0423\u041B\u042C\",\r\n              \"\u0421\u041E\u041B\u041D\u0426\u0415\",\r\n             
+    \"\u0417\u0410\u041F\u0423\u0421\u041A\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 40,\r\n            \"category\": \"\u041A\u0430\u043C\u043D\u0438
+    2\",\r\n            \"words\": [\r\n              \"\u0410\u041B\u041C\u0410\u0417\u042B\",\r\n             
+    \"\u0420\u0423\u0411\u0418\u041D\u042B\",\r\n              \"\u0422\u041E\u041F\u0410\u0417\u042B\",\r\n             
+    \"\u0411\u0418\u0420\u042E\u0417\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 41,\r\n            \"category\": \"\u0418\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442\u044B
+    2\",\r\n            \"words\": [\r\n              \"\u0413\u0412\u041E\u0417\u0414\u0418\",\r\n             
+    \"\u0428\u0423\u0420\u0423\u041F\u042B\",\r\n              \"\u0417\u0410\u0416\u0418\u041C\u042B\",\r\n             
+    \"\u041A\u0418\u042F\u041D\u041A\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 42,\r\n            \"category\": \"\u0414\u043E\u043C\",\r\n           
+    \"words\": [\r\n              \"\u041E\u0414\u0415\u042F\u041B\u041E\",\r\n             
+    \"\u0428\u0422\u041E\u0420\u041A\u0410\",\r\n              \"\u041A\u041E\u0412\u0420\u0418\u041A\",\r\n             
+    \"\u041C\u0410\u0422\u0420\u0410\u0421\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 43,\r\n            \"category\": \"\u0422\u0435\u0445\u043D\u0438\u043A\u0430\",\r\n           
+    \"words\": [\r\n              \"\u041A\u0410\u041C\u0415\u0420\u0410\",\r\n             
+    \"\u0420\u041E\u0423\u0422\u0415\u0420\",\r\n              \"\u0424\u041B\u0415\u0428\u041A\u0410\",\r\n             
+    \"\u0413\u0410\u0414\u0416\u0415\u0422\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 44,\r\n            \"category\": \"\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438\",\r\n           
+    \"words\": [\r\n              \"\u042E\u0411\u0418\u041B\u0415\u0419\",\r\n             
+    \"\u041C\u0418\u0428\u0423\u0420\u0410\",\r\n              \"\u0411\u0410\u041D\u041A\u0415\u0422\",\r\n             
+    \"\u0428\u0410\u0420\u0418\u041A\u0418\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 45,\r\n            \"category\": \"\u0421\u0442\u043E\u043B\u0438\u0446\u044B\",\r\n           
+    \"words\": [\r\n              \"\u041C\u041E\u0421\u041A\u0412\u0410\",\r\n             
+    \"\u041B\u041E\u041D\u0414\u041E\u041D\",\r\n              \"\u0411\u0415\u0420\u041B\u0418\u041D\",\r\n             
+    \"\u041C\u0410\u0414\u0420\u0418\u0414\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 46,\r\n            \"category\": \"\u041F\u043B\u0430\u043D\u0435\u0442\u044B\",\r\n           
+    \"words\": [\r\n              \"\u0412\u0415\u041D\u0415\u0420\u0410\",\r\n             
+    \"\u042E\u041F\u0418\u0422\u0415\u0420\",\r\n              \"\u0421\u0410\u0422\u0423\u0420\u041D\",\r\n             
+    \"\u041D\u0415\u041F\u0422\u0423\u041D\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 47,\r\n            \"category\": \"\u041D\u0430\u0441\u0435\u043A\u043E\u043C\u044B\u0435\",\r\n           
+    \"words\": [\r\n              \"\u0426\u0418\u041A\u0410\u0414\u0410\",\r\n             
+    \"\u0422\u0415\u0420\u041C\u0418\u0422\",\r\n              \"\u041F\u0410\u0423\u0427\u041E\u041A\",\r\n             
+    \"\u041A\u041E\u041C\u0410\u0420\u042B\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 48,\r\n            \"category\": \"\u0418\u0433\u0440\u044B\",\r\n           
+    \"words\": [\r\n              \"\u0414\u041E\u041C\u0418\u041D\u041E\",\r\n             
+    \"\u0420\u0415\u0411\u0423\u0421\u042B\",\r\n              \"\u0416\u041C\u0423\u0420\u041A\u0418\",\r\n             
+    \"\u041F\u0420\u042F\u0422\u041A\u0418\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 49,\r\n            \"category\": \"\u041B\u0430\u043D\u0434\u0448\u0430\u0444\u0442\",\r\n           
+    \"words\": [\r\n              \"\u0414\u041E\u041B\u0418\u041D\u0410\",\r\n             
+    \"\u041E\u0421\u0422\u0420\u041E\u0412\",\r\n              \"\u041F\u041E\u041B\u042F\u041D\u0410\",\r\n             
+    \"\u0411\u041E\u041B\u041E\u0422\u041E\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 50,\r\n            \"category\": \"\u0411\u044B\u0442\",\r\n           
+    \"words\": [\r\n              \"\u0424\u041E\u041D\u0410\u0420\u042C\",\r\n             
+    \"\u0421\u0412\u0415\u0427\u041A\u0410\",\r\n              \"\u0417\u041E\u041D\u0422\u0418\u041A\",\r\n             
+    \"\u0420\u042E\u041A\u0417\u0410\u041A\"\r\n            ]\r\n          }\r\n       
+    ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"3b0a2fab-dff9-4667-a4cb-62bc337d24e9\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"levels_en\",\r\n      \"type\": \"json\",\r\n      \"schemaId\": null,\r\n     
+    \"value\": {\r\n        \"levels\": [\r\n          {\r\n            \"id\": 1,\r\n           
+    \"category\": \"Animals\",\r\n            \"words\": [\r\n              \"MONKEY\",\r\n             
+    \"RABBIT\",\r\n              \"TURTLE\",\r\n              \"BEAVER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 2,\r\n            \"category\":
+    \"Fruits\",\r\n            \"words\": [\r\n              \"ORANGE\",\r\n             
+    \"BANANA\",\r\n              \"CHERRY\",\r\n              \"PAPAYA\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 3,\r\n            \"category\":
+    \"Countries\",\r\n            \"words\": [\r\n              \"FRANCE\",\r\n             
+    \"POLAND\",\r\n              \"MEXICO\",\r\n              \"NORWAY\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 4,\r\n            \"category\":
+    \"Colors\",\r\n            \"words\": [\r\n              \"YELLOW\",\r\n             
+    \"PURPLE\",\r\n              \"VIOLET\",\r\n              \"MAROON\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 5,\r\n            \"category\":
+    \"Body\",\r\n            \"words\": [\r\n              \"FINGER\",\r\n             
+    \"TONGUE\",\r\n              \"EYELID\",\r\n              \"KIDNEY\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 6,\r\n            \"category\":
+    \"Furniture\",\r\n            \"words\": [\r\n              \"DRAWER\",\r\n             
+    \"CLOSET\",\r\n              \"BUREAU\",\r\n              \"SETTEE\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 7,\r\n            \"category\":
+    \"Kitchen\",\r\n            \"words\": [\r\n              \"KETTLE\",\r\n             
+    \"COOKER\",\r\n              \"TUREEN\",\r\n              \"SKEWER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 8,\r\n            \"category\":
+    \"School\",\r\n            \"words\": [\r\n              \"PENCIL\",\r\n             
+    \"MARKER\",\r\n              \"FOLDER\",\r\n              \"ERASER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 9,\r\n            \"category\":
+    \"Sports\",\r\n            \"words\": [\r\n              \"SOCCER\",\r\n             
+    \"TENNIS\",\r\n              \"HOCKEY\",\r\n              \"BOXING\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 10,\r\n            \"category\":
+    \"Space\",\r\n            \"words\": [\r\n              \"PLANET\",\r\n             
+    \"GALAXY\",\r\n              \"METEOR\",\r\n              \"ROCKET\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 11,\r\n            \"category\":
+    \"Jewels\",\r\n            \"words\": [\r\n              \"SILVER\",\r\n             
+    \"GARNET\",\r\n              \"RUBIES\",\r\n              \"PEARLS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 12,\r\n            \"category\":
+    \"Professions\",\r\n            \"words\": [\r\n              \"DOCTOR\",\r\n             
+    \"FARMER\",\r\n              \"WRITER\",\r\n              \"WAITER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 13,\r\n            \"category\":
+    \"Weather\",\r\n            \"words\": [\r\n              \"BREEZE\",\r\n             
+    \"SUNSET\",\r\n              \"STORMY\",\r\n              \"CLOUDY\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 14,\r\n            \"category\":
+    \"Insects\",\r\n            \"words\": [\r\n              \"BEETLE\",\r\n             
+    \"SPIDER\",\r\n              \"MANTIS\",\r\n              \"WEEVIL\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 15,\r\n            \"category\":
+    \"Birds\",\r\n            \"words\": [\r\n              \"TOUCAN\",\r\n             
+    \"FALCON\",\r\n              \"PARROT\",\r\n              \"PIGEON\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 16,\r\n            \"category\":
+    \"Fish\",\r\n            \"words\": [\r\n              \"SALMON\",\r\n             
+    \"MARLIN\",\r\n              \"GOBIES\",\r\n              \"MINNOW\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 17,\r\n            \"category\":
+    \"Tools\",\r\n            \"words\": [\r\n              \"HAMMER\",\r\n             
+    \"WRENCH\",\r\n              \"CHISEL\",\r\n              \"PLIERS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 18,\r\n            \"category\":
+    \"Clothing\",\r\n            \"words\": [\r\n              \"JACKET\",\r\n             
+    \"BEANIE\",\r\n              \"SANDAL\",\r\n              \"JUMPER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 19,\r\n            \"category\":
+    \"Vehicles\",\r\n            \"words\": [\r\n              \"PICKUP\",\r\n             
+    \"TRUCKS\",\r\n              \"MOPEDS\",\r\n              \"WAGONS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 20,\r\n            \"category\":
+    \"Instruments\",\r\n            \"words\": [\r\n              \"VIOLIN\",\r\n             
+    \"GUITAR\",\r\n              \"MARACA\",\r\n              \"BANJOS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 21,\r\n            \"category\":
+    \"Buildings\",\r\n            \"words\": [\r\n              \"CASTLE\",\r\n             
+    \"TEMPLE\",\r\n              \"CHURCH\",\r\n              \"GARAGE\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 22,\r\n            \"category\":
+    \"Toys\",\r\n            \"words\": [\r\n              \"PUZZLE\",\r\n             
+    \"MARBLE\",\r\n              \"ROBOTS\",\r\n              \"RATTLE\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 23,\r\n            \"category\":
+    \"Sweets\",\r\n            \"words\": [\r\n              \"COOKIE\",\r\n             
+    \"TOFFEE\",\r\n              \"NOUGAT\",\r\n              \"WAFFLE\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 24,\r\n            \"category\":
+    \"Drinks\",\r\n            \"words\": [\r\n              \"COFFEE\",\r\n             
+    \"EGGNOG\",\r\n              \"SQUASH\",\r\n              \"MATCHA\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 25,\r\n            \"category\":
+    \"Fabrics\",\r\n            \"words\": [\r\n              \"VELVET\",\r\n             
+    \"FLEECE\",\r\n              \"MOHAIR\",\r\n              \"BURLAP\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 26,\r\n            \"category\":
+    \"Metals\",\r\n            \"words\": [\r\n              \"COPPER\",\r\n             
+    \"BRONZE\",\r\n              \"NICKEL\",\r\n              \"PEWTER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 27,\r\n            \"category\":
+    \"Flowers\",\r\n            \"words\": [\r\n              \"DAHLIA\",\r\n             
+    \"CROCUS\",\r\n              \"TULIPS\",\r\n              \"ORCHID\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 28,\r\n            \"category\":
+    \"Trees\",\r\n            \"words\": [\r\n              \"WILLOW\",\r\n             
+    \"WALNUT\",\r\n              \"SPRUCE\",\r\n              \"POPLAR\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 29,\r\n            \"category\":
+    \"Reptiles\",\r\n            \"words\": [\r\n              \"LIZARD\",\r\n             
+    \"IGUANA\",\r\n              \"GECKOS\",\r\n              \"COBRAS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 30,\r\n            \"category\":
+    \"Sea animals\",\r\n            \"words\": [\r\n              \"OYSTER\",\r\n             
+    \"SHRIMP\",\r\n              \"URCHIN\",\r\n              \"WALRUS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 31,\r\n            \"category\":
+    \"Holidays\",\r\n            \"words\": [\r\n              \"EASTER\",\r\n             
+    \"PICNIC\",\r\n              \"PARADE\",\r\n              \"FIESTA\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 32,\r\n            \"category\":
+    \"Capitals\",\r\n            \"words\": [\r\n              \"LONDON\",\r\n             
+    \"MOSCOW\",\r\n              \"MADRID\",\r\n              \"OTTAWA\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 33,\r\n            \"category\":
+    \"Space 2\",\r\n            \"words\": [\r\n              \"SATURN\",\r\n             
+    \"URANUS\",\r\n              \"COSMOS\",\r\n              \"ASTRAL\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 34,\r\n            \"category\":
+    \"Games\",\r\n            \"words\": [\r\n              \"DOMINO\",\r\n             
+    \"RIDDLE\",\r\n              \"ARCADE\",\r\n              \"CARROM\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 35,\r\n            \"category\":
+    \"Landscape\",\r\n            \"words\": [\r\n              \"VALLEY\",\r\n             
+    \"FOREST\",\r\n              \"DESERT\",\r\n              \"CANYON\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 36,\r\n            \"category\":
+    \"Everyday objects\",\r\n            \"words\": [\r\n              \"WALLET\",\r\n             
+    \"PILLOW\",\r\n              \"BASKET\",\r\n              \"BOTTLE\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 37,\r\n            \"category\":
+    \"Electronics\",\r\n            \"words\": [\r\n              \"CAMERA\",\r\n             
+    \"TABLET\",\r\n              \"MODEMS\",\r\n              \"GADGET\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 38,\r\n            \"category\":
+    \"Home textile\",\r\n            \"words\": [\r\n              \"DUVETS\",\r\n             
+    \"SHEETS\",\r\n              \"THROWS\",\r\n              \"DRAPES\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 39,\r\n            \"category\":
+    \"Weapons\",\r\n            \"words\": [\r\n              \"DAGGER\",\r\n             
+    \"MUSKET\",\r\n              \"SABERS\",\r\n              \"ARROWS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 40,\r\n            \"category\":
+    \"Vegetables\",\r\n            \"words\": [\r\n              \"CARROT\",\r\n             
+    \"POTATO\",\r\n              \"ONIONS\",\r\n              \"TURNIP\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 41,\r\n            \"category\":
+    \"Animals 2\",\r\n            \"words\": [\r\n              \"JAGUAR\",\r\n             
+    \"OTTERS\",\r\n              \"BADGER\",\r\n              \"WEASEL\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 42,\r\n            \"category\":
+    \"Professions 2\",\r\n            \"words\": [\r\n              \"LAWYER\",\r\n             
+    \"TAILOR\",\r\n              \"BARBER\",\r\n              \"DRIVER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 43,\r\n            \"category\":
+    \"Fruits 2\",\r\n            \"words\": [\r\n              \"LYCHEE\",\r\n             
+    \"QUINCE\",\r\n              \"GUAVAS\",\r\n              \"MELONS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 44,\r\n            \"category\":
+    \"Countries 2\",\r\n            \"words\": [\r\n              \"ISRAEL\",\r\n             
+    \"SWEDEN\",\r\n              \"KUWAIT\",\r\n              \"BELIZE\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 45,\r\n            \"category\":
+    \"Clothing 2\",\r\n            \"words\": [\r\n              \"BLOUSE\",\r\n             
+    \"GLOVES\",\r\n              \"HOODIE\",\r\n              \"ROMPER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 46,\r\n            \"category\":
+    \"Furniture 2\",\r\n            \"words\": [\r\n              \"LOUNGE\",\r\n             
+    \"DAYBED\",\r\n              \"STOOLS\",\r\n              \"SCREEN\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 47,\r\n            \"category\":
+    \"Shoes\",\r\n            \"words\": [\r\n              \"LOAFER\",\r\n             
+    \"OXFORD\",\r\n              \"BOOTIE\",\r\n              \"WEDGES\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 48,\r\n            \"category\":
+    \"Headwear\",\r\n            \"words\": [\r\n              \"FEDORA\",\r\n             
+    \"BONNET\",\r\n              \"VISORS\",\r\n              \"BERETS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 49,\r\n            \"category\":
+    \"Kitchen 2\",\r\n            \"words\": [\r\n              \"PLATES\",\r\n             
+    \"SPOONS\",\r\n              \"TRIVET\",\r\n              \"TEAPOT\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 50,\r\n            \"category\":
+    \"Nature\",\r\n            \"words\": [\r\n              \"PEBBLE\",\r\n             
+    \"BRANCH\",\r\n              \"ACORNS\",\r\n              \"BUSHES\"\r\n           
+    ]\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n]"
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"443ef24b-4cd8-470f-8ad8-7045faaf51e9\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"levels_ru\",\r\n      \"type\": \"json\",\r\n     
+    \"schemaId\": null,\r\n      \"value\": {\r\n        \"levels\": [\r\n         
+    {\r\n            \"id\": 1,\r\n            \"category\": \"\u0421\u0442\u0440\u0430\u043D\u044B\",\r\n           
+    \"words\": [\r\n              \"\u0410\u0424\u0420\u0418\u041A\u0410\",\r\n             
+    \"\u0420\u041E\u0421\u0421\u0418\u042F\",\r\n              \"\u042F\u041F\u041E\u041D\u0418\u042F\",\r\n             
+    \"\u0413\u0420\u0415\u0426\u0418\u042F\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 2,\r\n            \"category\": \"\u0424\u0440\u0443\u043A\u0442\u044B\",\r\n           
+    \"words\": [\r\n              \"\u041F\u0415\u0420\u0421\u0418\u041A\",\r\n             
+    \"\u042F\u0411\u041B\u041E\u041A\u041E\",\r\n              \"\u041C\u0410\u041B\u0418\u041D\u0410\",\r\n             
+    \"\u0420\u042F\u0411\u0418\u041D\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 3,\r\n            \"category\": \"\u041E\u0434\u0435\u0436\u0434\u0430\",\r\n           
+    \"words\": [\r\n              \"\u0428\u0418\u041D\u0415\u041B\u042C\",\r\n             
+    \"\u0411\u041B\u0423\u0417\u041A\u0410\",\r\n              \"\u0421\u0412\u0418\u0422\u0415\u0420\",\r\n             
+    \"\u041F\u041B\u0410\u0422\u041E\u041A\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 4,\r\n            \"category\": \"\u0416\u0438\u0432\u043E\u0442\u043D\u044B\u0435\",\r\n           
+    \"words\": [\r\n              \"\u0421\u041E\u0411\u0410\u041A\u0410\",\r\n             
+    \"\u041C\u0410\u041A\u0410\u041A\u0410\",\r\n              \"\u0411\u0423\u0419\u0412\u041E\u041B\",\r\n             
+    \"\u041B\u041E\u0428\u0410\u0414\u042C\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 5,\r\n            \"category\": \"\u041F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0438\",\r\n           
+    \"words\": [\r\n              \"\u0414\u041E\u041A\u0422\u041E\u0420\",\r\n             
+    \"\u0425\u0418\u0420\u0423\u0420\u0413\",\r\n              \"\u0410\u0420\u0422\u0418\u0421\u0422\",\r\n             
+    \"\u041E\u0424\u0418\u0426\u0415\u0420\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 6,\r\n            \"category\": \"\u041E\u0432\u043E\u0449\u0438\",\r\n           
+    \"words\": [\r\n              \"\u0424\u0410\u0421\u041E\u041B\u042C\",\r\n             
+    \"\u0426\u0423\u041A\u0418\u041D\u0418\",\r\n              \"\u0420\u0415\u0414\u042C\u041A\u0410\",\r\n             
+    \"\u0428\u041F\u0418\u041D\u0410\u0422\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 7,\r\n            \"category\": \"\u041F\u0442\u0438\u0446\u044B\",\r\n           
+    \"words\": [\r\n              \"\u0421\u0418\u041D\u0418\u0426\u0410\",\r\n             
+    \"\u0421\u041E\u0420\u041E\u041A\u0410\",\r\n              \"\u0413\u041E\u041B\u0423\u0411\u042C\",\r\n             
+    \"\u041F\u0410\u0412\u041B\u0418\u041D\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 8,\r\n            \"category\": \"\u0420\u044B\u0431\u044B\",\r\n           
+    \"words\": [\r\n              \"\u0421\u0415\u041B\u042C\u0414\u042C\",\r\n             
+    \"\u041B\u041E\u0421\u041E\u0421\u042C\",\r\n              \"\u041A\u0410\u0420\u0410\u0421\u042C\",\r\n             
+    \"\u0424\u041E\u0420\u0415\u041B\u042C\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 9,\r\n            \"category\": \"\u0422\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442\",\r\n           
+    \"words\": [\r\n              \"\u041C\u0410\u0428\u0418\u041D\u0410\",\r\n             
+    \"\u0420\u0410\u041A\u0415\u0422\u0410\",\r\n              \"\u041A\u0410\u0420\u0415\u0422\u0410\",\r\n             
+    \"\u0422\u0415\u041B\u0415\u0413\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 10,\r\n            \"category\": \"\u0421\u043F\u043E\u0440\u0442\",\r\n           
+    \"words\": [\r\n              \"\u0424\u0423\u0422\u0411\u041E\u041B\",\r\n             
+    \"\u0425\u041E\u041A\u041A\u0415\u0419\",\r\n              \"\u0422\u0415\u041D\u041D\u0418\u0421\",\r\n             
+    \"\u0411\u041E\u0420\u042C\u0411\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 11,\r\n            \"category\": \"\u041F\u043E\u0433\u043E\u0434\u0430\",\r\n           
+    \"words\": [\r\n              \"\u041C\u041E\u041B\u041D\u0418\u042F\",\r\n             
+    \"\u0417\u0410\u0421\u0423\u0425\u0410\",\r\n              \"\u041F\u041E\u0413\u041E\u0414\u0410\",\r\n             
+    \"\u041C\u0415\u0422\u0415\u041B\u042C\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 12,\r\n            \"category\": \"\u041A\u043E\u0441\u043C\u043E\u0441\",\r\n           
+    \"words\": [\r\n              \"\u041A\u041E\u041C\u0415\u0422\u0410\",\r\n             
+    \"\u041E\u0420\u0411\u0418\u0422\u0410\",\r\n              \"\u0417\u0412\u0415\u0417\u0414\u0410\",\r\n             
+    \"\u041C\u0415\u0422\u0415\u041E\u0420\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 13,\r\n            \"category\": \"\u041A\u0430\u043C\u043D\u0438\",\r\n           
+    \"words\": [\r\n              \"\u042F\u041D\u0422\u0410\u0420\u042C\",\r\n             
+    \"\u0421\u0410\u041F\u0424\u0418\u0420\",\r\n              \"\u0416\u0415\u041C\u0427\u0423\u0413\",\r\n             
+    \"\u041A\u041E\u0420\u0410\u041B\u041B\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 14,\r\n            \"category\": \"\u041F\u0440\u043E\u0434\u0443\u043A\u0442\u044B\",\r\n           
+    \"words\": [\r\n              \"\u041A\u041E\u041C\u041F\u041E\u0422\",\r\n             
+    \"\u0419\u041E\u0413\u0423\u0420\u0422\",\r\n              \"\u0422\u0412\u041E\u0420\u041E\u0413\",\r\n             
+    \"\u041D\u0410\u0421\u0422\u041E\u0419\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 15,\r\n            \"category\": \"\u0421\u043B\u0430\u0434\u043E\u0441\u0442\u0438\",\r\n           
+    \"words\": [\r\n              \"\u041F\u0420\u042F\u041D\u0418\u041A\",\r\n             
+    \"\u041F\u041E\u041D\u0427\u0418\u041A\",\r\n              \"\u0422\u041E\u0420\u0422\u0418\u041A\",\r\n             
+    \"\u0418\u0420\u0418\u0421\u041A\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 16,\r\n            \"category\": \"\u0428\u043A\u043E\u043B\u0430\",\r\n           
+    \"words\": [\r\n              \"\u041C\u0410\u0420\u041A\u0415\u0420\",\r\n             
+    \"\u0410\u041B\u042C\u0411\u041E\u041C\",\r\n              \"\u0411\u0423\u041C\u0410\u0413\u0410\",\r\n             
+    \"\u0413\u041B\u041E\u0411\u0423\u0421\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 17,\r\n            \"category\": \"\u0422\u0435\u043B\u043E\",\r\n           
+    \"words\": [\r\n              \"\u041B\u041E\u041A\u041E\u0422\u042C\",\r\n             
+    \"\u041B\u0410\u0414\u041E\u041D\u042C\",\r\n              \"\u041A\u041E\u041B\u0415\u041D\u041E\",\r\n             
+    \"\u0417\u0420\u0410\u0427\u041E\u041A\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 18,\r\n            \"category\": \"\u0417\u0434\u0430\u043D\u0438\u044F\",\r\n           
+    \"words\": [\r\n              \"\u0414\u0412\u041E\u0420\u0415\u0426\",\r\n             
+    \"\u041A\u041E\u0421\u0422\u0401\u041B\",\r\n              \"\u041C\u0415\u0427\u0415\u0422\u042C\",\r\n             
+    \"\u0412\u041E\u041A\u0417\u0410\u041B\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 19,\r\n            \"category\": \"\u041E\u0440\u0443\u0436\u0438\u0435\",\r\n           
+    \"words\": [\r\n              \"\u041C\u0423\u0428\u041A\u0415\u0422\",\r\n             
+    \"\u041A\u0418\u041D\u0416\u0410\u041B\",\r\n              \"\u041F\u0410\u041B\u0418\u0426\u0410\",\r\n             
+    \"\u041F\u0418\u0429\u0410\u041B\u042C\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 20,\r\n            \"category\": \"\u0418\u0433\u0440\u0443\u0448\u043A\u0438\",\r\n           
+    \"words\": [\r\n              \"\u041A\u0423\u0411\u0418\u041A\u0418\",\r\n             
+    \"\u0412\u041E\u041B\u0427\u041E\u041A\",\r\n              \"\u041A\u0410\u0427\u0415\u041B\u0418\",\r\n             
+    \"\u0417\u041C\u0415\u0419\u041A\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 21,\r\n            \"category\": \"\u0418\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442\u044B\",\r\n           
+    \"words\": [\r\n              \"\u041B\u041E\u041F\u0410\u0422\u0410\",\r\n             
+    \"\u041B\u041E\u0411\u0417\u0418\u041A\",\r\n              \"\u0417\u0423\u0411\u0418\u041B\u041E\",\r\n             
+    \"\u0414\u041E\u041B\u041E\u0422\u041E\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 22,\r\n            \"category\": \"\u041F\u043E\u0441\u0443\u0434\u0430\",\r\n           
+    \"words\": [\r\n              \"\u041A\u041E\u0412\u0428\u0418\u041A\",\r\n             
+    \"\u041A\u0420\u0423\u0416\u041A\u0410\",\r\n              \"\u0413\u0420\u0410\u0424\u0418\u041D\",\r\n             
+    \"\u041F\u041E\u0414\u041D\u041E\u0421\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 23,\r\n            \"category\": \"\u041C\u0435\u0431\u0435\u043B\u044C\",\r\n           
+    \"words\": [\r\n              \"\u041A\u0420\u0415\u0421\u041B\u041E\",\r\n             
+    \"\u0421\u0423\u041D\u0414\u0423\u041A\",\r\n              \"\u0421\u041A\u0410\u041C\u042C\u042F\",\r\n             
+    \"\u041F\u041E\u041B\u0410\u0422\u0418\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 24,\r\n            \"category\": \"\u041E\u0431\u0443\u0432\u044C\",\r\n           
+    \"words\": [\r\n              \"\u0413\u0410\u041B\u041E\u0428\u0418\",\r\n             
+    \"\u0411\u0410\u0425\u0418\u041B\u042B\",\r\n              \"\u0428\u041B\u0401\u041F\u041A\u0418\",\r\n             
+    \"\u0428\u041D\u0423\u0420\u041A\u0418\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 25,\r\n            \"category\": \"\u0413\u043E\u043B\u043E\u0432\u043D\u044B\u0435
+    \u0443\u0431\u043E\u0440\u044B\",\r\n            \"words\": [\r\n             
+    \"\u041F\u0410\u041D\u0410\u041C\u0410\",\r\n              \"\u0428\u041B\u042F\u041F\u041A\u0410\",\r\n             
+    \"\u0423\u0428\u0410\u041D\u041A\u0410\",\r\n              \"\u041A\u041E\u041B\u041F\u0410\u041A\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 26,\r\n            \"category\":
+    \"\u0422\u043A\u0430\u043D\u0438\",\r\n            \"words\": [\r\n             
+    \"\u0425\u041B\u041E\u041F\u041E\u041A\",\r\n              \"\u0411\u0410\u0422\u0418\u0421\u0422\",\r\n             
+    \"\u0412\u041E\u0419\u041B\u041E\u041A\",\r\n              \"\u041C\u0423\u0421\u041B\u0418\u041D\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 27,\r\n            \"category\":
+    \"\u041C\u0435\u0442\u0430\u043B\u043B\u044B\",\r\n            \"words\": [\r\n             
+    \"\u0417\u041E\u041B\u041E\u0422\u041E\",\r\n              \"\u041B\u0410\u0422\u0423\u041D\u042C\",\r\n             
+    \"\u0411\u0420\u041E\u041D\u0417\u0410\",\r\n              \"\u041D\u0418\u041A\u0415\u041B\u042C\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 28,\r\n            \"category\":
+    \"\u0424\u0440\u0443\u043A\u0442\u044B \u0438 \u044F\u0433\u043E\u0434\u044B\",\r\n           
+    \"words\": [\r\n              \"\u041A\u041B\u042E\u041A\u0412\u0410\",\r\n             
+    \"\u0411\u0410\u041D\u0410\u041D\u042B\",\r\n              \"\u0410\u041D\u0410\u041D\u0410\u0421\",\r\n             
+    \"\u0413\u0420\u0410\u041D\u0410\u0422\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 29,\r\n            \"category\": \"\u041C\u043E\u0440\u0441\u043A\u0438\u0435
+    \u0436\u0438\u0432\u043E\u0442\u043D\u044B\u0435\",\r\n            \"words\":
+    [\r\n              \"\u041C\u0415\u0414\u0423\u0417\u0410\",\r\n             
+    \"\u0422\u042E\u041B\u0415\u041D\u042C\",\r\n              \"\u041A\u0420\u0410\u0411\u0418\u041A\",\r\n             
+    \"\u041C\u041E\u0420\u0416\u0418\u041A\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 30,\r\n            \"category\": \"\u041F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0438
+    2\",\r\n            \"words\": [\r\n              \"\u041F\u0415\u041A\u0410\u0420\u042C\",\r\n             
+    \"\u041A\u0423\u0417\u041D\u0415\u0426\",\r\n              \"\u041B\u0401\u0422\u0427\u0418\u041A\",\r\n             
+    \"\u041F\u0415\u0412\u0418\u0426\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 31,\r\n            \"category\": \"\u0421\u0442\u0440\u0430\u043D\u044B
+    2\",\r\n            \"words\": [\r\n              \"\u0422\u0423\u0420\u0426\u0418\u042F\",\r\n             
+    \"\u041A\u0410\u041D\u0410\u0414\u0410\",\r\n              \"\u0418\u0422\u0410\u041B\u0418\u042F\",\r\n             
+    \"\u0415\u0413\u0418\u041F\u0415\u0422\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 32,\r\n            \"category\": \"\u041E\u0434\u0435\u0436\u0434\u0430
+    2\",\r\n            \"words\": [\r\n              \"\u041F\u0418\u0414\u0416\u0410\u041A\",\r\n             
+    \"\u041A\u0423\u0420\u0422\u041A\u0410\",\r\n              \"\u041A\u041E\u0421\u0422\u042E\u041C\",\r\n             
+    \"\u041F\u0410\u041B\u042C\u0422\u041E\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 33,\r\n            \"category\": \"\u0416\u0438\u0432\u043E\u0442\u043D\u044B\u0435
+    2\",\r\n            \"words\": [\r\n              \"\u0411\u0410\u0420\u0421\u0423\u041A\",\r\n             
+    \"\u041B\u0418\u0421\u0418\u0426\u0410\",\r\n              \"\u041A\u0423\u041D\u0418\u0426\u0410\",\r\n             
+    \"\u0413\u0415\u041F\u0410\u0420\u0414\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 34,\r\n            \"category\": \"\u0415\u0434\u0430\",\r\n           
+    \"words\": [\r\n              \"\u041C\u041E\u041B\u041E\u041A\u041E\",\r\n             
+    \"\u041A\u0415\u0422\u0427\u0423\u041F\",\r\n              \"\u041E\u041B\u0418\u0412\u042C\u0415\",\r\n             
+    \"\u0411\u041E\u0420\u0429\u0418\u041A\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 35,\r\n            \"category\": \"\u0417\u0434\u0430\u043D\u0438\u044F
+    2\",\r\n            \"words\": [\r\n              \"\u0410\u041F\u0422\u0415\u041A\u0410\",\r\n             
+    \"\u0422\u042E\u0420\u042C\u041C\u0410\",\r\n              \"\u0425\u0418\u0416\u0418\u041D\u0410\",\r\n             
+    \"\u041B\u0410\u0427\u0423\u0413\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 36,\r\n            \"category\": \"\u0421\u043F\u043E\u0440\u0442
+    2\",\r\n            \"words\": [\r\n              \"\u041A\u0410\u0420\u0410\u0422\u042D\",\r\n             
+    \"\u041F\u0410\u0420\u041A\u0423\u0420\",\r\n              \"\u0424\u0420\u0418\u0421\u0411\u0418\",\r\n             
+    \"\u0410\u0419\u041A\u0418\u0414\u041E\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 37,\r\n            \"category\": \"\u0422\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442
+    2\",\r\n            \"words\": [\r\n              \"\u0422\u0410\u041D\u041A\u0415\u0420\",\r\n             
+    \"\u0411\u0423\u041A\u0421\u0418\u0420\",\r\n              \"\u0424\u0423\u0420\u0413\u041E\u041D\",\r\n             
+    \"\u041B\u0410\u0419\u041D\u0415\u0420\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 38,\r\n            \"category\": \"\u041F\u043E\u0433\u043E\u0434\u0430
+    2\",\r\n            \"words\": [\r\n              \"\u0420\u0410\u0414\u0423\u0413\u0410\",\r\n             
+    \"\u041B\u0418\u0412\u0415\u041D\u042C\",\r\n              \"\u041E\u0411\u041B\u0410\u041A\u041E\",\r\n             
+    \"\u0421\u0423\u0413\u0420\u041E\u0411\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 39,\r\n            \"category\": \"\u041A\u043E\u0441\u043C\u043E\u0441
+    2\",\r\n            \"words\": [\r\n              \"\u041A\u041E\u0421\u041C\u041E\u0421\",\r\n             
+    \"\u041C\u041E\u0414\u0423\u041B\u042C\",\r\n              \"\u0421\u041E\u041B\u041D\u0426\u0415\",\r\n             
+    \"\u0417\u0410\u041F\u0423\u0421\u041A\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 40,\r\n            \"category\": \"\u041A\u0430\u043C\u043D\u0438
+    2\",\r\n            \"words\": [\r\n              \"\u0410\u041B\u041C\u0410\u0417\u042B\",\r\n             
+    \"\u0420\u0423\u0411\u0418\u041D\u042B\",\r\n              \"\u0422\u041E\u041F\u0410\u0417\u042B\",\r\n             
+    \"\u0411\u0418\u0420\u042E\u0417\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 41,\r\n            \"category\": \"\u0418\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442\u044B
+    2\",\r\n            \"words\": [\r\n              \"\u0413\u0412\u041E\u0417\u0414\u0418\",\r\n             
+    \"\u0428\u0423\u0420\u0423\u041F\u042B\",\r\n              \"\u0417\u0410\u0416\u0418\u041C\u042B\",\r\n             
+    \"\u041A\u0418\u042F\u041D\u041A\u0410\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 42,\r\n            \"category\": \"\u0414\u043E\u043C\",\r\n           
+    \"words\": [\r\n              \"\u041E\u0414\u0415\u042F\u041B\u041E\",\r\n             
+    \"\u0428\u0422\u041E\u0420\u041A\u0410\",\r\n              \"\u041A\u041E\u0412\u0420\u0418\u041A\",\r\n             
+    \"\u041C\u0410\u0422\u0420\u0410\u0421\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 43,\r\n            \"category\": \"\u0422\u0435\u0445\u043D\u0438\u043A\u0430\",\r\n           
+    \"words\": [\r\n              \"\u041A\u0410\u041C\u0415\u0420\u0410\",\r\n             
+    \"\u0420\u041E\u0423\u0422\u0415\u0420\",\r\n              \"\u0424\u041B\u0415\u0428\u041A\u0410\",\r\n             
+    \"\u0413\u0410\u0414\u0416\u0415\u0422\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 44,\r\n            \"category\": \"\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438\",\r\n           
+    \"words\": [\r\n              \"\u042E\u0411\u0418\u041B\u0415\u0419\",\r\n             
+    \"\u041C\u0418\u0428\u0423\u0420\u0410\",\r\n              \"\u0411\u0410\u041D\u041A\u0415\u0422\",\r\n             
+    \"\u0428\u0410\u0420\u0418\u041A\u0418\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 45,\r\n            \"category\": \"\u0421\u0442\u043E\u043B\u0438\u0446\u044B\",\r\n           
+    \"words\": [\r\n              \"\u041C\u041E\u0421\u041A\u0412\u0410\",\r\n             
+    \"\u041B\u041E\u041D\u0414\u041E\u041D\",\r\n              \"\u0411\u0415\u0420\u041B\u0418\u041D\",\r\n             
+    \"\u041C\u0410\u0414\u0420\u0418\u0414\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 46,\r\n            \"category\": \"\u041F\u043B\u0430\u043D\u0435\u0442\u044B\",\r\n           
+    \"words\": [\r\n              \"\u0412\u0415\u041D\u0415\u0420\u0410\",\r\n             
+    \"\u042E\u041F\u0418\u0422\u0415\u0420\",\r\n              \"\u0421\u0410\u0422\u0423\u0420\u041D\",\r\n             
+    \"\u041D\u0415\u041F\u0422\u0423\u041D\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 47,\r\n            \"category\": \"\u041D\u0430\u0441\u0435\u043A\u043E\u043C\u044B\u0435\",\r\n           
+    \"words\": [\r\n              \"\u0426\u0418\u041A\u0410\u0414\u0410\",\r\n             
+    \"\u0422\u0415\u0420\u041C\u0418\u0422\",\r\n              \"\u041F\u0410\u0423\u0427\u041E\u041A\",\r\n             
+    \"\u041A\u041E\u041C\u0410\u0420\u042B\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 48,\r\n            \"category\": \"\u0418\u0433\u0440\u044B\",\r\n           
+    \"words\": [\r\n              \"\u0414\u041E\u041C\u0418\u041D\u041E\",\r\n             
+    \"\u0420\u0415\u0411\u0423\u0421\u042B\",\r\n              \"\u0416\u041C\u0423\u0420\u041A\u0418\",\r\n             
+    \"\u041F\u0420\u042F\u0422\u041A\u0418\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 49,\r\n            \"category\": \"\u041B\u0430\u043D\u0434\u0448\u0430\u0444\u0442\",\r\n           
+    \"words\": [\r\n              \"\u0414\u041E\u041B\u0418\u041D\u0410\",\r\n             
+    \"\u041E\u0421\u0422\u0420\u041E\u0412\",\r\n              \"\u041F\u041E\u041B\u042F\u041D\u0410\",\r\n             
+    \"\u0411\u041E\u041B\u041E\u0422\u041E\"\r\n            ]\r\n          },\r\n         
+    {\r\n            \"id\": 50,\r\n            \"category\": \"\u0411\u044B\u0442\",\r\n           
+    \"words\": [\r\n              \"\u0424\u041E\u041D\u0410\u0420\u042C\",\r\n             
+    \"\u0421\u0412\u0415\u0427\u041A\u0410\",\r\n              \"\u0417\u041E\u041D\u0422\u0418\u041A\",\r\n             
+    \"\u0420\u042E\u041A\u0417\u0410\u041A\"\r\n            ]\r\n          }\r\n       
+    ]\r\n      }\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"3b0a2fab-dff9-4667-a4cb-62bc337d24e9\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"levels_en\",\r\n      \"type\": \"json\",\r\n      \"schemaId\": null,\r\n     
+    \"value\": {\r\n        \"levels\": [\r\n          {\r\n            \"id\": 1,\r\n           
+    \"category\": \"Animals\",\r\n            \"words\": [\r\n              \"MONKEY\",\r\n             
+    \"RABBIT\",\r\n              \"TURTLE\",\r\n              \"BEAVER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 2,\r\n            \"category\":
+    \"Fruits\",\r\n            \"words\": [\r\n              \"ORANGE\",\r\n             
+    \"BANANA\",\r\n              \"CHERRY\",\r\n              \"PAPAYA\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 3,\r\n            \"category\":
+    \"Countries\",\r\n            \"words\": [\r\n              \"FRANCE\",\r\n             
+    \"POLAND\",\r\n              \"MEXICO\",\r\n              \"NORWAY\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 4,\r\n            \"category\":
+    \"Colors\",\r\n            \"words\": [\r\n              \"YELLOW\",\r\n             
+    \"PURPLE\",\r\n              \"VIOLET\",\r\n              \"MAROON\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 5,\r\n            \"category\":
+    \"Body\",\r\n            \"words\": [\r\n              \"FINGER\",\r\n             
+    \"TONGUE\",\r\n              \"EYELID\",\r\n              \"KIDNEY\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 6,\r\n            \"category\":
+    \"Furniture\",\r\n            \"words\": [\r\n              \"DRAWER\",\r\n             
+    \"CLOSET\",\r\n              \"BUREAU\",\r\n              \"SETTEE\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 7,\r\n            \"category\":
+    \"Kitchen\",\r\n            \"words\": [\r\n              \"KETTLE\",\r\n             
+    \"COOKER\",\r\n              \"TUREEN\",\r\n              \"SKEWER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 8,\r\n            \"category\":
+    \"School\",\r\n            \"words\": [\r\n              \"PENCIL\",\r\n             
+    \"MARKER\",\r\n              \"FOLDER\",\r\n              \"ERASER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 9,\r\n            \"category\":
+    \"Sports\",\r\n            \"words\": [\r\n              \"SOCCER\",\r\n             
+    \"TENNIS\",\r\n              \"HOCKEY\",\r\n              \"BOXING\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 10,\r\n            \"category\":
+    \"Space\",\r\n            \"words\": [\r\n              \"PLANET\",\r\n             
+    \"GALAXY\",\r\n              \"METEOR\",\r\n              \"ROCKET\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 11,\r\n            \"category\":
+    \"Jewels\",\r\n            \"words\": [\r\n              \"SILVER\",\r\n             
+    \"GARNET\",\r\n              \"RUBIES\",\r\n              \"PEARLS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 12,\r\n            \"category\":
+    \"Professions\",\r\n            \"words\": [\r\n              \"DOCTOR\",\r\n             
+    \"FARMER\",\r\n              \"WRITER\",\r\n              \"WAITER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 13,\r\n            \"category\":
+    \"Weather\",\r\n            \"words\": [\r\n              \"BREEZE\",\r\n             
+    \"SUNSET\",\r\n              \"STORMY\",\r\n              \"CLOUDY\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 14,\r\n            \"category\":
+    \"Insects\",\r\n            \"words\": [\r\n              \"BEETLE\",\r\n             
+    \"SPIDER\",\r\n              \"MANTIS\",\r\n              \"WEEVIL\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 15,\r\n            \"category\":
+    \"Birds\",\r\n            \"words\": [\r\n              \"TOUCAN\",\r\n             
+    \"FALCON\",\r\n              \"PARROT\",\r\n              \"PIGEON\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 16,\r\n            \"category\":
+    \"Fish\",\r\n            \"words\": [\r\n              \"SALMON\",\r\n             
+    \"MARLIN\",\r\n              \"GOBIES\",\r\n              \"MINNOW\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 17,\r\n            \"category\":
+    \"Tools\",\r\n            \"words\": [\r\n              \"HAMMER\",\r\n             
+    \"WRENCH\",\r\n              \"CHISEL\",\r\n              \"PLIERS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 18,\r\n            \"category\":
+    \"Clothing\",\r\n            \"words\": [\r\n              \"JACKET\",\r\n             
+    \"BEANIE\",\r\n              \"SANDAL\",\r\n              \"JUMPER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 19,\r\n            \"category\":
+    \"Vehicles\",\r\n            \"words\": [\r\n              \"PICKUP\",\r\n             
+    \"TRUCKS\",\r\n              \"MOPEDS\",\r\n              \"WAGONS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 20,\r\n            \"category\":
+    \"Instruments\",\r\n            \"words\": [\r\n              \"VIOLIN\",\r\n             
+    \"GUITAR\",\r\n              \"MARACA\",\r\n              \"BANJOS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 21,\r\n            \"category\":
+    \"Buildings\",\r\n            \"words\": [\r\n              \"CASTLE\",\r\n             
+    \"TEMPLE\",\r\n              \"CHURCH\",\r\n              \"GARAGE\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 22,\r\n            \"category\":
+    \"Toys\",\r\n            \"words\": [\r\n              \"PUZZLE\",\r\n             
+    \"MARBLE\",\r\n              \"ROBOTS\",\r\n              \"RATTLE\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 23,\r\n            \"category\":
+    \"Sweets\",\r\n            \"words\": [\r\n              \"COOKIE\",\r\n             
+    \"TOFFEE\",\r\n              \"NOUGAT\",\r\n              \"WAFFLE\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 24,\r\n            \"category\":
+    \"Drinks\",\r\n            \"words\": [\r\n              \"COFFEE\",\r\n             
+    \"EGGNOG\",\r\n              \"SQUASH\",\r\n              \"MATCHA\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 25,\r\n            \"category\":
+    \"Fabrics\",\r\n            \"words\": [\r\n              \"VELVET\",\r\n             
+    \"FLEECE\",\r\n              \"MOHAIR\",\r\n              \"BURLAP\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 26,\r\n            \"category\":
+    \"Metals\",\r\n            \"words\": [\r\n              \"COPPER\",\r\n             
+    \"BRONZE\",\r\n              \"NICKEL\",\r\n              \"PEWTER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 27,\r\n            \"category\":
+    \"Flowers\",\r\n            \"words\": [\r\n              \"DAHLIA\",\r\n             
+    \"CROCUS\",\r\n              \"TULIPS\",\r\n              \"ORCHID\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 28,\r\n            \"category\":
+    \"Trees\",\r\n            \"words\": [\r\n              \"WILLOW\",\r\n             
+    \"WALNUT\",\r\n              \"SPRUCE\",\r\n              \"POPLAR\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 29,\r\n            \"category\":
+    \"Reptiles\",\r\n            \"words\": [\r\n              \"LIZARD\",\r\n             
+    \"IGUANA\",\r\n              \"GECKOS\",\r\n              \"COBRAS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 30,\r\n            \"category\":
+    \"Sea animals\",\r\n            \"words\": [\r\n              \"OYSTER\",\r\n             
+    \"SHRIMP\",\r\n              \"URCHIN\",\r\n              \"WALRUS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 31,\r\n            \"category\":
+    \"Holidays\",\r\n            \"words\": [\r\n              \"EASTER\",\r\n             
+    \"PICNIC\",\r\n              \"PARADE\",\r\n              \"FIESTA\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 32,\r\n            \"category\":
+    \"Capitals\",\r\n            \"words\": [\r\n              \"LONDON\",\r\n             
+    \"MOSCOW\",\r\n              \"MADRID\",\r\n              \"OTTAWA\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 33,\r\n            \"category\":
+    \"Space 2\",\r\n            \"words\": [\r\n              \"SATURN\",\r\n             
+    \"URANUS\",\r\n              \"COSMOS\",\r\n              \"ASTRAL\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 34,\r\n            \"category\":
+    \"Games\",\r\n            \"words\": [\r\n              \"DOMINO\",\r\n             
+    \"RIDDLE\",\r\n              \"ARCADE\",\r\n              \"CARROM\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 35,\r\n            \"category\":
+    \"Landscape\",\r\n            \"words\": [\r\n              \"VALLEY\",\r\n             
+    \"FOREST\",\r\n              \"DESERT\",\r\n              \"CANYON\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 36,\r\n            \"category\":
+    \"Everyday objects\",\r\n            \"words\": [\r\n              \"WALLET\",\r\n             
+    \"PILLOW\",\r\n              \"BASKET\",\r\n              \"BOTTLE\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 37,\r\n            \"category\":
+    \"Electronics\",\r\n            \"words\": [\r\n              \"CAMERA\",\r\n             
+    \"TABLET\",\r\n              \"MODEMS\",\r\n              \"GADGET\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 38,\r\n            \"category\":
+    \"Home textile\",\r\n            \"words\": [\r\n              \"DUVETS\",\r\n             
+    \"SHEETS\",\r\n              \"THROWS\",\r\n              \"DRAPES\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 39,\r\n            \"category\":
+    \"Weapons\",\r\n            \"words\": [\r\n              \"DAGGER\",\r\n             
+    \"MUSKET\",\r\n              \"SABERS\",\r\n              \"ARROWS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 40,\r\n            \"category\":
+    \"Vegetables\",\r\n            \"words\": [\r\n              \"CARROT\",\r\n             
+    \"POTATO\",\r\n              \"ONIONS\",\r\n              \"TURNIP\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 41,\r\n            \"category\":
+    \"Animals 2\",\r\n            \"words\": [\r\n              \"JAGUAR\",\r\n             
+    \"OTTERS\",\r\n              \"BADGER\",\r\n              \"WEASEL\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 42,\r\n            \"category\":
+    \"Professions 2\",\r\n            \"words\": [\r\n              \"LAWYER\",\r\n             
+    \"TAILOR\",\r\n              \"BARBER\",\r\n              \"DRIVER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 43,\r\n            \"category\":
+    \"Fruits 2\",\r\n            \"words\": [\r\n              \"LYCHEE\",\r\n             
+    \"QUINCE\",\r\n              \"GUAVAS\",\r\n              \"MELONS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 44,\r\n            \"category\":
+    \"Countries 2\",\r\n            \"words\": [\r\n              \"ISRAEL\",\r\n             
+    \"SWEDEN\",\r\n              \"KUWAIT\",\r\n              \"BELIZE\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 45,\r\n            \"category\":
+    \"Clothing 2\",\r\n            \"words\": [\r\n              \"BLOUSE\",\r\n             
+    \"GLOVES\",\r\n              \"HOODIE\",\r\n              \"ROMPER\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 46,\r\n            \"category\":
+    \"Furniture 2\",\r\n            \"words\": [\r\n              \"LOUNGE\",\r\n             
+    \"DAYBED\",\r\n              \"STOOLS\",\r\n              \"SCREEN\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 47,\r\n            \"category\":
+    \"Shoes\",\r\n            \"words\": [\r\n              \"LOAFER\",\r\n             
+    \"OXFORD\",\r\n              \"BOOTIE\",\r\n              \"WEDGES\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 48,\r\n            \"category\":
+    \"Headwear\",\r\n            \"words\": [\r\n              \"FEDORA\",\r\n             
+    \"BONNET\",\r\n              \"VISORS\",\r\n              \"BERETS\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 49,\r\n            \"category\":
+    \"Kitchen 2\",\r\n            \"words\": [\r\n              \"PLATES\",\r\n             
+    \"SPOONS\",\r\n              \"TRIVET\",\r\n              \"TEAPOT\"\r\n           
+    ]\r\n          },\r\n          {\r\n            \"id\": 50,\r\n            \"category\":
+    \"Nature\",\r\n            \"words\": [\r\n              \"PEBBLE\",\r\n             
+    \"BRANCH\",\r\n              \"ACORNS\",\r\n              \"BUSHES\"\r\n           
+    ]\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  }\r\n]"
   _environments: "[\r\n  {\r\n    \"projectId\": \"2d3728cf-00c8-4517-81b1-e8a44a07de96\",\r\n   
     \"name\": \"production\",\r\n    \"id\": \"ad5d9704-dce2-4c6e-ba96-b9b2ba02ccbb\",\r\n   
     \"isDefault\": true,\r\n    \"createdAt\": \"2025-04-16T21:51:25Z\",\r\n    \"updatedAt\":

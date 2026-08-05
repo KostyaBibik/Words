@@ -59,11 +59,17 @@ namespace UI.Gameplay.Elements
             _dataModel.LetterCount;
         
         public void SetOrderInWord(int order) =>
-            _dataModel.Data.orderInWord = order;
-        
+            _dataModel.PlacementOrder = order;
+
         public void SetWordGroupIndex(int index) =>
-            _dataModel.Data.wordGroupIndex = index;
-        
+            _dataModel.PlacementGroup = index;
+
+        public int GetOrderInWord() =>
+            _dataModel.PlacementOrder;
+
+        public int GetWordGroupIndex() =>
+            _dataModel.PlacementGroup;
+
         public void SetData(ClusterData data) =>
             _dataModel.Data = data;
 

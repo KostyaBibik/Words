@@ -116,9 +116,8 @@ namespace Core.Services.Hints
         /// <summary>Lowest-order cluster of the word that has never been successfully dropped anywhere.</summary>
         private (ClusterData cluster, UIClusterElementView view) FindNextUnplacedCluster(ClusterData[] clusters)
         {
-            ClusterData bestCluster = null;
-            UIClusterElementView bestView = null;
-
+            // LevelProcessor emits the pieces left to right, so the array order IS the word
+            // order — and unlike orderInWord it cannot be affected by anything the player does.
             for (var i = 0; i < clusters.Length; i++)
             {
                 var view = FindClusterView(clusters[i]);
@@ -128,14 +127,10 @@ namespace Core.Services.Hints
                 if (view == null || view.Presenter.GetContainer() != null)
                     continue;
 
-                if (bestCluster == null || clusters[i].orderInWord < bestCluster.orderInWord)
-                {
-                    bestCluster = clusters[i];
-                    bestView = view;
-                }
+                return (clusters[i], view);
             }
 
-            return (bestCluster, bestView);
+            return (null, null);
         }
 
         private UIClusterElementView FindClusterView(ClusterData data)

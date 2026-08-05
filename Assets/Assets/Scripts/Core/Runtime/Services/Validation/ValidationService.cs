@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using DataBase.Models;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UI.Services;
 using UniRx;
@@ -11,114 +10,71 @@ namespace Core.Services.Validation
     {
         [Inject] private readonly IGameDataRepository _gameDataRepository;
         [Inject] private readonly IWordContainersService _containersService;
-        
+
         private readonly ReactiveProperty<bool> _validationStatus = new(false);
-        
+        private readonly List<string> _remainingWords = new();
+
         public IReadOnlyReactiveProperty<bool> ValidationStatus => _validationStatus;
-
-        public async UniTask<bool> Validate()
-        {
-            var level = _gameDataRepository.CurrentLevel;
-            var expectedWords = level.words;
-
-            var placedClusters = new List<(ClusterData clusterData, int startIndex)>();
-            
-            foreach (var container in _containersService.ContainerPresenters)
-            {
-                var containerClusters = container.GetPlacedClusters();
-                
-                foreach (var (clusterPresenter, startIndex) in containerClusters)
-                {
-                    var cluster = (clusterPresenter.GetData(), startIndex);
-                    placedClusters.Add(cluster);
-                }
-            }
-            
-            _validationStatus.Value = await AreAllClustersPlacedCorrectly(expectedWords, placedClusters);
-
-            return _validationStatus.Value;
-        }
-
-        public void Clear() => _validationStatus.Value = false;
 
         // Runs synchronously (no UniTask.RunOnThreadPool): WebGL has no real ThreadPool, so
         // SwitchToThreadPool() there registers a callback nothing ever services, and the
         // await hangs forever. The comparison below is cheap in-memory work anyway.
-        private UniTask<bool> AreAllClustersPlacedCorrectly(
-            WordEntry[] expectedWords,
-            List<(ClusterData clusterData, int startIndex)> actualClusters
-        )
+        public UniTask<bool> Validate()
         {
-            var matchedWordIndices = new HashSet<int>();
+            _validationStatus.Value = AreAllWordsAssembled();
 
-                for (var actualClusterIndex = 0; actualClusterIndex < actualClusters.Count; actualClusterIndex++)
-                {
-                    var actualClusterData = actualClusters[actualClusterIndex].clusterData;
-
-                    if (actualClusterData.orderInWord != 0)
-                        continue;
-
-                    for (var expectedWordIndex = 0; expectedWordIndex < expectedWords.Length; expectedWordIndex++)
-                    {
-                        if (matchedWordIndices.Contains(expectedWordIndex))
-                            continue;
-
-                        var expectedClusters = expectedWords[expectedWordIndex].clusters;
-
-                        if (expectedClusters.Length == 0 || expectedClusters[0].value != actualClusterData.value)
-                            continue;
-
-                        var actualGroupIndex = actualClusterData.wordGroupIndex;
-
-                        var matchingGroup = new List<ClusterData>();
-
-                        for (var i = 0; i < actualClusters.Count; i++)
-                        {
-                            var candidate = actualClusters[i].clusterData;
-
-                            if (candidate.wordGroupIndex == actualGroupIndex)
-                                matchingGroup.Add(candidate);
-                        }
-
-                        if (matchingGroup.Count != expectedClusters.Length)
-                            continue;
-
-                        var isCorrect = true;
-
-                        for (var clusterIterator = 0; clusterIterator < expectedClusters.Length; clusterIterator++)
-                        {
-                            var expectedCluster = expectedClusters[clusterIterator];
-
-                            var matchFound = false;
-
-                            for (var matchIterator = 0; matchIterator < matchingGroup.Count; matchIterator++)
-                            {
-                                var actualCluster = matchingGroup[matchIterator];
-
-                                if (actualCluster.orderInWord == expectedCluster.orderInWord &&
-                                    actualCluster.value == expectedCluster.value)
-                                {
-                                    matchFound = true;
-                                    break;
-                                }
-                            }
-
-                            if (!matchFound)
-                            {
-                                isCorrect = false;
-                                break;
-                            }
-                        }
-
-                        if (!isCorrect)
-                            return UniTask.FromResult(false);
-
-                        matchedWordIndices.Add(expectedWordIndex);
-                        break;
-                    }
-                }
-
-            return UniTask.FromResult(matchedWordIndices.Count == expectedWords.Length);
+            return UniTask.FromResult(_validationStatus.Value);
         }
+
+        public void Clear() => _validationStatus.Value = false;
+
+        /// <summary>
+        /// Compares what each row currently spells against the level's words, as a multiset.
+        /// Reading the assembled letters is the only source of truth that cannot drift: it is
+        /// derived from the slot indices the clusters actually occupy, so it stays correct no
+        /// matter how many times a piece was moved between rows, pulled back to the pool, or
+        /// how many times the player pressed "check" along the way. The previous implementation
+        /// matched per-cluster bookkeeping (orderInWord / wordGroupIndex) that gameplay rewrites
+        /// on the level's own answer data, and bailed out of the whole check on the first
+        /// candidate word that did not line up instead of trying the next one.
+        /// </summary>
+        private bool AreAllWordsAssembled()
+        {
+            var level = _gameDataRepository.CurrentLevel;
+
+            if (level?.words == null || level.words.Length == 0)
+                return false;
+
+            var containers = _containersService.ContainerPresenters;
+
+            if (containers == null || containers.Length != level.words.Length)
+                return false;
+
+            // Each expected word may only be matched once, so consume from a working copy.
+            _remainingWords.Clear();
+
+            for (var i = 0; i < level.words.Length; i++)
+                _remainingWords.Add(Normalize(level.words[i].word));
+
+            for (var i = 0; i < containers.Length; i++)
+            {
+                var assembled = Normalize(containers[i].GetAssembledWord());
+
+                if (assembled.Length == 0)
+                    return false;
+
+                var matchIndex = _remainingWords.IndexOf(assembled);
+
+                if (matchIndex < 0)
+                    return false;
+
+                _remainingWords.RemoveAt(matchIndex);
+            }
+
+            return _remainingWords.Count == 0;
+        }
+
+        private static string Normalize(string value) =>
+            string.IsNullOrEmpty(value) ? string.Empty : value.Trim().ToUpperInvariant();
     }
 }

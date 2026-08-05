@@ -3,6 +3,7 @@
     "rootNamespace": "",
     "references": [
         "VYandexTools",
+        "Unity.Localization",
         "GUID:560b04d1a97f54a4e82edc0cbbb69285",
         "GUID:f51ebe6a0ceec4240a699833d6309b23",
         "GUID:9d6c7830d9ab746a7a12f144bdeeee7c",

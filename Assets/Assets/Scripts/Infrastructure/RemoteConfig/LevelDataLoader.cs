@@ -7,12 +7,15 @@ using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.RemoteConfig;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 namespace Infrastructure.RemoteConfig
 {
     public sealed class LevelDataLoader : ILevelDataLoader
     {
-        private const string REMOTE_LEVELS_KEY = "levels_json";
+        private const string REMOTE_LEVELS_KEY_RU = "levels_ru";
+        private const string REMOTE_LEVELS_KEY_EN = "levels_en";
+        private const string ENGLISH_LOCALE_PREFIX = "en";
 
         private readonly RemoteLevelsContainer _defaultRemoteLevels;
         
@@ -34,10 +37,10 @@ namespace Infrastructure.RemoteConfig
                 await InitializeRemoteConfig();
 
                 await FetchConfig();
-            
-                var jsonData = RemoteConfigService.Instance.appConfig.GetJson(REMOTE_LEVELS_KEY);
-                
-                if (string.IsNullOrEmpty(jsonData)) 
+
+                var jsonData = RemoteConfigService.Instance.appConfig.GetJson(GetLevelsKey());
+
+                if (string.IsNullOrEmpty(jsonData))
                     return _defaultRemoteLevels.levels;
             
                 return JsonUtility.FromJson<RemoteLevelsContainer>(jsonData).levels;
@@ -60,6 +63,17 @@ namespace Infrastructure.RemoteConfig
                 Debug.LogError($"Remote Config failed: {e.Message}");
                 return default;
             }
+        }
+
+        private static string GetLevelsKey()
+        {
+            var code = LocalizationSettings.HasSettings
+                ? LocalizationSettings.SelectedLocale?.Identifier.Code
+                : null;
+
+            return code != null && code.StartsWith(ENGLISH_LOCALE_PREFIX, StringComparison.OrdinalIgnoreCase)
+                ? REMOTE_LEVELS_KEY_EN
+                : REMOTE_LEVELS_KEY_RU;
         }
 
         private async Task InitializeRemoteConfig()

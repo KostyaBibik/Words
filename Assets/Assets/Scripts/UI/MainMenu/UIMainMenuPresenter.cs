@@ -15,7 +15,6 @@ namespace UI.Gameplay
 
         public override void Initialize()
         {
-            _view.SetTitle(Loc.Text(LocalizationKey.menu_title, "СОБЕРИ\nСЛОВА"));
             Hide();
         }
 

@@ -17,6 +17,7 @@ namespace DefaultNamespace.Yandex
     {
         private const int GameSceneBuildIndex = 1;
         private const float GameAnalyticsInitializationTimeoutSeconds = 5f;
+        private const float BillingTimeoutSeconds = 5f;
 
 #if UNITY_EDITOR
         [SerializeField] private string locale = "ru";
@@ -79,8 +80,18 @@ namespace DefaultNamespace.Yandex
 
         private IEnumerator Consume()
         {
-            Billing.GetPurchasedProducts(UpdateProductCatalog);
-            yield return new WaitUntil(() => _billingSuccses);
+            // Kimicu only answers in WebGL (or Editor with WebGL target); on error or any other
+            // platform the callback never fires, so don't let an unbounded wait hang the boot.
+            bool billingFailed = false;
+            Billing.GetPurchasedProducts(UpdateProductCatalog, error =>
+            {
+                Debug.LogWarning($"GetPurchasedProducts failed: {error}");
+                billingFailed = true;
+            });
+
+            float deadline = Time.realtimeSinceStartup + BillingTimeoutSeconds;
+            while (!_billingSuccses && !billingFailed && Time.realtimeSinceStartup < deadline)
+                yield return null;
         }
 
         private void UpdateProductCatalog(GetPurchasedProductsResponse response)

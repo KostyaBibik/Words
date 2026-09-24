@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Agava.YandexGames;
 using UnityEngine;
+using YandexGamesSdk = Kimicu.YandexGames.YandexGamesSdk;
 
 namespace VYandexTools.Review.Scripts
 {
